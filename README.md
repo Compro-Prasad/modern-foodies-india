@@ -1,7 +1,7 @@
 # Foodali 
-## Hybrid application project
+Hybrid App with Ionic 5.2
 
-Environment setup (Linux)
+### Environment setup (Linux)
 ```
 sudo apt update
 ```

@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="postmyfood"></ion-back-button>
+        </ion-buttons>  
+    <ion-title>Food Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<!-- Textarea in an item with a floating label -->
+<ion-item>
+    <ion-label position="floating">Food Title</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+<ion-item>
+  <ion-label position="floating">Description</ion-label>
+  <ion-textarea></ion-textarea>
+</ion-item>
+
+
+<ion-grid>
+    <ion-row>
+      <ion-col>
+          <ion-card>
+              <ion-card-header>
+                <ion-card-title>Upload Food Picture</ion-card-title>
+              </ion-card-header>
+            
+              <ion-card-content>
+          
+                  <img style="width: 50px;" src="/assets/icon/_ionicons_svg_md-cloud-upload.svg">
+              </ion-card-content>
+            </ion-card>
+      </ion-col>
+      
+      
+      <ion-col>
+        
+  <ion-card>
+      <ion-card-header>
+        <ion-card-title>Number of Servings</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+          <ion-input type="number" value="5"></ion-input>
+      </ion-card-content>
+    </ion-card>
+      </ion-col>
+
+
+
+    </ion-row>
+    </ion-grid>
+
+<!-- Default Segment -->
+<ion-segment>
+    <ion-segment-button value="friends">
+      <ion-label>Pick-up only</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="enemies">
+      <ion-label>Deliver</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+      <ion-title>
+
+
+<ion-button expand="full" >Publish</ion-button>
+
+      </ion-title>
+    </ion-toolbar>
+  </ion-footer>

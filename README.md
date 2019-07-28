@@ -1,5 +1,5 @@
-# Foodali MVP
-Hybrid application project for iOS, Android &amp; PWA
+# Foodali 
+## Hybrid application project
 
 Environment setup (Linux)
 ```
@@ -31,6 +31,6 @@ ionic serve
 ```
 The app will open in a browser on http://localhost:8100
 
-Build...Feedback...Learn...Pivot/Persevere [Repeat]
+Flow : Build MVP...Feedback...Learn...Pivot/Persevere [Repeat]
 
 

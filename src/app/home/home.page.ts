@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 
 import {NavController} from '@ionic/angular';
-import * as anime from 'animejs';
-
+//import * as anime from 'animejs';
+//import anime from 'animejs/lib/anime.es.js';
+import anime from 'animejs/lib/anime.es.js';
 
 @Component({
   selector: 'app-home',
@@ -13,12 +14,12 @@ export class HomePage {
 
   constructor(private navCtrl: NavController) {}
 
-  ionViewDidLoad() {
-
+  ionViewDidLoad() { 
     anime({
-        targets: '.el',
-        translateX: 250
-    });
+      targets: '#cssSelector .el',
+      translateX: 250
+  });
+
 
 }
 

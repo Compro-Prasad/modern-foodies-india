@@ -1,0 +1,21 @@
+[home] -> [location] -> [after login ask ifcook two options, either postmyfood or mhungry]
+
+if postmyfood
+-------------
+[foodposter] -> [foodcard]
+
+[managepeople]
+
+[foodmanagement] 
+
+if mhungry
+----------
+[nearbycooks] -> [Cooks page with menues and foodcards in respective menus 
+
+
+Default pages,
+[profile]
+[home]
+
+
+*Words wrapped in [] is a pagename 

@@ -31,6 +31,6 @@ ionic serve
 ```
 The app will open in a browser on http://localhost:8100
 
-Flow : Build MVP...Feedback...Learn...Pivot/Persevere [Repeat]
+
 
 

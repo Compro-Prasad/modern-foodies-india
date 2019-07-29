@@ -23,9 +23,9 @@ npm install -g ionic cordova
 ```
 
 Go to the folder location modern-foodies-india & run the command
-'''
+```
 npm install -g @angular/cli
-'''
+```
 ```
 npm install
 ```

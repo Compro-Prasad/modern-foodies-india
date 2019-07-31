@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'searchmain', loadChildren: './searchmain/searchmain.module#SearchmainPageModule' },
   { path: 'foodinfo', loadChildren: './foodinfo/foodinfo.module#FoodinfoPageModule' },
   { path: 'foodposter', loadChildren: './foodposter/foodposter.module#FoodposterPageModule' },
+  
 ];
 
 @NgModule({

@@ -11,10 +11,13 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { ModalPageModule } from './modal/modal.module';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ModalPageModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ModalPageModule, BrowserAnimationsModule],
   providers: [
     StatusBar,
     SplashScreen,

@@ -68,7 +68,7 @@
 
 
 <div class="home-dw"
-style="position: fixed; z-index: -111000; top:0; left:0; width:100%; height:100%; overflow-y: scroll;">
+style="position: fixed; z-index: -111000; top:0; left:0; width:100%; height:100%; overflow-y: scroll; background: #333;">
 
 
 <!-- <ion-header>
@@ -118,7 +118,7 @@ style="position: fixed; z-index: -111000; top:0; left:0; width:100%; height:100%
 
   </ion-header> -->
 
-<div style="width:100%; height: 90px; position: fixed; top:0; left:0;  z-index: 1000000;">
+<div style="width:100%; height: 90px; position: absolute; top:0; left:0;  z-index: 1000000;">
   <div class="flex-container" >
 
     <div style="text-align: left; font-size: 25px; padding: 10px; background: #fff;">
@@ -147,1228 +147,163 @@ style="position: fixed; z-index: -111000; top:0; left:0; width:100%; height:100%
 
 </div>
 
-<div style="position: absolute; color: #fff; top:190px; left:0px; width:100%; height: 300px; background: #333;"></div>
-<div style="position: relative">
-  <div style="position:absolute; width:100%;">
-  <div class="flex-container">
-  <div>adsf</div>
-  <div>asdf</div>
-</div>
-</div>
-</div>
-
-<ion-grid>
-
-  <ion-row style="margin: 20px;">
-
+<ion-row style="margin: 100px;">
     <ion-col size="3">
-      <div style="position: absolute; top:370px; left:40px; width:300px; height:100%; background:goldenrod;">
-        <ion-card>
-          <ion-item color="primary" href="#!" class="activated">
-            <ion-icon name="flame" slot="start"></ion-icon>
-            <ion-label>Popular</ion-label>
-          </ion-item>
-
-
-          <ion-item href="#!">
-            <ion-icon name="heart-half" slot="start"></ion-icon>
-            <ion-label>Your Favorites</ion-label>
-          </ion-item>
-
-          <ion-item href="#!">
-            <ion-icon name="pie" slot="start"></ion-icon>
-            <ion-label>Vegetarian</ion-label>
-          </ion-item>
-
-          <ion-item href="#!" class="activated">
-            <ion-icon name="pizza" slot="start"></ion-icon>
-            <ion-label>Cuisine</ion-label>
-          </ion-item>
-
-          <ion-item href="#!">
-            <ion-icon name="more" slot="start"></ion-icon>
-            <ion-label>More Resturants</ion-label>
-          </ion-item>
+        <ion-card style="background: #fff">
+            <ion-card-header>
+              <img src="https://thetoptenchefs.com/wp/wp-content/uploads/2016/03/Sanjeev-Kapoor-226x300.jpg"/>
+              <ion-card-title >Cook name</ion-card-title>
+              <ion-card-subtitle >Cuisine Type</ion-card-subtitle>
+            </ion-card-header>
           
-        </ion-card>
-        <ion-card>
-            <ion-item color="danger" href="#!" class="activated">
-              <ion-icon name="flash" slot="start"></ion-icon>
-              <ion-label>Post my food</ion-label>
-            </ion-item>
-
-            
+            <ion-card-content>
+          
+              
+                  <ion-icon name="star"></ion-icon> 4.2
+              &nbsp;
+              
+                  <ion-icon name="time"></ion-icon> 30 Min
+              
+              <br/>
+                <b>₹ 150 for 2 servings </b> &nbsp; <b>Pickup only</b>
+              
+            </ion-card-content>
           </ion-card>
-      </div>
-  
     </ion-col>
-    <ion-col style="margin-top:350px;">
-      <ion-card>
-        <ion-header style="text-align: center">
-          <ion-toolbar>
-            <ion-buttons slot="start">
-              <ion-back-button></ion-back-button>
-            </ion-buttons>
-            <ion-title><b>Popular</b></ion-title>
-          </ion-toolbar>
-
-        </ion-header>
-
-        <ion-card-content>
-          <ion-grid>
-
-            <ion-row>
-
-              <ion-col>
-                <ion-card>
-
-
-
-                  <ion-card-header>
-
-                    <img
-                      src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/ntgivkopr42da605vupi" />
-
-                    <img style="width: 20px !important; margin: 10px; float: right;"
-                      src="https://cdn.iconscout.com/icon/premium/png-512-thumb/vegetarian-3-565377.png" />
-
-                    <ion-card-subtitle>Cuisine Type</ion-card-subtitle>
-
-                    <ion-card-title>Food name</ion-card-title>
-
-
-                  </ion-card-header>
-
-                  <ion-card-content>
-
-
-
-                    <ion-badge color="success">
-                      <ion-icon name="star"></ion-icon> 4.2
-                    </ion-badge>
-                    <ion-badge style="margin-left:10px " color="primary">
-                      <ion-icon name="time"></ion-icon> 30 Min
-                    </ion-badge><br />
-                    ₹ 150 for 2 servings
-
-
-
-                  </ion-card-content>
-                  <ion-footer>
-                    <ion-toolbar>
-
-                      <ion-grid>
-                        <ion-row>
-
-                          <ion-col style="text-align: center;">
-                            Pick-up only
-                          </ion-col>
-
-                          <ion-col style="text-align: center; cursor: pointer">
-
-                            Explore
-
-                          </ion-col>
-
-                        </ion-row>
-
-                      </ion-grid>
-
-
-
-
-                    </ion-toolbar>
-                  </ion-footer>
-                </ion-card>
-
-              </ion-col>
-
-
-              <ion-col>
-                <ion-card>
-
-
-
-                  <ion-card-header>
-
-                    <img
-                      src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/ntgivkopr42da605vupi" />
-
-                    <img style="width: 20px !important; margin: 10px; float: right;"
-                      src="https://cdn.iconscout.com/icon/premium/png-256-thumb/nonveg-sign-565376.png" />
-                    <ion-card-subtitle>Cuisine Type</ion-card-subtitle>
-
-                    <ion-card-title>Food name</ion-card-title>
-
-
-                  </ion-card-header>
-
-                  <ion-card-content>
-
-
-
-                    <ion-badge color="success">
-                      <ion-icon name="star"></ion-icon> 4.2
-                    </ion-badge>
-                    <ion-badge style="margin-left:10px " color="primary">
-                      <ion-icon name="time"></ion-icon> 30 Min
-                    </ion-badge><br />
-                    ₹ 150 for 2 servings
-
-
-
-                  </ion-card-content>
-                  <ion-footer>
-                    <ion-toolbar>
-
-                      <ion-grid>
-                        <ion-row>
-
-                          <ion-col style="text-align: center;">
-                            Pick-up only
-                          </ion-col>
-
-                          <ion-col style="text-align: center; cursor: pointer">
-
-                            Explore
-
-                          </ion-col>
-
-                        </ion-row>
-
-                      </ion-grid>
-
-
-
-
-                    </ion-toolbar>
-                  </ion-footer>
-                </ion-card>
-
-              </ion-col>
-
-              <ion-col>
-                <ion-card>
-
-
-
-                  <ion-card-header>
-
-                    <img
-                      src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/ntgivkopr42da605vupi" />
-
-                    <img style="width: 20px !important; margin: 10px; float: right;"
-                      src="https://cdn.iconscout.com/icon/premium/png-256-thumb/nonveg-sign-565376.png" />
-                    <ion-card-subtitle>Cuisine Type</ion-card-subtitle>
-
-                    <ion-card-title>Food name</ion-card-title>
-
-
-                  </ion-card-header>
-
-                  <ion-card-content>
-
-
-
-                    <ion-badge color="success">
-                      <ion-icon name="star"></ion-icon> 4.2
-                    </ion-badge>
-                    <ion-badge style="margin-left:10px " color="primary">
-                      <ion-icon name="time"></ion-icon> 30 Min
-                    </ion-badge><br />
-                    ₹ 150 for 2 servings
-
-
-
-                  </ion-card-content>
-                  <ion-footer>
-                    <ion-toolbar>
-
-                      <ion-grid>
-                        <ion-row>
-
-                          <ion-col style="text-align: center;">
-                            Deliver
-                          </ion-col>
-
-                          <ion-col style="text-align: center; cursor: pointer">
-
-                            Explore
-
-                          </ion-col>
-
-                        </ion-row>
-
-                      </ion-grid>
-
-
-
-
-                    </ion-toolbar>
-                  </ion-footer>
-                </ion-card>
-
-              </ion-col>
-
-            </ion-row>
-
-          </ion-grid>
-
-
-
-        </ion-card-content>
-      </ion-card>
-      <ion-card>
-        <ion-header style="text-align: center">
-          <ion-toolbar>
-            <ion-buttons slot="start">
-              <ion-back-button></ion-back-button>
-            </ion-buttons>
-            <ion-title><b>Your Favorites</b></ion-title>
-          </ion-toolbar>
-
-        </ion-header>
-
-        <ion-card-content>
-          <ion-grid>
-
-            <ion-row>
-
-              <ion-col>
-                <ion-card>
-
-
-
-                  <ion-card-header>
-
-                    <img
-                      src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/ntgivkopr42da605vupi" />
-
-                    <img style="width: 20px !important; margin: 10px; float: right;"
-                      src="https://cdn.iconscout.com/icon/premium/png-512-thumb/vegetarian-3-565377.png" />
-
-                    <ion-card-subtitle>Cuisine Type</ion-card-subtitle>
-
-                    <ion-card-title>Food name</ion-card-title>
-
-
-                  </ion-card-header>
-
-                  <ion-card-content>
-
-
-
-                    <ion-badge color="success">
-                      <ion-icon name="star"></ion-icon> 4.2
-                    </ion-badge>
-                    <ion-badge style="margin-left:10px " color="primary">
-                      <ion-icon name="time"></ion-icon> 30 Min
-                    </ion-badge><br />
-                    ₹ 150 for 3 servings
-
-
-
-                  </ion-card-content>
-                  <ion-footer>
-                    <ion-toolbar>
-
-                      <ion-grid>
-                        <ion-row>
-
-                          <ion-col style="text-align: center;">
-                            Pick-up only
-                          </ion-col>
-
-                          <ion-col style="text-align: center; cursor: pointer">
-
-                            Explore
-
-                          </ion-col>
-
-                        </ion-row>
-
-                      </ion-grid>
-
-
-
-
-                    </ion-toolbar>
-                  </ion-footer>
-                </ion-card>
-
-              </ion-col>
-
-
-              <ion-col>
-                <ion-card>
-
-
-
-                  <ion-card-header>
-
-                    <img
-                      src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/ntgivkopr42da605vupi" />
-
-                    <img style="width: 20px !important; margin: 10px; float: right;"
-                      src="https://cdn.iconscout.com/icon/premium/png-256-thumb/nonveg-sign-565376.png" />
-                    <ion-card-subtitle>Cuisine Type</ion-card-subtitle>
-
-                    <ion-card-title>Food name</ion-card-title>
-
-
-                  </ion-card-header>
-
-                  <ion-card-content>
-
-
-
-                    <ion-badge color="success">
-                      <ion-icon name="star"></ion-icon> 4.2
-                    </ion-badge>
-                    <ion-badge style="margin-left:10px " color="primary">
-                      <ion-icon name="time"></ion-icon> 30 Min
-                    </ion-badge><br />
-                    ₹ 150 for 2 servings
-
-
-
-                  </ion-card-content>
-                  <ion-footer>
-                    <ion-toolbar>
-
-                      <ion-grid>
-                        <ion-row>
-
-                          <ion-col style="text-align: center;">
-                            Pick-up only
-                          </ion-col>
-
-                          <ion-col style="text-align: center; cursor: pointer">
-
-                            Explore
-
-                          </ion-col>
-
-                        </ion-row>
-
-                      </ion-grid>
-
-
-
-
-                    </ion-toolbar>
-                  </ion-footer>
-                </ion-card>
-
-              </ion-col>
-
-              <ion-col>
-                <ion-card>
-
-
-
-                  <ion-card-header>
-
-                    <img
-                      src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/ntgivkopr42da605vupi" />
-
-                    <img style="width: 20px !important; margin: 10px; float: right;"
-                      src="https://cdn.iconscout.com/icon/premium/png-256-thumb/nonveg-sign-565376.png" />
-                    <ion-card-subtitle>Cuisine Type</ion-card-subtitle>
-
-                    <ion-card-title>Food name</ion-card-title>
-
-
-                  </ion-card-header>
-
-                  <ion-card-content>
-
-
-
-                    <ion-badge color="success">
-                      <ion-icon name="star"></ion-icon> 4.2
-                    </ion-badge>
-                    <ion-badge style="margin-left:10px " color="primary">
-                      <ion-icon name="time"></ion-icon> 30 Min
-                    </ion-badge><br />
-                    ₹ 150 for 2 servings
-
-
-
-                  </ion-card-content>
-                  <ion-footer>
-                    <ion-toolbar>
-
-                      <ion-grid>
-                        <ion-row>
-
-                          <ion-col style="text-align: center;">
-                            Deliver
-                          </ion-col>
-
-                          <ion-col style="text-align: center; cursor: pointer">
-
-                            Explore
-
-                          </ion-col>
-
-                        </ion-row>
-
-                      </ion-grid>
-
-
-
-
-                    </ion-toolbar>
-                  </ion-footer>
-                </ion-card>
-
-              </ion-col>
-
-            </ion-row>
-
-
-
-            <ion-row>
-
-              <ion-col size="4">
-                <ion-card>
-
-
-
-                  <ion-card-header>
-
-                    <img
-                      src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/ntgivkopr42da605vupi" />
-
-                    <img style="width: 20px !important; margin: 10px; float: right;"
-                      src="https://cdn.iconscout.com/icon/premium/png-512-thumb/vegetarian-3-565377.png" />
-
-                    <ion-card-subtitle>Cuisine Type</ion-card-subtitle>
-
-                    <ion-card-title>Food name</ion-card-title>
-
-
-                  </ion-card-header>
-
-                  <ion-card-content>
-
-
-
-                    <ion-badge color="success">
-                      <ion-icon name="star"></ion-icon> 4.2
-                    </ion-badge>
-                    <ion-badge style="margin-left:10px " color="primary">
-                      <ion-icon name="time"></ion-icon> 30 Min
-                    </ion-badge><br />
-                    ₹ 150 for 3 servings
-
-
-
-                  </ion-card-content>
-                  <ion-footer>
-                    <ion-toolbar>
-
-                      <ion-grid>
-                        <ion-row>
-
-                          <ion-col style="text-align: center;">
-                            Pick-up only
-                          </ion-col>
-
-                          <ion-col style="text-align: center; cursor: pointer">
-
-                            Explore
-
-                          </ion-col>
-
-                        </ion-row>
-
-                      </ion-grid>
-
-
-
-
-                    </ion-toolbar>
-                  </ion-footer>
-                </ion-card>
-
-              </ion-col>
-
-
-
-            </ion-row>
-
-
-
-          </ion-grid>
-
-
-
-        </ion-card-content>
-      </ion-card>
-
-      <ion-card>
-        <ion-header style="text-align: center">
-          <ion-toolbar>
-            <ion-buttons slot="start">
-              <ion-back-button></ion-back-button>
-            </ion-buttons>
-            <ion-title><b>Vegetarian</b></ion-title>
-          </ion-toolbar>
-
-        </ion-header>
-
-        <ion-card-content>
-          <ion-grid>
-
-            <ion-row>
-
-              <ion-col>
-                <ion-card>
-
-
-
-                  <ion-card-header>
-
-                    <img
-                      src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/ntgivkopr42da605vupi" />
-
-                    <img style="width: 20px !important; margin: 10px; float: right;"
-                      src="https://cdn.iconscout.com/icon/premium/png-512-thumb/vegetarian-3-565377.png" />
-
-                    <ion-card-subtitle>Cuisine Type</ion-card-subtitle>
-
-                    <ion-card-title>Food name</ion-card-title>
-
-
-                  </ion-card-header>
-
-                  <ion-card-content>
-
-
-
-                    <ion-badge color="success">
-                      <ion-icon name="star"></ion-icon> 4.2
-                    </ion-badge>
-                    <ion-badge style="margin-left:10px " color="primary">
-                      <ion-icon name="time"></ion-icon> 30 Min
-                    </ion-badge><br />
-                    ₹ 150 for 3 servings
-
-
-
-                  </ion-card-content>
-                  <ion-footer>
-                    <ion-toolbar>
-
-                      <ion-grid>
-                        <ion-row>
-
-                          <ion-col style="text-align: center;">
-                            Pick-up only
-                          </ion-col>
-
-                          <ion-col style="text-align: center; cursor: pointer">
-
-                            Explore
-
-                          </ion-col>
-
-                        </ion-row>
-
-                      </ion-grid>
-
-
-
-
-                    </ion-toolbar>
-                  </ion-footer>
-                </ion-card>
-
-              </ion-col>
-
-
-              <ion-col>
-                <ion-card>
-
-
-
-                  <ion-card-header>
-
-                    <img
-                      src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/ntgivkopr42da605vupi" />
-
-                    <img style="width: 20px !important; margin: 10px; float: right;"
-                      src="https://cdn.iconscout.com/icon/premium/png-256-thumb/nonveg-sign-565376.png" />
-                    <ion-card-subtitle>Cuisine Type</ion-card-subtitle>
-
-                    <ion-card-title>Food name</ion-card-title>
-
-
-                  </ion-card-header>
-
-                  <ion-card-content>
-
-
-
-                    <ion-badge color="success">
-                      <ion-icon name="star"></ion-icon> 4.2
-                    </ion-badge>
-                    <ion-badge style="margin-left:10px " color="primary">
-                      <ion-icon name="time"></ion-icon> 30 Min
-                    </ion-badge><br />
-                    ₹ 150 for 2 servings
-
-
-
-                  </ion-card-content>
-                  <ion-footer>
-                    <ion-toolbar>
-
-                      <ion-grid>
-                        <ion-row>
-
-                          <ion-col style="text-align: center;">
-                            Pick-up only
-                          </ion-col>
-
-                          <ion-col style="text-align: center; cursor: pointer">
-
-                            Explore
-
-                          </ion-col>
-
-                        </ion-row>
-
-                      </ion-grid>
-
-
-
-
-                    </ion-toolbar>
-                  </ion-footer>
-                </ion-card>
-
-              </ion-col>
-
-              <ion-col>
-                <ion-card>
-
-
-
-                  <ion-card-header>
-
-                    <img
-                      src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/ntgivkopr42da605vupi" />
-
-                    <img style="width: 20px !important; margin: 10px; float: right;"
-                      src="https://cdn.iconscout.com/icon/premium/png-256-thumb/nonveg-sign-565376.png" />
-                    <ion-card-subtitle>Cuisine Type</ion-card-subtitle>
-
-                    <ion-card-title><b>Food name</b></ion-card-title>
-
-
-                  </ion-card-header>
-
-                  <ion-card-content>
-
-
-
-                    <ion-badge color="success">
-                      <ion-icon name="star"></ion-icon> 4.2
-                    </ion-badge>
-                    <ion-badge style="margin-left:10px " color="primary">
-                      <ion-icon name="time"></ion-icon> 30 Min
-                    </ion-badge><br />
-                    ₹ 150 for 2 servings
-
-
-
-                  </ion-card-content>
-                  <ion-footer>
-                    <ion-toolbar>
-
-                      <ion-grid>
-                        <ion-row>
-
-                          <ion-col style="text-align: center;">
-                            Deliver
-                          </ion-col>
-
-                          <ion-col style="text-align: center; cursor: pointer">
-
-                            Explore
-
-                          </ion-col>
-
-                        </ion-row>
-
-                      </ion-grid>
-
-
-
-
-                    </ion-toolbar>
-                  </ion-footer>
-                </ion-card>
-
-              </ion-col>
-
-            </ion-row>
-
-
-
-            <ion-row>
-
-              <ion-col size="4">
-                <ion-card>
-
-
-
-                  <ion-card-header>
-
-                    <img
-                      src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/ntgivkopr42da605vupi" />
-
-                    <img style="width: 20px !important; margin: 10px; float: right;"
-                      src="https://cdn.iconscout.com/icon/premium/png-512-thumb/vegetarian-3-565377.png" />
-
-                    <ion-card-subtitle>Cuisine Type</ion-card-subtitle>
-
-                    <ion-card-title>Food name</ion-card-title>
-
-
-                  </ion-card-header>
-
-                  <ion-card-content>
-
-
-
-                    <ion-badge color="success">
-                      <ion-icon name="star"></ion-icon> 4.2
-                    </ion-badge>
-                    <ion-badge style="margin-left:10px " color="primary">
-                      <ion-icon name="time"></ion-icon> 30 Min
-                    </ion-badge><br />
-                    ₹ 150 for 3 servings
-
-
-
-                  </ion-card-content>
-                  <ion-footer>
-                    <ion-toolbar>
-
-                      <ion-grid>
-                        <ion-row>
-
-                          <ion-col style="text-align: center;">
-                            Pick-up only
-                          </ion-col>
-
-                          <ion-col style="text-align: center; cursor: pointer">
-
-                            Explore
-
-                          </ion-col>
-
-                        </ion-row>
-
-                      </ion-grid>
-
-
-
-
-                    </ion-toolbar>
-                  </ion-footer>
-                </ion-card>
-
-              </ion-col>
-
-
-
-            </ion-row>
-
-
-
-          </ion-grid>
-
-
-
-        </ion-card-content>
-      </ion-card>
-      <ion-card>
-        <ion-header style="text-align: center">
-          <ion-toolbar>
-            <ion-buttons slot="start">
-              <ion-back-button></ion-back-button>
-            </ion-buttons>
-            <ion-title>Cuisine</ion-title>
-          </ion-toolbar>
-
-        </ion-header>
-
-        <ion-card-content>
+    <ion-col>
+        <ion-card style="background: #fff">
+            <ion-header>
+            <ion-toolbar>
+                <ion-buttons slot="secondary">
+                 
+                  
+                    <select>
+                        <option>-Choose cuisine-</option>
+                        <option>American</option>
+                        <option>British</option>
+                        <option>Caribbean</option>
+                        <option>Chinese</option>
+                        <option>French</option>
+                        <option>Greek</option>
+                        <option>Indian</option>
+                        <option>Italian</option>
+                        <option>Japanese</option>
+                        <option>Mediterranean</option>
+                        <option>Mexican</option>
+                        <option>Moroccan</option>
+                        <option>Spanish</option>
+                        <option>Thai</option>
+                        <option>Turkish</option>
+                        <option>Vietnamese</option>
+                      </select>
+                </ion-buttons>
+                <ion-title>Menu</ion-title>
+               
+                <ion-buttons slot="primary">
+                    &nbsp; 
+                    &nbsp; 
+                  <b>Veg</b>
+                    <ion-toggle color="dark"></ion-toggle>
+                  </ion-buttons>
 
     
 
-          <ion-grid>
 
-            <ion-row>
-
-                <ion-col>
-                    <ion-card>
-                      <ion-card-header>
-                        <img
-                          src="https://www.bbcgoodfood.com/sites/default/files/styles/category_retina/public/recipe-collections/collection-image/2013/05/ramen.jpg?itok=i5sDh-Ht" />
-                         </ion-card-header>
-                    </ion-card>
-                  </ion-col>
-
-                  <ion-col>
-                      <ion-card>
-                        <ion-card-header>
-                          <img
-                            src="https://www.bbcgoodfood.com/sites/default/files/styles/category_retina/public/recipe-collections/collection-image/2013/05/ramen.jpg?itok=i5sDh-Ht" />
-                           </ion-card-header>
-                      </ion-card>
-                    </ion-col>
-
-                    <ion-col>
-                        <ion-card>
-                          <ion-card-header>
-                            <img
-                              src="https://www.bbcgoodfood.com/sites/default/files/styles/category_retina/public/recipe-collections/collection-image/2013/05/ramen.jpg?itok=i5sDh-Ht" />
-                             </ion-card-header>
-                        </ion-card>
-                      </ion-col>
-                      <ion-col>
-                          <ion-card>
-                            <ion-card-header>
-                              <img
-                                src="https://www.bbcgoodfood.com/sites/default/files/styles/category_retina/public/recipe-collections/collection-image/2013/05/ramen.jpg?itok=i5sDh-Ht" />
-                               </ion-card-header>
-                          </ion-card>
-                        </ion-col>
-              <ion-col>
-                  <ion-card>
-                    <ion-card-header>
-                      <img
-                        src="https://www.bbcgoodfood.com/sites/default/files/styles/category_retina/public/recipe-collections/collection-image/2013/05/ramen.jpg?itok=i5sDh-Ht" />
-                       </ion-card-header>
-                  </ion-card>
-                </ion-col>
-
-
-
-            </ion-row>
-
-
-
-
-          </ion-grid>
-
-
-
-        </ion-card-content>
-      </ion-card>
-
-      <ion-card>
-
-        <ion-header style="text-align: center">
-          <ion-toolbar>
-            <ion-buttons slot="start">
-              <ion-back-button></ion-back-button>
-            </ion-buttons>
-            <ion-title>All Resturants</ion-title>
-          </ion-toolbar>
-
-        </ion-header>
-
-        <ion-card-content>
-          <ion-grid>
-
-            <ion-row>
-
-              <ion-col>
-                <ion-card>
-
-
-
-                  <ion-card-header>
-
-                    <img
-                      src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/ntgivkopr42da605vupi" />
-
-                    <img style="width: 20px !important; margin: 10px; float: right;"
-                      src="https://cdn.iconscout.com/icon/premium/png-512-thumb/vegetarian-3-565377.png" />
-
-                    <ion-card-subtitle>Cuisine Type</ion-card-subtitle>
-
-                    <ion-card-title>Food name</ion-card-title>
-
-
-                  </ion-card-header>
-
-                  <ion-card-content>
-
-
-
-                    <ion-badge color="success">
-                      <ion-icon name="star"></ion-icon> 4.2
-                    </ion-badge>
-                    <ion-badge style="margin-left:10px " color="primary">
-                      <ion-icon name="time"></ion-icon> 30 Min
-                    </ion-badge><br />
-                    ₹ 150 for 3 servings
-
-
-
-                  </ion-card-content>
-                  <ion-footer>
-                    <ion-toolbar>
-
-                      <ion-grid>
-                        <ion-row>
-
-                          <ion-col style="text-align: center;">
-                            Pick-up only
-                          </ion-col>
-
-                          <ion-col style="text-align: center; cursor: pointer">
-
-                            Explore
-
-                          </ion-col>
-
-                        </ion-row>
-
-                      </ion-grid>
-
-
-
-
-                    </ion-toolbar>
-                  </ion-footer>
-                </ion-card>
-
-              </ion-col>
-
-
-              <ion-col>
-                <ion-card>
-
-
-
-                  <ion-card-header>
-
-                    <img
-                      src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/ntgivkopr42da605vupi" />
-
-                    <img style="width: 20px !important; margin: 10px; float: right;"
-                      src="https://cdn.iconscout.com/icon/premium/png-256-thumb/nonveg-sign-565376.png" />
-                    <ion-card-subtitle>Cuisine Type</ion-card-subtitle>
-
-                    <ion-card-title>Food name</ion-card-title>
-
-
-                  </ion-card-header>
-
-                  <ion-card-content>
-
-
-
-                    <ion-badge color="success">
-                      <ion-icon name="star"></ion-icon> 4.2
-                    </ion-badge>
-                    <ion-badge style="margin-left:10px " color="primary">
-                      <ion-icon name="time"></ion-icon> 30 Min
-                    </ion-badge><br />
-                    ₹ 150 for 2 servings
-
-
-
-                  </ion-card-content>
-                  <ion-footer>
-                    <ion-toolbar>
-
-                      <ion-grid>
-                        <ion-row>
-
-                          <ion-col style="text-align: center;">
-                            Pick-up only
-                          </ion-col>
-
-                          <ion-col style="text-align: center; cursor: pointer">
-
-                            Explore
-
-                          </ion-col>
-
-                        </ion-row>
-
-                      </ion-grid>
-
-
-
-
-                    </ion-toolbar>
-                  </ion-footer>
-                </ion-card>
-
-              </ion-col>
-
-              <ion-col>
-                <ion-card>
-
-
-
-                  <ion-card-header>
-
-                    <img
-                      src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/ntgivkopr42da605vupi" />
-
-                    <img style="width: 20px !important; margin: 10px; float: right;"
-                      src="https://cdn.iconscout.com/icon/premium/png-256-thumb/nonveg-sign-565376.png" />
-                    <ion-card-subtitle>Cuisine Type</ion-card-subtitle>
-
-                    <ion-card-title>Food name</ion-card-title>
-
-
-                  </ion-card-header>
-
-                  <ion-card-content>
-
-
-
-                    <ion-badge color="success">
-                      <ion-icon name="star"></ion-icon> 4.2
-                    </ion-badge>
-                    <ion-badge style="margin-left:10px " color="primary">
-                      <ion-icon name="time"></ion-icon> 30 Min
-                    </ion-badge><br />
-                    ₹ 150 for 2 servings
-
-
-
-                  </ion-card-content>
-                  <ion-footer>
-                    <ion-toolbar>
-
-                      <ion-grid>
-                        <ion-row>
-
-                          <ion-col style="text-align: center;">
-                            Deliver
-                          </ion-col>
-
-                          <ion-col style="text-align: center; cursor: pointer">
-
-                            Explore
-
-                          </ion-col>
-
-                        </ion-row>
-
-                      </ion-grid>
-
-
-
-
-                    </ion-toolbar>
-                  </ion-footer>
-                </ion-card>
-
-              </ion-col>
-
-            </ion-row>
-
-
-
-            <ion-row>
-
-              <ion-col size="4">
-                <ion-card>
-
-
-
-                  <ion-card-header>
-
-                    <img
-                      src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/ntgivkopr42da605vupi" />
-
-                    <img style="width: 20px !important; margin: 10px; float: right;"
-                      src="https://cdn.iconscout.com/icon/premium/png-512-thumb/vegetarian-3-565377.png" />
-
-                    <ion-card-subtitle>Cuisine Type</ion-card-subtitle>
-
-                    <ion-card-title>Food name</ion-card-title>
-
-
-                  </ion-card-header>
-
-                  <ion-card-content>
-
-
-
-                    <ion-badge color="success">
-                      <ion-icon name="star"></ion-icon> 4.2
-                    </ion-badge>
-                    <ion-badge style="margin-left:10px " color="primary">
-                      <ion-icon name="time"></ion-icon> 30 Min
-                    </ion-badge><br />
-                    ₹ 150 for 3 servings
-
-
-
-                  </ion-card-content>
-                  <ion-footer>
-                    <ion-toolbar>
-
-                      <ion-grid>
-                        <ion-row>
-
-                          <ion-col style="text-align: center;">
-                            Pick-up only
-                          </ion-col>
-
-                          <ion-col style="text-align: center; cursor: pointer">
-
-                            Explore
-
-                          </ion-col>
-
-                        </ion-row>
-
-                      </ion-grid>
-
-
-
-
-                    </ion-toolbar>
-                  </ion-footer>
-                </ion-card>
-
-              </ion-col>
-
-
-
-            </ion-row>
-
-
-
-          </ion-grid>
-
-
-
-        </ion-card-content>
-      </ion-card>
+              </ion-toolbar>
+              </ion-header>
+          
+            <ion-card-content>
+          
+                <ion-list>
+     
+                    <ion-item-sliding>
+                        <ion-item>
+                            <ion-thumbnail slot="start">
+                          <img style="width: 200px;" src="https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/huevos-rancheros.jpg"/>
+                      </ion-thumbnail>
+                       
+                          <ion-label>Allo Paratha</ion-label><br/>
+          
+                        </ion-item>
+                        <div style="margin: 10px 90px 10px 90px">
+                            <ion-badge color="primary">Cuisine</ion-badge>   <br/>   
+                            <ion-icon name="star"></ion-icon> 4.2
+                            &nbsp;     <br/>
+                            
+                                <ion-icon name="time"></ion-icon> 30 Min
+                            
+                            <br/>   
+                              <b>₹ 150 for 2 servings </b> &nbsp;        <br/>
+                            Make this beef stew when the nights draw in. With aubergine and Chinese spices, the flavours are warming and it's slow-cooked for deliciously tender meat...
+                         </div>
+                        <ion-item side="end">
+                          <ion-item  slot="end"><ion-button color="success">Request</ion-button></ion-item>
+                        </ion-item>
+                      </ion-item-sliding>
+
+                      <ion-item-sliding>
+                          <ion-item>
+                              <ion-thumbnail slot="start">
+                            <img style="width: 200px;" src="https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/huevos-rancheros.jpg"/>
+                        </ion-thumbnail>
+                         
+                            <ion-label>Allo Paratha</ion-label><br/>
+            
+                          </ion-item>
+                          <div style="margin: 10px 90px 10px 90px">
+                              <ion-badge color="primary">Cuisine</ion-badge>   <br/>   
+                              <ion-icon name="star"></ion-icon> 4.2
+                              &nbsp;     <br/>
+                              
+                                  <ion-icon name="time"></ion-icon> 30 Min
+                              
+                              <br/>   
+                                <b>₹ 150 for 2 servings </b> &nbsp;        <br/>
+                              Make this beef stew when the nights draw in. With aubergine and Chinese spices, the flavours are warming and it's slow-cooked for deliciously tender meat...
+                           </div>
+                          <ion-item side="end">
+                            <ion-item  slot="end"><ion-button color="success">Request</ion-button></ion-item>
+                          </ion-item>
+                        </ion-item-sliding>
+                        <ion-item-sliding>
+                            <ion-item>
+                                <ion-thumbnail slot="start">
+                              <img style="width: 200px;" src="https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/huevos-rancheros.jpg"/>
+                          </ion-thumbnail>
+                           
+                              <ion-label>Allo Paratha</ion-label><br/>
+              
+                            </ion-item>
+                            <div style="margin: 10px 90px 10px 90px">
+                                <ion-badge color="primary">Cuisine</ion-badge>   <br/>   
+                                <ion-icon name="star"></ion-icon> 4.2
+                                &nbsp;     <br/>
+                                
+                                    <ion-icon name="time"></ion-icon> 30 Min
+                                
+                                <br/>   
+                                  <b>₹ 150 for 2 servings </b> &nbsp;        <br/>
+                                Make this beef stew when the nights draw in. With aubergine and Chinese spices, the flavours are warming and it's slow-cooked for deliciously tender meat...
+                             </div>
+                            <ion-item side="end">
+                              <ion-item  slot="end"><ion-button color="success">Request</ion-button></ion-item>
+                            </ion-item>
+                          </ion-item-sliding>
+    
+                  </ion-list>
+             
+              
+            </ion-card-content>
+            <ion-footer>
+                <ion-toolbar>
+                  <ion-title style="cursor: pointer" slot="end">Address | Contact</ion-title>
+                </ion-toolbar>
+              </ion-footer> 
+          </ion-card>
     </ion-col>
-
   </ion-row>
 
 
-</ion-grid>
 
 
 </div>

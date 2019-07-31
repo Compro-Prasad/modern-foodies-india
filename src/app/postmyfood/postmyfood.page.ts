@@ -4,6 +4,8 @@ import { ModalPage } from '../modal/modal.page'
  
 import {NavController} from '@ionic/angular';
 
+import anime from "animejs";
+
 
 @Component({
   selector: 'app-postmyfood',
@@ -14,6 +16,17 @@ export class PostmyfoodPage implements OnInit {
 
   dataReturned:any;
   constructor(  public modalController: ModalController, private navCtrl: NavController) { }
+
+
+  ionViewWillEnter() { 
+    anime({
+      targets: '.menu',
+      translateX:  0
+  });
+
+
+}
+
   async openModal() {
     const modal = await this.modalController.create({
       component: ModalPage,
@@ -36,5 +49,8 @@ export class PostmyfoodPage implements OnInit {
   }
   profilePage(){
     this.navCtrl.navigateForward('profile');
+}
+cookPage(){
+  this.navCtrl.navigateForward('profile');
 }
 }

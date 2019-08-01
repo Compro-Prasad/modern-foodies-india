@@ -1,26 +1,33 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
 import { FoodposterPage } from './foodposter.page';
 
+import { MaterialModule } from '../material.module';
 const routes: Routes = [
-  { // follow this https://github.com/ionic-team/ionic/blob/master/CHANGELOG.md#angular-tabs
+  {
     path: 'tabs',
-    component: FoodposterPage,
-    children:[
-        { path: 'tab1',
+    component:FoodposterPage,
+    children: [
+      {
+        path: 'tab1',
         children: [
-                    {
-                      path: '',
-                      loadChildren: '../tab1/tab1.module#Tab1PageModule'
-                    }
-                  ]
+          {
+            path: '',
+            loadChildren: '../home/home.module#HomePageModule'
+          }
+        ]
       },
-        // { path: 'tab2', loadChildren: '../tab2/tab2.module#Tab2PageModule' },
+      {
+        path: '',
+        redirectTo: '/app/tabs/tab1',
+        pathMatch: 'full'
+      }
     ]
   },
   {
@@ -34,7 +41,9 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    MaterialModule,
+    ReactiveFormsModule
   ],
   declarations: [FoodposterPage]
 })

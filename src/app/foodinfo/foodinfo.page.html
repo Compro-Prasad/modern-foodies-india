@@ -13,7 +13,7 @@
 
   <img width="100%" src="https://punampaul.com/wp-content/uploads/2019/02/Gulab-Jamun.jpg"/>
 
-    <ion-card>
+    <ion-card>  
         <ion-card-header>
           <ion-card-subtitle>by Chef Raj kishor</ion-card-subtitle>
           <ion-card-title>One Plate Gulab-Jamun</ion-card-title>
@@ -175,27 +175,16 @@ style="position: fixed; z-index: -111000; top:0; left:0; width:100%; height:100%
             <ion-header>
             <ion-toolbar>
                 <ion-buttons slot="secondary">
-                 
+
+                  <mat-form-field>
+                    <mat-label>Cuisines</mat-label>
+                    <mat-select [formControl]="toppings" multiple>
+                      <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
                   
-                    <select>
-                        <option>-Choose cuisine-</option>
-                        <option>American</option>
-                        <option>British</option>
-                        <option>Caribbean</option>
-                        <option>Chinese</option>
-                        <option>French</option>
-                        <option>Greek</option>
-                        <option>Indian</option>
-                        <option>Italian</option>
-                        <option>Japanese</option>
-                        <option>Mediterranean</option>
-                        <option>Mexican</option>
-                        <option>Moroccan</option>
-                        <option>Spanish</option>
-                        <option>Thai</option>
-                        <option>Turkish</option>
-                        <option>Vietnamese</option>
-                      </select>
+                  
+                   
                 </ion-buttons>
                 <ion-title>Menu</ion-title>
                

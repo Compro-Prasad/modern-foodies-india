@@ -95,13 +95,10 @@
         <div style="text-align: left; font-size: 25px; position: relative;">
           <div
             style="width: 100%; padding:0; line-height:0; padding-right:20px;  position: absolute; top: 50%;  transform: translateY(-50%);">
-    
-            <ion-button style="float: right;">
-              <ion-icon slot="start" name="log-in"></ion-icon>
-              Log in
-    
-            </ion-button>
+            <ion-icon style="float: right; margin-top:5px;" class="icon" name="person"></ion-icon>
+          
             <ion-icon style="float: right; margin-top:5px;" class="icon" name="search"></ion-icon>
+           
             <div style="clear: both;"></div>
           </div>
     
@@ -119,7 +116,7 @@
                 <ion-tab-bar slot="top">
            
               
-                  <ion-tab-button tab="tab1">
+                  <ion-tab-button tab="tab1" >
                     <ion-icon name="jet"></ion-icon>
                     <ion-label>Poster</ion-label>
                   </ion-tab-button>
@@ -140,10 +137,57 @@
         </ion-card-header>
       
         <ion-card-content>
-          Keep close to Nature's heart... and break clear away, once in awhile,
-          and climb a mountain or spend a week in the woods. Wash your spirit clean.
+            <!--
+              stepper ref : 
+              https://devdactic.com/angular-material-ionic-4/ -->
+       
+          
+              <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+                  {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+                </button>
+                <mat-vertical-stepper [linear]="isLinear" #stepper>
+                  <mat-step [stepControl]="firstFormGroup">
+                    <form [formGroup]="firstFormGroup">
+                      <ng-template matStepLabel>Fill your food title</ng-template>
+                      <mat-form-field>
+                        <input matInput placeholder="Food title" formControlName="firstCtrl" required>
+                      </mat-form-field>
+                      <div>
+                        <button mat-button matStepperNext>Next</button>
+                      </div>
+                    </form>
+                  </mat-step>
+                  <mat-step [stepControl]="secondFormGroup">
+                    <form [formGroup]="secondFormGroup">
+                      <ng-template matStepLabel>Fill out your food description</ng-template>
+                      <mat-form-field>
+                        <input matInput placeholder="Food description" formControlName="secondCtrl" required>
+                      </mat-form-field>
+                      <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                      </div>
+                    </form>
+                  </mat-step>
+
+              
+
+                  <mat-step>
+                    <ng-template matStepLabel>Done</ng-template>
+                    You are now done.
+                    <div>
+                      <button mat-button matStepperPrevious>Back</button>
+                      <button mat-button (click)="stepper.reset()">Reset</button>
+                    </div>
+                  </mat-step>
+                </mat-vertical-stepper>
+                
+
         </ion-card-content>
 
 
       </ion-card>
+
+   
+
     </div>

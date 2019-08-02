@@ -5,7 +5,7 @@ import anime from 'animejs';
 
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 export interface DialogData {
-  animal: 'panda' | 'unicorn' | 'lion';
+  animal: 'panda' | 'unicorn' | 'lion'; 
 }
 //import anime from 'animejs/lib/anime.es.js';
 //import anime from 'animejs/lib/anime.es.js';
@@ -60,7 +60,7 @@ export class HomePage {
 
 @Component({
   selector: 'dialog-data-example-dialog',
-  templateUrl: './dialog-data-example-dialog.html',
+  templateUrl: 'dialog-data-example-dialog.html',
 })
 export class DialogDataExampleDialog {
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {}

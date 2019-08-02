@@ -16,6 +16,8 @@ const routes: Routes = [
   { path: 'searchmain', loadChildren: './searchmain/searchmain.module#SearchmainPageModule' },
   { path: 'foodinfo', loadChildren: './foodinfo/foodinfo.module#FoodinfoPageModule' },
   { path: 'foodposter', loadChildren: './foodposter/foodposter.module#FoodposterPageModule' },
+  { path: 'manage', loadChildren: './manage/manage.module#ManagePageModule' },
+  { path: 'blacklist', loadChildren: './blacklist/blacklist.module#BlacklistPageModule' },
   
 ];
 

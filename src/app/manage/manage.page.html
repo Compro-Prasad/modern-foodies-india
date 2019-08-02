@@ -95,7 +95,7 @@
         <div style="text-align: left; font-size: 25px; position: relative;">
           <div
             style="width: 100%; padding:0; line-height:0; padding-right:20px;  position: absolute; top: 50%;  transform: translateY(-50%);">
-            <ion-icon style="float: right; margin-top:5px;" class="icon" name="person"></ion-icon>
+            <ion-icon  [routerLink]="['/profile']" routerDirection="forward" style="float: right; margin-top:5px;" class="icon" name="person"></ion-icon>
           
             <ion-icon style="float: right; margin-top:5px;" class="icon" name="search"></ion-icon>
            
@@ -126,7 +126,7 @@
                     <ion-label>Manage</ion-label>
                   </ion-tab-button>
               
-                  <ion-tab-button tab="tab2">
+                  <ion-tab-button tab="tab2"  [routerLink]="['/blacklist']" routerDirection="forward">
                     <ion-icon name="hand"></ion-icon>
                     <ion-label>Blacklist</ion-label>
                   </ion-tab-button>

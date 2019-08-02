@@ -51,6 +51,6 @@ export class PostmyfoodPage implements OnInit {
     this.navCtrl.navigateForward('profile');
 }
 cookPage(){
-  this.navCtrl.navigateForward('profile');
+  this.navCtrl.navigateForward('foodinfo');
 }
 }

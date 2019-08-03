@@ -2,6 +2,12 @@
 
   <ion-grid>
     <ion-row>
+        <ion-col>
+<div style="margin: 20px;" (click)="presentActionSheet()" >FoodAli</div>
+            <!-- <ion-icon style="float: right; width: 30px; height: 30px; margin: 20px; cursor: pointer;"
+              name="search"></ion-icon> -->
+            <!-- <div style="clear: both;"></div> -->
+          </ion-col>
       <ion-col>
         <ion-toolbar>
           <ion-buttons slot="start">
@@ -10,20 +16,15 @@
           <ion-title>
             <ion-item (click)="openModal()">
               <ion-label>
-                <ion-icon class="icon" name="locate"></ion-icon>
-                <span class="address">Diva Gaon, Airoli </span>
-                <p *ngIf="dataReturned">{{dataReturned}}</p>
+                <ion-icon style="width: 30px;" class="icon" name="locate"></ion-icon>
+                <span  style="font-size: 10px;" class="address">Diva Gaon, Airoli </span>
+                <p  style="font-size: 10px;" *ngIf="dataReturned">{{dataReturned}}</p>
               </ion-label>
             </ion-item>
           </ion-title>
         </ion-toolbar>
       </ion-col>
-      <ion-col>
-
-        <ion-icon style="float: right; width: 30px; height: 30px; margin: 10px; cursor: pointer;"
-          name="notifications-outline"></ion-icon>
-        <div style="clear: both;"></div>
-      </ion-col>
+     
     </ion-row>
 
   </ion-grid>
@@ -31,6 +32,154 @@
 </ion-header>
 
 <ion-content class="home-mw">
+
+<!-- Custom Refresher Properties -->
+<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+
+    <!-- fab placed to the top end -->
+    <ion-fab (click)="presentActionSheet()" vertical="top" horizontal="end" slot="fixed">
+        <ion-fab-button>
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+
+
+
+
+
+<!-- Data to display after skeleton screen -->
+<div *ngIf="data">
+    <div class="ion-padding">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac eros est. Cras iaculis pulvinar arcu non vehicula. Fusce at quam a eros malesuada condimentum. Aliquam tincidunt tincidunt vehicula.
+    </div>
+  
+    <ion-list>
+      <ion-list-header>Data</ion-list-header>
+      <ion-item>
+        <ion-avatar slot="start">
+          <img src="./avatar.svg">
+        </ion-avatar>
+        <ion-label>
+          <h3>
+            {{ data.heading }}
+          </h3>
+          <p>
+            {{ data.para1 }}
+          </p>
+          <p>
+            {{ data.para2 }}
+          </p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <img src="./thumbnail.svg">
+        </ion-thumbnail>
+        <ion-label>
+          <h3>
+            {{ data.heading }}
+          </h3>
+          <p>
+            {{ data.para1 }}
+          </p>
+          <p>
+            {{ data.para2 }}
+          </p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="call" slot="start"></ion-icon>
+        <ion-label>
+          <h3>
+            {{ data.heading }}
+          </h3>
+          <p>
+            {{ data.para1 }}
+          </p>
+          <p>
+            {{ data.para2 }}
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+  
+  <!-- Skeleton screen -->
+  <div *ngIf="!data">
+    <div class="ion-padding custom-skeleton">
+      <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+      <ion-skeleton-text animated></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+    </div>
+  
+    <ion-list>
+      <ion-list-header>
+        <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+      </ion-list-header>
+      <ion-item>
+        <ion-avatar slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-avatar>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-skeleton-text animated style="width: 27px; height: 27px" slot="start"></ion-skeleton-text>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+  
+  
+
+
+
+
 
   <ion-tabs>
     <ion-tab-bar slot="bottom">
@@ -61,7 +210,7 @@
 </ion-content>
 
 <div class="home-dw"
-  style="position: fixed; z-index: -111000; top:0; left:0; width:100%; height:100%; overflow-y: scroll;">
+  style="position: fixed; z-index: -111000; top:0; left:0; width:100%; height:100%; overflow-y: scroll; background-image: url('http://www.cleo-uk.org/wp-content/uploads/2016/03/white-curves-on-grey-background-bright-abstract-wallpaper.jpg')">
 
 
   <!-- <ion-header>
@@ -111,8 +260,8 @@
   
     </ion-header> -->
 
-  <div style="width:100%; height: 90px; position: fixed; top:0; left:0;  z-index: 1000000;">
-    <div class="flex-container" style="box-shadow: 0 8px 6px -6px #ccc;">
+  <div class="list-x" style="width:100%; height: 90px; position: fixed; top:0; left:0;  z-index: 1000000; transform: translateY(-100px);">
+    <div class="flex-container" style="box-shadow: 0 8px 6px -6px rgba(0,0,0,0.5);">
 
       <div style="text-align: left; font-size: 25px; padding: 10px; background: #fff;">
         &nbsp; &nbsp; Food<span style="color: blue; ">Ali</span>
@@ -146,12 +295,12 @@
     <ion-row style="margin: 20px;">
 
       <ion-col size="3">
-        <div class="menu" style="transform: translateX(-40px); position: fixed; top:110px; left:40px; width:300px; height:100%; ">
+        <div class="menu" style="transform: translateX(-100px); position: fixed; top:110px; left:40px; width:300px; height:100%; ">
           <ion-card>
             <ion-item color="primary" href="#!" class="activated">
               <ion-icon name="flame" slot="start"></ion-icon>
               <ion-label>Popular</ion-label>
-            </ion-item>
+            </ion-item> 
 
 
             <ion-item href="#!">
@@ -186,13 +335,10 @@
         </div>
     
       </ion-col>
-      <ion-col style="margin-top:100px;">
+      <ion-col style="margin-top:100px; transform: translateY(100px);" class="list-x">
         <ion-card>
           <ion-header style="text-align: center">
             <ion-toolbar>
-              <ion-buttons slot="start">
-                <ion-back-button></ion-back-button>
-              </ion-buttons>
               <ion-title><b>Popular</b></ion-title>
             </ion-toolbar>
 
@@ -776,7 +922,7 @@
                 <ion-col>
                   <ion-card>
 
-
+                     
 
                     <ion-card-header>
 
@@ -1312,12 +1458,12 @@
                         <ion-grid>
                           <ion-row>
 
-                            <ion-col style="text-align: center;">
+                            <ion-col style="text-align: center;"> 
                               Pick-up only
                             </ion-col>
 
                             <ion-col style="text-align: center; cursor: pointer">
-
+                              
                               Explore
 
                             </ion-col>
@@ -1354,5 +1500,47 @@
 
   </ion-grid>
 
+  <div style="width: 100%; height:450px; background: rgb(56, 40, 9); color: honeydew">
+      <div class="flex-container">
+        
+        <div class="foo">
+          <br/>
+           <ion-text style="text-align: left">
+               <h3>About Foodali</h3>
+             </ion-text>
+             <p class="listing-foo">About us</p>
+             <p class="listing-foo">Team</p>
+             <p class="listing-foo">Careers</p>
+             <p class="listing-foo">Offers</p>
+             <p class="listing-foo">Contact</p>
+        </div>
+        <div  class="foo">
+           <br/>
+           <ion-text style="text-align: left">
+               <h3>Get Help</h3>
+             </ion-text>
+             <p class="listing-foo">Help and support</p>
+             <p class="listing-foo">Partner with us</p>
+             <p class="listing-foo">Ride with us</p>
+             <p class="listing-foo">Blog</p>
+        </div>
+        <div class="foo">
+           <br/>
+           <ion-text style="text-align: left">
+               <h3>Get FoodAli in your phone</h3>
+             </ion-text>
+             <img style="margin-top: 10px; float:left; margin-right: 10px;" width="150px;" src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_108/play_ip0jfp"/>
+            
+             <img style="margin-top: 10px; float:left; " width="150px;" src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_108/iOS_ajgrty"/>
+    
+        </div>
 
+        </div>
+        </div>
+        <ion-footer style="background: rgb(20, 20, 20); text-align:center">
+           <ion-toolbar>
+             <ion-title>Copyright 2019, Foodali inc.
+             </ion-title>
+           </ion-toolbar>
+         </ion-footer>
 </div>

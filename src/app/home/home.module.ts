@@ -8,6 +8,7 @@ import { HomePage } from './home.page';
 
 import {MatDialogModule} from "@angular/material";
 
+import { MaterialModule } from '../material.module';
 @NgModule({
   imports: [
     CommonModule,
@@ -20,7 +21,8 @@ import {MatDialogModule} from "@angular/material";
       }
     ]),
     MatDialogModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule ,
+    MaterialModule
   ],
   declarations: [HomePage]
 })

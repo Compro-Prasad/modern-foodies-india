@@ -20,9 +20,10 @@ export interface DialogData {
 })
 export class HomePage {
   loc: string;
+ 
 
   constructor(private navCtrl: NavController, public dialog: MatDialog) {}
-
+  selected = 'option1';
   // constructor(private navCtrl: NavController, public dialog: MatDialog) {}
 
   // Ionic life cycles : https://ionicframework.com/blog/navigating-lifecycle-events/
@@ -63,5 +64,7 @@ export class HomePage {
   templateUrl: 'dialog-data-example-dialog.html',
 })
 export class DialogDataExampleDialog {
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+  
 }

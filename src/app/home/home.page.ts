@@ -3,10 +3,13 @@ import {Component, Inject} from '@angular/core';
 import {NavController} from '@ionic/angular';
 import anime from 'animejs';
 
-import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
-export interface DialogData {
-  animal: 'panda' | 'unicorn' | 'lion'; 
-}
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import { DialogBodyComponent } from "../dialog-body/dialog-body.component";
+
+// best dialog
+// https://www.techiediaries.com/angular-material-dialogs/
+
+
 //import anime from 'animejs/lib/anime.es.js';
 //import anime from 'animejs/lib/anime.es.js';
 //const anime = require('animejs/lib/anime.es.js');
@@ -21,8 +24,8 @@ export interface DialogData {
 export class HomePage {
   loc: string;
  
-
-  constructor(private navCtrl: NavController, public dialog: MatDialog) {}
+  title = "Example Angular Material Dialog";
+  constructor(private navCtrl: NavController, private dialog2: MatDialog) {}
   selected = 'option1';
   // constructor(private navCtrl: NavController, public dialog: MatDialog) {}
 
@@ -49,22 +52,10 @@ export class HomePage {
 } 
 
   openDialog() {
-    this.dialog.open(DialogDataExampleDialog, {
-      data: {
-        animal: 'panda'
-      }
-    });
+    const dialogConfig = new MatDialogConfig();
+    this.dialog2.open(DialogBodyComponent, dialogConfig);
   }
 
 }
 
 
-@Component({
-  selector: 'dialog-data-example-dialog',
-  templateUrl: 'dialog-data-example-dialog.html',
-})
-export class DialogDataExampleDialog {
-
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {}
-  
-}

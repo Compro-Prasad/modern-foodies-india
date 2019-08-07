@@ -9,6 +9,8 @@ import { HomePage } from './home.page';
 import {MatDialogModule} from "@angular/material";
 
 import { MaterialModule } from '../material.module';
+
+import { DialogBodyComponent } from "../dialog-body/dialog-body.component";
 @NgModule({
   imports: [
     CommonModule,
@@ -24,6 +26,7 @@ import { MaterialModule } from '../material.module';
     ReactiveFormsModule ,
     MaterialModule
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, DialogBodyComponent],
+  entryComponents: [DialogBodyComponent]
 })
 export class HomePageModule {}

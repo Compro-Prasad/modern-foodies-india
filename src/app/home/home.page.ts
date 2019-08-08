@@ -53,7 +53,13 @@ export class HomePage {
 
   openDialog() {
     const dialogConfig = new MatDialogConfig();
-    this.dialog2.open(DialogBodyComponent, dialogConfig);
+    const dialogRef = this.dialog2.open(DialogBodyComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog data found at home page : ${result.message}`);
+      if (result.message == "d-cls"){
+        alert("inverse");
+      }
+    });
   }
 
 }

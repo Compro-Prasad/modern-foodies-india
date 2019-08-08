@@ -23,6 +23,7 @@ import { DialogBodyComponent } from "../dialog-body/dialog-body.component";
 })
 export class HomePage {
   loc: string;
+  ifloggedin:string
  
   title = "Example Angular Material Dialog";
   constructor(private navCtrl: NavController, private dialog2: MatDialog) {}
@@ -55,10 +56,14 @@ export class HomePage {
     const dialogConfig = new MatDialogConfig();
     const dialogRef = this.dialog2.open(DialogBodyComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog data found at home page : ${result.message}`);
-      if (result.message == "d-cls"){
-        alert("inverse");
-      }
+
+      //console.log(`Dialog data found at home page : ${result.message}`);
+      this.ifloggedin = "ged ";
+      var b = document.querySelector("ion-button"); 
+
+      b.setAttribute("color", "dark");
+      document.getElementById("login-icon").style.display = "none";
+
     });
   }
 

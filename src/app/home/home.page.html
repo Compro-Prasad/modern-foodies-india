@@ -112,8 +112,8 @@
               <ion-col style=" position: relative;">
                 <div style="width: 100%; padding:0; line-height:0;  position: absolute; top: 50%;  transform: translateY(-50%);">
                   <ion-button class="not-logged-in" (click)="openDialog()">
-                      Log in
-                      <ion-icon slot="end" name="log-in"></ion-icon>
+                      Log{{ifloggedin}} in
+                      <ion-icon id="login-icon" slot="end" name="log-in"></ion-icon>
                     </ion-button>
                     <ion-icon class="logged-in" style="display: none;" name="contact"></ion-icon>
                     <!-- <ion-button >

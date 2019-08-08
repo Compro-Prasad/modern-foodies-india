@@ -9,6 +9,10 @@ import { IonicModule } from '@ionic/angular';
 import { FoodposterPage } from './foodposter.page';
 
 import { MaterialModule } from '../material.module';
+
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
+
 const routes: Routes = [
   {
     path: 'tabs',
@@ -43,7 +47,8 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes),
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonToggleModule
   ],
   declarations: [FoodposterPage]
 })

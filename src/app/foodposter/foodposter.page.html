@@ -170,7 +170,63 @@
                     </form>
                   </mat-step>
 
-              
+                  <mat-step [stepControl]="thirdFormGroup">
+                    <form [formGroup]="thirdFormGroup">
+                      <ng-template matStepLabel>Upload one picture for your food</ng-template>
+                      <button mat-button>BROWSE FILES</button>
+
+                      <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                      </div>
+                    </form>
+                  </mat-step>
+
+                  
+                  <mat-step [stepControl]="fourthFormGroup">
+                    <form [formGroup]="fourthFormGroup">
+                      <ng-template matStepLabel>Provide number of servings</ng-template>
+                      <form class="example-container" [formGroup]="options">
+        
+                      
+                        <mat-form-field>
+                          <input matInput type="number" placeholder="Number of servings" min="1">
+                        </mat-form-field>
+                        
+                      </form>
+                      
+
+                      <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                      </div>
+                    </form>
+                  </mat-step>
+
+                  
+                  <mat-step [stepControl]="fifthFormGroup">
+                    <form [formGroup]="fifthFormGroup">
+                      <ng-template matStepLabel>Choose delivery option</ng-template>
+                      <!-- <ion-segment (ionChange)="segmentChanged($event)">
+                        <ion-segment-button value="friends">
+                          <ion-label>Pick-up only</ion-label>
+                        </ion-segment-button>
+                        <ion-segment-button value="enemies">
+                          <ion-label>Home delivery</ion-label>
+                        </ion-segment-button>
+                      </ion-segment> -->
+
+                      <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style">
+                        <mat-button-toggle value="bold">Pick-up only</mat-button-toggle>
+                        <mat-button-toggle value="bold">Home delivery</mat-button-toggle>
+                      </mat-button-toggle-group>
+
+                      <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                      </div>
+                    </form>
+                  </mat-step>
 
                   <mat-step>
                     <ng-template matStepLabel>Done</ng-template>
@@ -188,6 +244,48 @@
 
       </ion-card>
 
-   
+      <div style="width: 100%; height:450px; background: rgb(56, 40, 9); color: honeydew">
+        <div class="flex-container">
+          
+          <div class="foo">
+            <br/>
+             <ion-text style="text-align: left">
+                 <h3>About Foodali</h3>
+               </ion-text>
+               <p class="listing-foo">About us</p>
+               <p class="listing-foo">Team</p>
+               <p class="listing-foo">Careers</p>
+               <p class="listing-foo">Offers</p>
+               <p class="listing-foo">Contact</p>
+          </div>
+          <div  class="foo">
+             <br/>
+             <ion-text style="text-align: left">
+                 <h3>Get Help</h3>
+               </ion-text>
+               <p class="listing-foo">Help and support</p>
+               <p class="listing-foo">Partner with us</p>
+               <p class="listing-foo">Ride with us</p>
+               <p class="listing-foo">Blog</p>
+          </div>
+          <div class="foo">
+             <br/>
+             <ion-text style="text-align: left">
+                 <h3>Get FoodAli in your phone</h3>
+               </ion-text>
+               <img style="margin-top: 10px; float:left; margin-right: 10px;" width="150px;" src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_108/play_ip0jfp"/>
+              
+               <img style="margin-top: 10px; float:left; " width="150px;" src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_108/iOS_ajgrty"/>
+      
+          </div>
+ 
+          </div>
+          </div>
+          <ion-footer style="background: rgb(20, 20, 20); text-align:center">
+             <ion-toolbar>
+               <ion-title>Copyright 2019, Foodali inc.
+               </ion-title>
+             </ion-toolbar>
+           </ion-footer>
 
     </div>

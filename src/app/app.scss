@@ -6,6 +6,68 @@
 // and used throughout the application.
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
+
+
+
+
+
+
+.focal{
+  border: 1px solid #07c;
+  box-shadow: 0 0 5px #07c;
+  outline: none;
+}
+.ml11 {
+  font-weight: 700;
+  font-size: 0.8em;
+}
+
+.ml11 .text-wrapper {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.1em;
+  padding-right: 0.05em;
+  padding-bottom: 0.15em;
+}
+
+.ml11 .line {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 3px;
+  background-color:goldenrod;
+  transform-origin: 0 50%;
+}
+
+.ml11 .line1 { 
+  top: 0; 
+  left: 0;
+}
+
+.ml11 .letter {
+  display: inline-block;
+  line-height: 1em;
+}
+.ml6 {
+  position: relative;
+  font-weight: 900;
+  font-size: 1.3em;
+}
+
+.ml6 .text-wrapper {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.2em;
+  padding-right: 0.05em;
+  padding-bottom: 0.1em;
+  overflow: hidden;
+}
+
+.ml6 .letter {
+  display: inline-block;
+  line-height: 1em;
+}
 body {
   font-family: "Comic Sans MS", cursive, sans-serif !important;
   

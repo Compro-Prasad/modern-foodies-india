@@ -9,11 +9,9 @@
     </div>
 <div style="background: goldenrod; text-align: center ;">
 
-  <ion-grid style="height: 80%">
-    
-    <ion-row justify-content-center align-items-center style="height: 100%">
 
-      <ion-card id="card1" style="background: lemonchiffon; width: 50%; display: none;">
+
+      <ion-card id="card1" style="background: #fff; width: 50%; margin-top: 40%; margin-left: 20%; display: none;">
         <ion-card-header>
   
           <ion-card-title>FOODALI CHEF</ion-card-title><hr/>
@@ -25,13 +23,13 @@
             <ion-button (click)="moreinfo()" color="primary" >
                 YES
                </ion-button>
-          <ion-button color="dark" >
+          <ion-button color="dark" (click) = "skip()"  >
            SKIP
             <ion-icon slot="end" name="arrow-round-forward"></ion-icon>
           </ion-button>
         </ion-card-content>
       </ion-card>
-      <ion-card id="card2" style="background: lemonchiffon; width: 50%;  display: none;">
+      <ion-card id="card2" style="background: #fff; width: 50%; margin-top: 10%; margin-left: 20%; display: none;">
           <ion-card-header>
     
             <ion-card-title>FOODALI CHEF</ion-card-title><hr/>
@@ -53,10 +51,11 @@
                     <mat-vertical-stepper [linear]="isLinear" #stepper>
                       <mat-step [stepControl]="firstFormGroup">
                         <form [formGroup]="firstFormGroup">
-                          <ng-template matStepLabel>Fill out your name</ng-template>
-                          <mat-form-field>
-                            <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-                          </mat-form-field>
+                          <ng-template matStepLabel>Are you a professional cook?</ng-template>
+                          <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style">
+                            <mat-button-toggle value="bold">Yes</mat-button-toggle>
+                            <mat-button-toggle value="bold">No</mat-button-toggle>
+                          </mat-button-toggle-group>
                           <div>
                             <button mat-button matStepperNext>Next</button>
                           </div>
@@ -64,10 +63,35 @@
                       </mat-step>
                       <mat-step [stepControl]="secondFormGroup">
                         <form [formGroup]="secondFormGroup">
-                          <ng-template matStepLabel>Fill out your address</ng-template>
-                          <mat-form-field>
-                            <input matInput placeholder="Address" formControlName="secondCtrl" required>
-                          </mat-form-field>
+                          <ng-template matStepLabel>Are you a veg or nonveg?</ng-template>
+                          <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style">
+                            <mat-button-toggle value="bold">Yes</mat-button-toggle>
+                            <mat-button-toggle value="bold">No</mat-button-toggle>
+                          </mat-button-toggle-group>
+                          <div>
+                            <button mat-button matStepperPrevious>Back</button>
+                            <button mat-button matStepperNext>Next</button>
+                          </div>
+                        </form>
+                      </mat-step>
+                      <mat-step [stepControl]="thirdFormGroup">
+                        <form [formGroup]="thirdFormGroup">
+                          <ng-template matStepLabel>Fill out your favourite cusines</ng-template>
+                 <mat-form-field class="example-chip-list">
+  <mat-chip-list #chipList aria-label="Fruit selection">
+    <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
+             [removable]="removable" (removed)="remove(fruit)">
+      {{fruit.name}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+    <input placeholder="New fruit..."
+           [matChipInputFor]="chipList"
+           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+           [matChipInputAddOnBlur]="addOnBlur"
+           (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+</mat-form-field>
+
                           <div>
                             <button mat-button matStepperPrevious>Back</button>
                             <button mat-button matStepperNext>Next</button>
@@ -88,18 +112,17 @@
                 </ion-card>
                
                
-                    <ion-button color="dark" >
+                    <ion-button (click)="chefpanel()" color="dark" >
              CHEF PANEL
             
             </ion-button>
-            <ion-button color="dark" >
+            <ion-button (click) = "skip()" color="dark" >
                 SKIP
                  <ion-icon slot="end" name="arrow-round-forward"></ion-icon>
                </ion-button>
           </ion-card-content>
-        </ion-card>
-    </ion-row>
-  </ion-grid>
+      </ion-card>
+
 
 
 </div>

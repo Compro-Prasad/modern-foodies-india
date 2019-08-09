@@ -1,11 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
 import { AfterloginPage } from './afterlogin.page';
+import { MaterialModule } from '../material.module';
+
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { MatChipsModule } from '@angular/material';
+
 
 const routes: Routes = [
   {
@@ -19,7 +25,11 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    MaterialModule,
+    ReactiveFormsModule,
+    MatButtonToggleModule,
+    MatChipsModule
   ],
   declarations: [AfterloginPage]
 })

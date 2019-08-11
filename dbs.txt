@@ -20,8 +20,12 @@ The following API segments to be wrapped in a single swagger ui
 	#users
 		uid
 		phno
-		google
-		fb
+		gname
+		gemail
+		gimgurl
+		fbname
+		fbemail
+		fbimgurl
 
 	#cooks
 		cid

@@ -21,4 +21,15 @@ export class DialogBodyComponent implements OnInit {
   //  });
     //this.navCtrl.navigateForward('postmyfood');
   } 
+
+  googlein(){
+    this.dialogRef.close({
+      message: 'googlein'
+   });
+  }
+  fbin(){
+    this.dialogRef.close({
+      message: 'fbin'
+   });
+  }
 }

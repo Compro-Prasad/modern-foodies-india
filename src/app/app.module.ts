@@ -12,16 +12,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { ModalPageModule } from './modal/modal.module';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UserService } from 'shared/user/user.service';
 
-
+import { HttpClientModule } from "@angular/common/http";
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ModalPageModule, BrowserAnimationsModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ModalPageModule, BrowserAnimationsModule, HttpClientModule],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    UserService
   ],
   bootstrap: [AppComponent]
 })

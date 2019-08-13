@@ -12,26 +12,25 @@ import { MaterialModule } from '../material.module';
 
 import { DialogBodyComponent } from "../dialog-body/dialog-body.component";
 
+// import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
+// import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
 
-import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
-import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
-
-let config = new AuthServiceConfig([
-  {
-    id: GoogleLoginProvider.PROVIDER_ID,
-    // provider: new GoogleLoginProvider("Google-OAuth-Client-Id")
-    provider: new GoogleLoginProvider("AIzaSyD-pY5y1e1225d_uRqWJqcg1X17Am7IPeM")
+// let config = new AuthServiceConfig([
+//   {
+//     id: GoogleLoginProvider.PROVIDER_ID,
+//     // provider: new GoogleLoginProvider("Google-OAuth-Client-Id")
+//     provider: new GoogleLoginProvider("AIzaSyD-pY5y1e1225d_uRqWJqcg1X17Am7IPeM")
     
-  },
-  {
-    id: FacebookLoginProvider.PROVIDER_ID,
-    // provider: new FacebookLoginProvider("Facebook-App-Id")
-    provider: new FacebookLoginProvider("484770218980582")
-  }
-]);
-export function provideConfig() {
-  return config;
-}
+//   },
+//   {
+//     id: FacebookLoginProvider.PROVIDER_ID,
+//     // provider: new FacebookLoginProvider("Facebook-App-Id")
+//     provider: new FacebookLoginProvider("484770218980582")
+//   }
+// ]);
+// export function provideConfig() {
+//   return config;
+// }
 @NgModule({
   imports: [
     CommonModule,
@@ -45,15 +44,15 @@ export function provideConfig() {
     ]),
     MatDialogModule,
     ReactiveFormsModule ,
-    MaterialModule,
-    SocialLoginModule
+    MaterialModule
+    // SocialLoginModule
   ],
-  providers: [
-    {
-      provide: AuthServiceConfig,
-      useFactory: provideConfig
-    }
-  ],
+  // providers: [
+  //   {
+  //     provide: AuthServiceConfig,
+  //     useFactory: provideConfig
+  //   }
+  // ],
   declarations: [HomePage, DialogBodyComponent],
   entryComponents: [DialogBodyComponent]
 }) 

@@ -6,11 +6,11 @@ import anime from 'animejs';
 
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DialogBodyComponent } from "../dialog-body/dialog-body.component";
-import { AuthService } from "angularx-social-login";
-import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
+// import { AuthService } from "angularx-social-login";
+// import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
 
-import { SocialUser } from "angularx-social-login";
-
+// import { SocialUser } from "angularx-social-login";
+import { UserService } from '../../../shared/user/user.service';
 
 //Social page login ref 
 // https://www.npmjs.com/package/angularx-social-login
@@ -34,7 +34,7 @@ import { SocialUser } from "angularx-social-login";
 export class HomePage {
 
 
-  user: SocialUser;
+  // user: SocialUser;
   loggedIn: boolean;
 
 
@@ -42,7 +42,7 @@ export class HomePage {
   ifloggedin: string;
 
   title = "Example Angular Material Dialog";
-  constructor(private navCtrl: NavController, private dialog2: MatDialog, private authService: AuthService) { }
+  constructor(private navCtrl: NavController, private dialog2: MatDialog, public userService: UserService) { }
   selected = 'option1';
   // constructor(private navCtrl: NavController, public dialog: MatDialog) {}
 
@@ -110,17 +110,27 @@ export class HomePage {
         easing: "easeOutExpo",
         delay: 1000
       });
+  // signInWithGoogle(): void {
+  //   this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  // }
 
+  // signInWithFB(): void {
+  //   this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  // }
+
+  // signOut(): void {
+  //   this.authService.signOut();
+  // }
   }
-  ngOnInit() {
+  // ngOnInit() {
 
 
 
-    this.authService.authState.subscribe((user) => {
-      this.user = user;
-      this.loggedIn = (user != null);
-    });
-  }
+  //   this.authService.authState.subscribe((user) => {
+  //     this.user = user;
+  //     this.loggedIn = (user != null);
+  //   });
+  // }
 
   // IF LAZY-LOADED
   goAnOtherPage() {
@@ -137,11 +147,11 @@ export class HomePage {
     dialogRef.afterClosed().subscribe(result => {
 
       console.log(`Dialog data found at home page : ${result.message}`);
-      if (result.message == "googlein"){ 
-        this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-      }else if(result.message == "fbin"){
-        this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
-      }else{
+      // if (result.message == "googlein"){ 
+      //   this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+      // }else if(result.message == "fbin"){
+      //   this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+      // }else{
       this.ifloggedin = "You are now logged in";
       document.getElementById("login-icon").style.display = "none";
       var b = document.querySelector("ion-button");
@@ -150,23 +160,30 @@ export class HomePage {
       document.getElementById("loc-prompt").innerHTML = '*Please set your location to begin<br/><ion-icon  name="arrow-dropdown"></ion-icon>';
       $("#locateme").addClass("focal");
       $(".searchbar-input").focus();
-      }
+
+      var data = {"phoneNo":result.message};
+      this.userService.CreateBug(data).subscribe(
+        response => console.log(response),
+        err => console.log(err)
+      );
+
+      //}
     });
   }
 
 
 
-  signInWithGoogle(): void {
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-  }
+  // signInWithGoogle(): void {
+  //   this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  // }
 
-  signInWithFB(): void {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
-  }
+  // signInWithFB(): void {
+  //   this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  // }
 
-  signOut(): void {
-    this.authService.signOut();
-  }
+  // signOut(): void {
+  //   this.authService.signOut();
+  // }
 }
 
 

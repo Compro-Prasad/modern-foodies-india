@@ -26,18 +26,33 @@
   </ion-col>
   <ion-col>
       
-      <form class="example-form" style="width: 100%;">
+      <!-- <form class="example-form" style="width: 100%;">
           <mat-form-field class="example-full-width" style="width: 100%;">
-            <input style="width: 100%;" matInput placeholder="Enter phone number" >
+            <input style="width: 100%;" matInput placeholder="Enter phone number" [(ngModel)]="phn" name="phno" >
+          </mat-form-field>
+        </form> -->
+
+        <form class="example-form" style="width: 100%;">
+          <mat-form-field class="example-full-width"  style="width: 100%;">
+            <input style="width: 100%;" matInput placeholder="Phone number" [(ngModel)]="phn" name="phno" [formControl]="phonenoFormControl"
+                   [errorStateMatcher]="matcher">
+            <mat-hint>Please provide your phone number!</mat-hint>
+            <mat-error *ngIf="phonenoFormControl.hasError('phoneno') && !phonenoFormControl.hasError('required')">
+              Please enter a valid phone no
+            </mat-error>
+            <mat-error *ngIf="phonenoFormControl.hasError('required')">
+              Phone no is <strong>required</strong>
+            </mat-error>
           </mat-form-field>
         </form>
+        
         
 
   </ion-col>
   <ion-col  size="2" >
      
       
-  <button (click)="getLoc()"  mat-button> <ion-icon name="arrow-forward" ></ion-icon></button>
+  <button (click)="getLoc()" [disabled]="!phonenoFormControl.valid"  mat-button> <ion-icon name="arrow-forward" ></ion-icon></button>
   </ion-col>
 
 </ion-row>

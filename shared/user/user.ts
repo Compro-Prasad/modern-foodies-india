@@ -1,6 +1,6 @@
 export class User {
 	
-	// id: string;
+    id: string;
 	
 	//authentication info
 	phoneNo:string;

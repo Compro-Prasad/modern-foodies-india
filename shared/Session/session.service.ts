@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User } from './user';
+import { Session } from './session';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class SessionService {
   // Base url
   baseurl = 'http://localhost:8080';
   constructor(private http: HttpClient) { }
@@ -20,35 +20,27 @@ export class UserService {
   }
 
   // POST
-  CreateBug(data): Observable<User> {
+  CreateSession(data): Observable<Session> {
     
-    //http://localhost:8080/createUser?phoneNo=%2B91-7683922389
-    return this.http.post<User>(this.baseurl + '/createUser', JSON.stringify(data), this.httpOptions)
+    return this.http.post<Session>(this.baseurl + '/createSession', JSON.stringify(data), this.httpOptions)
     .pipe(
       catchError(this.errorHandl)
     );
+    
   }  
 
   // GET
-  GetIssue(id): Observable<User> {
-    return this.http.get<User>(this.baseurl + '/bugtracking/' + id)
+  GetIssue(id): Observable<Session> {
+    return this.http.get<Session>(this.baseurl + '/bugtracking/' + id)
     .pipe(
       retry(1),
       catchError(this.errorHandl)
     )
   }
 
-    // GET
-    GetUserId(phoneNo): Observable<User> {
-      return this.http.get<User>(this.baseurl + '/getUserByPhone?phoneNo=' + phoneNo)
-      .pipe(
-        catchError(this.errorHandl)
-      )
-    }
-
   // GET
-  GetIssues(): Observable<User> {
-    return this.http.get<User>(this.baseurl + '/bugtracking/')
+  GetIssues(): Observable<Session> {
+    return this.http.get<Session>(this.baseurl + '/bugtracking/')
     .pipe(
       retry(1),
       catchError(this.errorHandl)
@@ -56,8 +48,8 @@ export class UserService {
   }
 
   // PUT
-  UpdateBug(id, data): Observable<User> {
-    return this.http.put<User>(this.baseurl + '/bugtracking/' + id, JSON.stringify(data), this.httpOptions)
+  UpdateBug(id, data): Observable<Session> {
+    return this.http.put<Session>(this.baseurl + '/bugtracking/' + id, JSON.stringify(data), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.errorHandl)
@@ -66,7 +58,7 @@ export class UserService {
 
   // DELETE
   DeleteBug(id){
-    return this.http.delete<User>(this.baseurl + '/bugtracking/' + id, this.httpOptions)
+    return this.http.delete<Session>(this.baseurl + '/bugtracking/' + id, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.errorHandl)

@@ -9,8 +9,12 @@ import { DialogBodyComponent } from "../dialog-body/dialog-body.component";
 // import { AuthService } from "angularx-social-login";
 // import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
 
+
 // import { SocialUser } from "angularx-social-login";
 import { UserService } from '../../../shared/user/user.service';
+import { SessionService } from '../../../shared/Session/session.service';
+
+
 
 //Social page login ref 
 // https://www.npmjs.com/package/angularx-social-login
@@ -41,8 +45,13 @@ export class HomePage {
   loc: string;
   ifloggedin: string;
 
+
+  access_token: string;
+  request_token: string;
+  user_id: string;
+
   title = "Example Angular Material Dialog";
-  constructor(private navCtrl: NavController, private dialog2: MatDialog, public userService: UserService) { }
+  constructor(private navCtrl: NavController, private dialog2: MatDialog, public userService: UserService, public sessionService: SessionService) { }
   selected = 'option1';
   // constructor(private navCtrl: NavController, public dialog: MatDialog) {}
 
@@ -161,11 +170,97 @@ export class HomePage {
       $("#locateme").addClass("focal");
       $(".searchbar-input").focus();
 
-      var data = {"phoneNo":result.message};
-      this.userService.CreateBug(data).subscribe(
-        response => console.log(response),
+     
+      function uuidv4() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+          var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+          return v.toString(16);
+        });
+      }
+      function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        var expires = "expires="+ d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+      }
+      function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i < ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+          }
+        }
+        return "";
+      }
+
+ 
+      this.userService.GetUserId(result.message).subscribe(
+        response => { 
+       
+          //DON'T PUT SESSION DATA OUTSIDE SINCE RESPONSE TAKES LONGER THAN SESSION DATA TAKES TIMEM TO MAKE SERVICE CALL
+         
+          // function checkResponse() {
+          //   var rid = response.id;
+          //   if(rid == null) { 
+          //      window.setTimeout(checkResponse, 100); /* this checks the flag every 100 milliseconds*/
+          //   } else {
+              
+          //     /* do something*/
+
+
+          if(response != null ){
+          var data = {"phoneNo":result.message};
+          this.userService.CreateBug(data).subscribe(
+            response => console.log(response),
+            err => console.log(err)
+          );
+          }
+
+          var user=getCookie(response.id+"_access_token");
+          console.log(user+" <<<");
+          if (user != "") {
+            alert("Welcome again " + user);
+          } else {
+          
+       
+              this.access_token = uuidv4();
+              this.request_token = uuidv4();
+    
+              var session_data = {"userId":response.id,"accessToken":this.access_token, "refreshToken":this.request_token};
+              this.sessionService.CreateSession(session_data).subscribe(
+                response => console.log(response),
+                err => console.log(err)
+              ); 
+
+              setCookie(response.id+"_access_token",this.access_token,"3660");
+              setCookie(response.id+"_request_token",this.request_token,"3660");
+
+            }
+
+
+
+
+          //   }
+          // }
+          // checkResponse();
+    
+        
+
+
+      },
         err => console.log(err)
       );
+     
+
+     
+      this.access_token = "";
+      this.request_token = "";
 
       //}
     });
@@ -184,6 +279,8 @@ export class HomePage {
   // signOut(): void {
   //   this.authService.signOut();
   // }
+
+  
 }
 
 

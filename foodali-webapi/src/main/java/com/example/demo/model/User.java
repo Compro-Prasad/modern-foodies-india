@@ -12,23 +12,106 @@ public class User {
 	String id;
 	
 	//authentication info
-	String phoneNo;
-	String googleName; 
-	String googleEmail;
-	String googleImgUrl;
-	String fbName;
-	String fbEmail;
-	String fbImgUrl;
+	private String phoneNo;
+	private String googleName; 
+	private String googleEmail;
+	private String googleImgUrl;
+	private String fbName;
+	private String fbEmail;
+	private String fbImgUrl;
 	
 	//location info
-	Double Lat;
-	Double Lng;
+	private Double Lat;
+	private Double Lng;
 	
 	//cook info
-	String cookName;
-	Boolean isPro;
-	Boolean isVeg;
-	List<String> cuisines;
+	private String cookName;
+	private Boolean isPro;
+	private Boolean isVeg;
+	private List<String> cuisines;
+	
+	
+	public String getId() {
+		return id;
+	}
+	public String getPhoneNo() {
+		return phoneNo;
+	}
+	public void setPhoneNo(String phoneNo) {
+		this.phoneNo = phoneNo;
+	}
+	public String getGoogleName() {
+		return googleName;
+	}
+	public void setGoogleName(String googleName) {
+		this.googleName = googleName;
+	}
+	public String getGoogleEmail() {
+		return googleEmail;
+	}
+	public void setGoogleEmail(String googleEmail) {
+		this.googleEmail = googleEmail;
+	}
+	public String getGoogleImgUrl() {
+		return googleImgUrl;
+	}
+	public void setGoogleImgUrl(String googleImgUrl) {
+		this.googleImgUrl = googleImgUrl;
+	}
+	public String getFbName() {
+		return fbName;
+	}
+	public void setFbName(String fbName) {
+		this.fbName = fbName;
+	}
+	public String getFbEmail() {
+		return fbEmail;
+	}
+	public void setFbEmail(String fbEmail) {
+		this.fbEmail = fbEmail;
+	}
+	public String getFbImgUrl() {
+		return fbImgUrl;
+	}
+	public void setFbImgUrl(String fbImgUrl) {
+		this.fbImgUrl = fbImgUrl;
+	}
+	public Double getLat() {
+		return Lat;
+	}
+	public void setLat(Double lat) {
+		Lat = lat;
+	}
+	public Double getLng() {
+		return Lng;
+	}
+	public void setLng(Double lng) {
+		Lng = lng;
+	}
+	public String getCookName() {
+		return cookName;
+	}
+	public void setCookName(String cookName) {
+		this.cookName = cookName;
+	}
+	public Boolean getIsPro() {
+		return isPro;
+	}
+	public void setIsPro(Boolean isPro) {
+		this.isPro = isPro;
+	}
+	public Boolean getIsVeg() {
+		return isVeg;
+	}
+	public void setIsVeg(Boolean isVeg) {
+		this.isVeg = isVeg;
+	}
+	public List<String> getCuisines() {
+		return cuisines;
+	}
+	public void setCuisines(List<String> cuisines) {
+		this.cuisines = cuisines;
+	}
 	
 	
 //	public User(String phoneNo, String googleName, String googleEmail, String googleImgUrl, String fbName, String fbEmail, String fbImgUrl, Double Lat, Double Lng, String cookname,Boolean isPro, Boolean isVeg, List<String> cuisines ) {
@@ -47,141 +130,8 @@ public class User {
 //		this.cuisines = cuisines;
 //	}
 	
-	public User() {}
-	
-
-
-	public String getPhoneNo() {
-		return phoneNo;
-	}
-
-
-	public void setPhoneNo(String phoneNo) {
-		this.phoneNo = phoneNo;
-	}
-
-
-	public String getGoogleName() {
-		return googleName;
-	}
-
-
-	public void setGoogleName(String googleName) {
-		this.googleName = googleName;
-	}
-
-
-	public String getGoogleEmail() {
-		return googleEmail;
-	}
-
-
-	public void setGoogleEmail(String googleEmail) {
-		this.googleEmail = googleEmail;
-	}
-
-
-	public String getGoogleImgUrl() {
-		return googleImgUrl;
-	}
-
-
-	public void setGoogleImgUrl(String googleImgUrl) {
-		this.googleImgUrl = googleImgUrl;
-	}
-
-
-	public String getFbName() {
-		return fbName;
-	}
-
-
-	public void setFbName(String fbName) {
-		this.fbName = fbName;
-	}
-
-
-	public String getFbEmail() {
-		return fbEmail;
-	}
-
-
-	public void setFbEmail(String fbEmail) {
-		this.fbEmail = fbEmail;
-	}
-
-
-	public String getFbImgUrl() {
-		return fbImgUrl;
-	}
-
-
-	public void setFbImgUrl(String fbImgUrl) {
-		this.fbImgUrl = fbImgUrl;
-	}
-
-
-	public Double getLat() {
-		return Lat;
-	}
-
-
-	public void setLat(Double lat) {
-		Lat = lat;
-	}
-
-
-	public Double getLng() {
-		return Lng;
-	}
-
-
-	public void setLng(Double lng) {
-		Lng = lng;
-	}
-
-
-	public String getCookName() {
-		return cookName;
-	}
-
-
-	public void setCookName(String cookName) {
-		this.cookName = cookName;
-	}
-
-
-	public Boolean getIsPro() {
-		return isPro;
-	}
-
-
-	public void setIsPro(Boolean isPro) {
-		this.isPro = isPro;
-	}
-
-
-	public Boolean getIsVeg() {
-		return isVeg;
-	}
-
-
-	public void setIsVeg(Boolean isVeg) {
-		this.isVeg = isVeg;
-	}
-
-
-	public List<String> getCuisines() {
-		return cuisines;
-	}
-
-
-	public void setCuisines(List<String> cuisines) {
-		this.cuisines = cuisines;
-	}
+//	private User() {}
 	
 	
-	public String toString() {
-		return "Phoneno "+phoneNo;		
-	}
+	
 }

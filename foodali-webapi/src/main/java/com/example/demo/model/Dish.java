@@ -3,75 +3,145 @@ package com.example.demo.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-//uid
-//phno
-//gname
-//gemail
-//gimgurl
-//fbname
-//fbemail
-//fbimgurl
 @Document
-public class Dish {
+public class Dish { // Dish POJO
 	@Id
-	String id;
-	String phoneNo;
-	String googleName;
-	String googleEmail;
-	String googleImgUrl;
-	String fbName;
-	String fbEmail;
-	String fbImgUrl;
-	public Dish(String phoneNo, String googleName, String googleEmail, String googleImgUrl, String fbName, String fbEmail, String fbImgUrl ) {
-		this.phoneNo = phoneNo;
-		this.googleName = googleName;
-		this.googleEmail = googleEmail;
-		this.googleImgUrl = googleImgUrl;
-		this.fbName = fbName;
-		this.fbEmail = fbEmail;
-		this.fbImgUrl = fbImgUrl;
+	private String id;
+
+	private String uId;
+	private String dishName;
+	private String cuisineType;
+	private String dishRating;
+	private String dishPrepareTime;
+	private String dishPrice;
+	private String noOfServings;
+	private String foodDescription;
+	private Boolean publishStatus;
+	private Boolean isVeg;
+	private int serialNo;
+	private String address;
+
+	public Dish(String id, String uId, String dishName, String cuisineType, String dishRating, String dishPrepareTime,
+			String dishPrice, String noOfServings, String foodDescription, Boolean publishStatus, Boolean isVeg,
+			int serialNo, String address) {
+		super();
+		this.id = id;
+		this.uId = uId;
+		this.dishName = dishName;
+		this.cuisineType = cuisineType;
+		this.dishRating = dishRating;
+		this.dishPrepareTime = dishPrepareTime;
+		this.dishPrice = dishPrice;
+		this.noOfServings = noOfServings;
+		this.foodDescription = foodDescription;
+		this.publishStatus = publishStatus;
+		this.isVeg = isVeg;
+		this.serialNo = serialNo;
+		this.address = address;
 	}
-	public String getPhoneNo() {
-		return phoneNo;
+
+	public String getAddress() {
+		return address;
 	}
-	public void setPhoneNo(String phoneNo) {
-		this.phoneNo = phoneNo;
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
-	public String getGoogleName() {
-		return googleName;
+
+	public String getuId() {
+		return uId;
 	}
-	public void setGoogleName(String googleName) {
-		this.googleName = googleName;
+
+	public void setuId(String uId) {
+		this.uId = uId;
 	}
-	public String getGoogleEmail() {
-		return googleEmail;
+
+	public String getId() {
+		return id;
 	}
-	public void setGoogleEmail(String googleEmail) {
-		this.googleEmail = googleEmail;
+
+	public void setId(String id) {
+		this.id = id;
 	}
-	public String getGoogleImgUrl() {
-		return googleImgUrl;
+
+	public String getDishName() {
+		return dishName;
 	}
-	public void setGoogleImgUrl(String googleImgUrl) {
-		this.googleImgUrl = googleImgUrl;
+
+	public void setDishName(String dishName) {
+		this.dishName = dishName;
 	}
-	public String getFbName() {
-		return fbName;
+
+	public String getCuisineType() {
+		return cuisineType;
 	}
-	public void setFbName(String fbName) {
-		this.fbName = fbName;
+
+	public void setCuisineType(String cuisineType) {
+		this.cuisineType = cuisineType;
 	}
-	public String getFbEmail() {
-		return fbEmail;
+
+	public String getDishRating() {
+		return dishRating;
 	}
-	public void setFbEmail(String fbEmail) {
-		this.fbEmail = fbEmail;
+
+	public void setDishRating(String dishRating) {
+		this.dishRating = dishRating;
 	}
-	public String getFbImgUrl() {
-		return fbImgUrl;
+
+	public String getDishPrepareTime() {
+		return dishPrepareTime;
 	}
-	public void setFbImgUrl(String fbImgUrl) {
-		this.fbImgUrl = fbImgUrl;
+
+	public void setDishPrepareTime(String dishPrepareTime) {
+		this.dishPrepareTime = dishPrepareTime;
 	}
-	
+
+	public String getDishPrice() {
+		return dishPrice;
+	}
+
+	public void setDishPrice(String dishPrice) {
+		this.dishPrice = dishPrice;
+	}
+
+	public String getNoOfServings() {
+		return noOfServings;
+	}
+
+	public void setNoOfServings(String noOfServings) {
+		this.noOfServings = noOfServings;
+	}
+
+	public String getFoodDescription() {
+		return foodDescription;
+	}
+
+	public void setFoodDescription(String foodDescription) {
+		this.foodDescription = foodDescription;
+	}
+
+	public Boolean getPublishStatus() {
+		return publishStatus;
+	}
+
+	public void setPublishStatus(Boolean publishStatus) {
+		this.publishStatus = publishStatus;
+	}
+
+	public Boolean getIsVeg() {
+		return isVeg;
+	}
+
+	public void setIsVeg(Boolean isVeg) {
+		this.isVeg = isVeg;
+	}
+
+	public int getSerialNo() {
+		return serialNo;
+	}
+
+	public void setSerialNo(int serialNo) {
+		this.serialNo = serialNo;
+	}
+
 }

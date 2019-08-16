@@ -49,9 +49,11 @@ public class UserController {
 		return userService.findById(id);
 	}
 	
-	@RequestMapping(value = "/updateUserPhnoById", method = RequestMethod.PUT)
-	public String update(@RequestParam String id,@RequestParam String phoneNo) {
-		User u = userService.update(id, phoneNo);
+	@RequestMapping(value = "/updateUserById", method = RequestMethod.PUT)
+	public String update(@RequestParam String id,@RequestBody User user) {
+		//Reference [1]
+		user.setId(id);
+		User u = userService.update(user);
 		return u.toString();
 	}
 	
@@ -68,3 +70,4 @@ public class UserController {
 //	}
 	
 }
+//[1] : https://examples.javacodegeeks.com/enterprise-java/spring/boot/spring-boot-mongodb-crud-operations-example/

@@ -51,11 +51,8 @@ public class UserService {
 //	}
 	
 	//Update operation
-	public User update(String id, String phoneNo) {
-		int idd = Integer.parseInt(id);
-		User u = userRepository.findById(idd);
-		u.setPhoneNo(phoneNo);
-		return userRepository.save(u);
+	public User update(User user) {
+		return userRepository.save(user);
 	}
 	
 	//Delete operation

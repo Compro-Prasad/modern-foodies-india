@@ -203,6 +203,9 @@ export class HomePage {
       this.userService.GetUserId(result.message).subscribe(
         response => { 
        
+
+          setCookie(response.id+"_access_token",this.access_token,"3660");
+          setCookie(response.id+"_request_token",this.request_token,"3660");
           //DON'T PUT SESSION DATA OUTSIDE SINCE RESPONSE TAKES LONGER THAN SESSION DATA TAKES TIMEM TO MAKE SERVICE CALL
          
           // function checkResponse() {
@@ -237,9 +240,6 @@ export class HomePage {
                 response => console.log(response),
                 err => console.log(err)
               ); 
-
-              setCookie(response.id+"_access_token",this.access_token,"3660");
-              setCookie(response.id+"_request_token",this.request_token,"3660");
 
             }
 

@@ -7,14 +7,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class User {
 
 	private String id;
+	
 	// authentication info
 	private String phoneNo;
-	private String googleName;
-	private String googleEmail;
-	private String googleImgUrl;
-	private String fbName;
-	private String fbEmail;
-	private String fbImgUrl;
 
 	// location info
 	private Double Lat;
@@ -36,12 +31,6 @@ public class User {
 		super();
 		this.id = id;
 		this.phoneNo = phoneNo;
-		this.googleName = googleName;
-		this.googleEmail = googleEmail;
-		this.googleImgUrl = googleImgUrl;
-		this.fbName = fbName;
-		this.fbEmail = fbEmail;
-		this.fbImgUrl = fbImgUrl;
 		Lat = lat;
 		Lng = lng;
 		this.cookName = cookName;
@@ -66,54 +55,7 @@ public class User {
 		this.phoneNo = phoneNo;
 	}
 
-	public String getGoogleName() {
-		return googleName;
-	}
-
-	public void setGoogleName(String googleName) {
-		this.googleName = googleName;
-	}
-
-	public String getGoogleEmail() {
-		return googleEmail;
-	}
-
-	public void setGoogleEmail(String googleEmail) {
-		this.googleEmail = googleEmail;
-	}
-
-	public String getGoogleImgUrl() {
-		return googleImgUrl;
-	}
-
-	public void setGoogleImgUrl(String googleImgUrl) {
-		this.googleImgUrl = googleImgUrl;
-	}
-
-	public String getFbName() {
-		return fbName;
-	}
-
-	public void setFbName(String fbName) {
-		this.fbName = fbName;
-	}
-
-	public String getFbEmail() {
-		return fbEmail;
-	}
-
-	public void setFbEmail(String fbEmail) {
-		this.fbEmail = fbEmail;
-	}
-
-	public String getFbImgUrl() {
-		return fbImgUrl;
-	}
-
-	public void setFbImgUrl(String fbImgUrl) {
-		this.fbImgUrl = fbImgUrl;
-	}
-
+	
 	public Double getLat() {
 		return Lat;
 	}
@@ -164,10 +106,10 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", phoneNo=" + phoneNo + ", googleName=" + googleName + ", googleEmail=" + googleEmail
-				+ ", googleImgUrl=" + googleImgUrl + ", fbName=" + fbName + ", fbEmail=" + fbEmail + ", fbImgUrl="
-				+ fbImgUrl + ", Lat=" + Lat + ", Lng=" + Lng + ", cookName=" + cookName + ", isPro=" + isPro
-				+ ", isVeg=" + isVeg + ", cuisines=" + cuisines + "]";
+		return "User [id=" + id + ", phoneNo=" + phoneNo + ", Lat=" + Lat + ", Lng=" + Lng + ", cookName=" + cookName
+				+ ", isPro=" + isPro + ", isVeg=" + isVeg + ", cuisines=" + cuisines + "]";
 	}
+
+
 
 }

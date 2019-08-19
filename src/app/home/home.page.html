@@ -55,6 +55,7 @@
                 <ion-icon name="arrow-forward" style="margin-top: 50%;" ></ion-icon>
                 
             </ion-col>
+      
           </ion-row>
     </div>
 <!-- <ion-card class="context home-mw" style="background: rgba(0,0,0,0.7); height:100%; margin:0;">
@@ -112,7 +113,12 @@
      <p style="font-size: 30px; transform: translateX(-40px); " class="logofa el"><b>FOODALI</b></p> 
               </ion-col>
               <ion-col style=" position: relative;">
+        
                 <div style="width: 100%; padding:0; line-height:0;  position: absolute; top: 50%;  transform: translateY(-50%);">
+                  <!-- <ion-button color="dark" class="not-logged-in" (click)="openDialog(asd)">
+                    Login as Chef
+                    <ion-icon id="login-icon" slot="end" name="log-in"></ion-icon>
+                  </ion-button> -->
                   <ion-button class="not-logged-in" (click)="openDialog()">
                       {{ifloggedin}}
                       <ion-icon id="login-icon" slot="end" name="log-in"></ion-icon>
@@ -168,6 +174,7 @@
 
         <ion-label><ion-searchbar id="sloc" placeholder="Search for location" value="{{loc}}"></ion-searchbar></ion-label>
         <ion-icon name="locate" slot="end" (click)="getLoc()"></ion-icon>
+        <ion-icon name="arrow-forward" slot="end" ></ion-icon>
       </ion-item>
     </ion-card>
     <div style="color:purple; font-size: 15px;" id="loc-prompt"></div>

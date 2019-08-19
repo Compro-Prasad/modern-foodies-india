@@ -15,5 +15,6 @@ public interface SessionRepository extends MongoRepository<Session, String> {
 
 	public Session findById(int id);
 	public List<Session> findByuserId(String userId);
+	public List<Session> findByAccessToken(String accessToken);
 	
 }

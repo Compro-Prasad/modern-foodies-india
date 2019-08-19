@@ -26,9 +26,9 @@ public class UserController {
 	
 	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080"})
 	@RequestMapping(value = "/createUser", method = RequestMethod.POST)
-	public String create(@RequestBody(required = false) User user ) {
+	public User create(@RequestBody(required = false) User user ) {
 		User u = userService.create(user);
-		return u.toString();
+		return u;
 	}
 	
 	@RequestMapping(value = "/getAllusers", method = RequestMethod.GET)
@@ -39,23 +39,27 @@ public class UserController {
 	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080"})
 	@RequestMapping(value = "/getUserByPhone", method = RequestMethod.GET)
 	public Optional<User> findByPhoneNo(@RequestParam(required = true) String phoneNo){
-
 		return userService.findByPhoneNo(phoneNo);
 	}
 	
 	@RequestMapping(value = "/getUserById", method = RequestMethod.POST)
-	public Optional<User> findById(@RequestBody(required = true) String id){
+	public Optional<User> findById(@RequestParam(required = true) String id){
 
 		return userService.findById(id);
 	}
-	
-	@RequestMapping(value = "/updateUserById", method = RequestMethod.PUT)
-	public String update(@RequestParam String id,@RequestBody User user) {
+	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080"})
+	@RequestMapping(value = "/updateUserChefinfoById", method = RequestMethod.PUT)
+	public String update(@RequestParam String id,@RequestBody(required = false) User user) {
 		//Reference [1]
+		Optional<User> internaOptionallUser = userService.findById(id);
+		User internalUser = internaOptionallUser.get();
+		String phnoe = internalUser.getPhoneNo();
 		user.setId(id);
+		user.setPhoneNo(phnoe);
 		User u = userService.update(user);
 		return u.toString();
 	}
+	
 	
 	@RequestMapping(value = "/deleteUserById", method = RequestMethod.DELETE)
 	public String delete(@RequestParam int id) {

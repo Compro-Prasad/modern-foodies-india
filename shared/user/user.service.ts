@@ -64,6 +64,15 @@ export class UserService {
     )
   }
 
+    // PUT
+    UpdateUserById(id, data): Observable<User> {
+      return this.http.put<User>(this.baseurl + '/updateUserChefinfoById?id=' + id, JSON.stringify(data), this.httpOptions)
+      .pipe(
+        retry(1), 
+        catchError(this.errorHandl)
+      )
+    }
+
   // DELETE
   DeleteBug(id){
     return this.http.delete<User>(this.baseurl + '/bugtracking/' + id, this.httpOptions)

@@ -38,6 +38,15 @@ export class SessionService {
     )
   }
 
+    // GET
+    GetSessionAccess(id): Observable<Session> {
+      return this.http.get<Session>(this.baseurl + '/getSessionByAccessToken?accessToken=' + id)
+      .pipe(
+        retry(1),
+        catchError(this.errorHandl)
+      )
+    }
+
   // GET
   GetIssues(): Observable<Session> {
     return this.http.get<Session>(this.baseurl + '/bugtracking/')
@@ -55,6 +64,9 @@ export class SessionService {
       catchError(this.errorHandl)
     )
   }
+
+
+
 
   // DELETE
   DeleteBug(id){

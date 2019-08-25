@@ -42,7 +42,7 @@ export class HomePage {
   // user: SocialUser;
   loggedIn: boolean;
   latlon: string;
-  locationData:any;
+  locationData: any;
   loc: string;
   ifloggedin: string;
 
@@ -120,63 +120,73 @@ export class HomePage {
         easing: "easeOutExpo",
         delay: 1000
       });
-  // signInWithGoogle(): void {
-  //   this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-  // }
+    // signInWithGoogle(): void {
+    //   this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    // }
 
-  // signInWithFB(): void {
-  //   this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
-  // }
+    // signInWithFB(): void {
+    //   this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    // }
 
-  // signOut(): void {
-  //   this.authService.signOut();
-  // }
-
-
+    // signOut(): void {
+    //   this.authService.signOut();
+    // }
 
 
-          var user=getCookie("foodali_access_token");
-          console.log(user+" <<< session access token ");
-          if (user != "") {
-
-            this.sessionService.GetSessionAccess(user).subscribe(
-              response => {
-                console.log(response)
-
-                this.ifloggedin = "Hi "+response[0].userId;
-                document.getElementById("login-icon").style.display = "none";
-                var b = document.querySelector("ion-button");
-                b.setAttribute("color", "dark");
-                b.setAttribute("disabled", "");
-                document.getElementById("loc-prompt").innerHTML = '*Please set your location to begin<br/><ion-icon  name="arrow-dropdown"></ion-icon>';
-                $("#locateme").addClass("focal");
-                $(".searchbar-input").focus();
-
-              },
-              err => console.log(err)
-            ); 
-
-            
+    //set user session location in the search field on the load of app 
+    var ses_lc = getCookie("foodali_address");
+    console.log("Session location is "+ses_lc);
+    if (ses_lc != null){
+      this.loc = ses_lc;
+    }else{
+      console.log("Session location is not found");
+    }
 
 
+    
+    var user = getCookie("foodali_access_token");
+    console.log(user + " <<< session access token ");
+    if (user != "") {
 
-          }
+      this.sessionService.GetSessionAccess(user).subscribe(
+        response => {
+          console.log(response)
 
-          function getCookie(cname) {
-            var name = cname + "=";
-            var decodedCookie = decodeURIComponent(document.cookie);
-            var ca = decodedCookie.split(';');
-            for(var i = 0; i < ca.length; i++) {
-              var c = ca[i];
-              while (c.charAt(0) == ' ') {
-                c = c.substring(1);
-              }
-              if (c.indexOf(name) == 0) {
-                return c.substring(name.length, c.length);
-              }
-            }
-            return "";
-          }
+          this.ifloggedin = "Logged in";
+          document.getElementById("login-icon").style.display = "none";
+          var b = document.querySelector("ion-button");
+          b.setAttribute("color", "dark");
+          b.setAttribute("disabled", "");
+          document.getElementById("loc-prompt").innerHTML = '*Please set your location to begin<br/><ion-icon  name="arrow-dropdown"></ion-icon>';
+          $("#locateme").addClass("focal");
+          $(".searchbar-input").focus();
+
+        },
+        err => console.log(err)
+      );
+      // this.navCtrl.navigateForward("postmyfood");
+
+
+
+
+
+    }
+
+    function getCookie(cname) {
+      var name = cname + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
 
 
 
@@ -204,55 +214,50 @@ export class HomePage {
     // } else { 
     //     console.log("Geolocation is not supported by this browser.");
     // }
-    
+
     // function showPosition(position) {
     //   x = position.coords.latitude +"," + position.coords.longitude;
-     
+
     // }
     // console.log(x);
-  var user=getCookie("foodali_access_token");
-    console.log(user+" <<< session access token ");
-    if (user != "") {
-      //serach as a user
-    navigator.geolocation.getCurrentPosition((loc) => {
 
-      this.sessionService.GetSessionAccess(user).subscribe(
-        response => {
-
-         
-           this.locationData = {Lat:loc.coords.latitude,Lng:loc.coords.longitude};
-          //update user object's location with id 
-          this.userService.UpdateUserById(response[0].userId, this.locationData).subscribe(
-            response => {
-               console.log(response);
-            },
-            err => console.log(err)
-          ); 
-
-        },
-        err => console.log(err)
-      ); 
-    })
-  }else{
-    //normal search as non user
-    this.loc = 'Airoli';
-    this.navCtrl.navigateForward('afterlogin');
-  }
-  function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i < ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
+  
+      //normal search as non user
+      
+      navigator.geolocation.getCurrentPosition((loc) => {
+        this.loc = loc.coords.latitude + "," + loc.coords.longitude;
+        console.log(this.loc);
+        var d = new Date();
+        // create cookie for address
+        setCookie("foodali_address",this.loc,"1");
+      })
+      console.log(this.loc+" temp loc")
+      if (this.loc == ""){
+         //skip
+      }else{
+        this.navCtrl.navigateForward('afterlogin');
       }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
+    function setCookie(cname,cvalue,exdays) {
+      var d = new Date();
+      d.setTime(d.getTime() + (exdays*24*60*60*1000));
+      var expires = "expires=" + d.toUTCString;
+      document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
     }
-    return "";
-  }
+    function getCookie(cname) {
+      var name = cname + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
 
 
   }
@@ -263,24 +268,24 @@ export class HomePage {
     dialogRef.afterClosed().subscribe(result => {
 
       console.log(`Dialog data found at home page : ${result.message}`);
-     
+
       function uuidv4() {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
           var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
           return v.toString(16);
         });
       }
       function setCookie(cname, cvalue, exdays) {
         var d = new Date();
-        d.setTime(d.getTime() + (exdays*24*60*60*1000));
-        var expires = "expires="+ d.toUTCString();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toUTCString();
         document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
       }
       function getCookie(cname) {
         var name = cname + "=";
         var decodedCookie = decodeURIComponent(document.cookie);
         var ca = decodedCookie.split(';');
-        for(var i = 0; i < ca.length; i++) {
+        for (var i = 0; i < ca.length; i++) {
           var c = ca[i];
           while (c.charAt(0) == ' ') {
             c = c.substring(1);
@@ -291,87 +296,113 @@ export class HomePage {
         }
         return "";
       }
-     
-      this.userService.GetUserId(result.message).subscribe(
-        response => { 
 
-          if(response == null){
-            var data = {"phoneNo":result.message};
+      this.userService.GetUserId(result.message).subscribe(
+        response => {
+
+          if (response == null) {
+            // Create a new account / Sign up
+            var data = { "phoneNo": result.message };
             this.userService.CreateBug(data).subscribe(
               response => {
 
                 this.access_token = uuidv4();
                 this.request_token = uuidv4();
-  
-                setCookie("foodali_access_token",this.access_token,"3660");
-                setCookie("foodali_request_token",this.request_token,"3660");
-                
-                var session_data = {"userId":response.id,"accessToken":this.access_token, "refreshToken":this.request_token};
+
+                setCookie("foodali_access_token", this.access_token, "3660");
+                setCookie("foodali_request_token", this.request_token, "3660");
+
+                var session_data = { "userId": response.id, "accessToken": this.access_token, "refreshToken": this.request_token };
                 this.sessionService.CreateSession(session_data).subscribe(
-                  response => {console.log(response)
-  
+                  response => {
+                    console.log(response)
+
                   },
                   err => console.log(err)
-                ); 
-  
-               //redirect ot chef info page
-               this.navCtrl.navigateForward('afterlogin');
+                );
+
+                //redirect ot chef info page
+                this.navCtrl.navigateForward('afterlogin');
               },
               err => console.log(err)
-            );  
+            );
           }
-   
-          console.log(response.id);
 
-          
-   
-          
+          console.log("user id for " + result.message + " is " + response.id);
+
+          // now login the user 
+          this.access_token = uuidv4();
+          this.request_token = uuidv4();
+
+          setCookie("foodali_access_token", this.access_token, "3660");
+          setCookie("foodali_request_token", this.request_token, "3660");
+
+          var session_data = { "userId": response.id, "accessToken": this.access_token, "refreshToken": this.request_token };
+          this.sessionService.CreateSession(session_data).subscribe(
+            response => {
+              console.log(response)
+
+            },
+            err => console.log(err)
+          );
+
+          this.ifloggedin = "Logged in";
+          document.getElementById("login-icon").style.display = "none";
+          var b = document.querySelector("ion-button");
+          b.setAttribute("color", "dark");
+          b.setAttribute("disabled", "");
+          document.getElementById("loc-prompt").innerHTML = '*Please set your location to begin<br/><ion-icon  name="arrow-dropdown"></ion-icon>';
+          $("#locateme").addClass("focal");
+          $(".searchbar-input").focus();
+
+
+
           //DON'T PUT SESSION DATA OUTSIDE SINCE RESPONSE TAKES LONGER THAN SESSION DATA TAKES TIMEM TO MAKE SERVICE CALL
 
-          var user=getCookie("foodali_access_token");
-          console.log(user+" <<< session access token ");
-          if (user != "") {
-
-            
-            this.ifloggedin = "Hi "+user;
-            document.getElementById("login-icon").style.display = "none";
-            var b = document.querySelector("ion-button");
-            b.setAttribute("color", "dark");
-            b.setAttribute("disabled", "");
-            document.getElementById("loc-prompt").innerHTML = '*Please set your location to begin<br/><ion-icon  name="arrow-dropdown"></ion-icon>';
-            $("#locateme").addClass("focal");
-            $(".searchbar-input").focus();
+          // var user=getCookie("foodali_access_token");
+          // console.log(user+" <<< session access token ");
+          // if (user != "") {
 
 
+          //   this.ifloggedin = "Hi "+user;
+          //   document.getElementById("login-icon").style.display = "none";
+          //   var b = document.querySelector("ion-button");
+          //   b.setAttribute("color", "dark");
+          //   b.setAttribute("disabled", "");
+          //   document.getElementById("loc-prompt").innerHTML = '*Please set your location to begin<br/><ion-icon  name="arrow-dropdown"></ion-icon>';
+          //   $("#locateme").addClass("focal");
+          //   $(".searchbar-input").focus();
 
-          } else {
-          
-             //all session of the user is deleted
-       
-              this.access_token = uuidv4();
-              this.request_token = uuidv4();
 
-              setCookie("foodali_access_token",this.access_token,"3660");
-              setCookie("foodali_request_token",this.request_token,"3660");
-              
-              var session_data = {"userId":response.id,"accessToken":this.access_token, "refreshToken":this.request_token};
-              this.sessionService.CreateSession(session_data).subscribe(
-                response => {console.log(response)
 
-                },
-                err => console.log(err)
-              ); 
+          // } else {
 
-              this.ifloggedin = "Hi "+user;
-              document.getElementById("login-icon").style.display = "none";
-              var b = document.querySelector("ion-button");
-              b.setAttribute("color", "dark");
-              b.setAttribute("disabled", "");
-              document.getElementById("loc-prompt").innerHTML = '*Please set your location to begin<br/><ion-icon  name="arrow-dropdown"></ion-icon>';
-              $("#locateme").addClass("focal");
-              $(".searchbar-input").focus();
+          //    //all session of the user is deleted
 
-            }
+          //     this.access_token = uuidv4();
+          //     this.request_token = uuidv4();
+
+          //     setCookie("foodali_access_token",this.access_token,"3660");
+          //     setCookie("foodali_request_token",this.request_token,"3660");
+
+          //     var session_data = {"userId":response.id,"accessToken":this.access_token, "refreshToken":this.request_token};
+          //     this.sessionService.CreateSession(session_data).subscribe(
+          //       response => {console.log(response)
+
+          //       },
+          //       err => console.log(err)
+          //     ); 
+
+          //     this.ifloggedin = "Hi "+user;
+          //     document.getElementById("login-icon").style.display = "none";
+          //     var b = document.querySelector("ion-button");
+          //     b.setAttribute("color", "dark");
+          //     b.setAttribute("disabled", "");
+          //     document.getElementById("loc-prompt").innerHTML = '*Please set your location to begin<br/><ion-icon  name="arrow-dropdown"></ion-icon>';
+          //     $("#locateme").addClass("focal");
+          //     $(".searchbar-input").focus();
+
+          //   }
 
 
 
@@ -379,16 +410,16 @@ export class HomePage {
           //   }
           // }
           // checkResponse();
-    
-        
 
 
-      },
+
+
+        },
         err => console.log(err)
       );
-     
 
-     
+
+
       this.access_token = "";
       this.request_token = "";
 
@@ -410,7 +441,7 @@ export class HomePage {
   //   this.authService.signOut();
   // }
 
-  
+
 }
 
 

@@ -42,7 +42,8 @@ public class UserController {
 		return userService.findByPhoneNo(phoneNo);
 	}
 	
-	@RequestMapping(value = "/getUserById", method = RequestMethod.POST)
+	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080"})
+	@RequestMapping(value = "/getUserById", method = RequestMethod.GET)
 	public Optional<User> findById(@RequestParam(required = true) String id){
 
 		return userService.findById(id);

@@ -149,8 +149,19 @@ hr {
   font-size: 30px;
 }
 
+
+.flex-container2 {
+  display: flex;
+  background-color: rgb(56, 40, 9);
+  margin: 0;
+}
+
+.flex-container2 > div {
+  background-color: #fff;
+  width: 50%;
+}
 .f2 {
-  background-color: #f1f1f1;
+  background-color: #fff;
   width: 50%;
   text-align: center;
   line-height: 75px;

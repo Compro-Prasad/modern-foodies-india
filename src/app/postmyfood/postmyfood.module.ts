@@ -7,7 +7,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { PostmyfoodPage } from './postmyfood.page';
 
-
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatGridListModule} from '@angular/material/grid-list';
 const routes: Routes = [
   {
     path: '',
@@ -20,7 +21,9 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    MatProgressBarModule,
+    MatGridListModule
   ],
   declarations: [PostmyfoodPage]
 })

@@ -19,6 +19,7 @@ const routes: Routes = [
   { path: 'manage', loadChildren: './manage/manage.module#ManagePageModule' },
   { path: 'blacklist', loadChildren: './blacklist/blacklist.module#BlacklistPageModule' },
   { path: 'afterlogin', loadChildren: './afterlogin/afterlogin.module#AfterloginPageModule' },
+  { path: 'search', loadChildren: './search/search.module#SearchPageModule' },
   
 ];
 

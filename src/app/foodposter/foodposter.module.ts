@@ -11,29 +11,9 @@ import { FoodposterPage } from './foodposter.page';
 import { MaterialModule } from '../material.module';
 
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
-
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 const routes: Routes = [
-  {
-    path: 'tabs',
-    component:FoodposterPage,
-    children: [
-      {
-        path: 'tab1',
-        children: [
-          {
-            path: '',
-            loadChildren: '../home/home.module#HomePageModule'
-          }
-        ]
-      },
-      {
-        path: '',
-        redirectTo: '/app/tabs/tab1',
-        pathMatch: 'full'
-      }
-    ]
-  },
   {
     path: '',
     component: FoodposterPage
@@ -48,7 +28,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     MaterialModule,
     ReactiveFormsModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatProgressBarModule
   ],
   declarations: [FoodposterPage]
 })

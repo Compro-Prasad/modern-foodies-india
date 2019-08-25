@@ -46,6 +46,14 @@ export class UserService {
       )
     }
 
+        // GET
+        GetUserById(phoneNo): Observable<User> {
+          return this.http.get<User>(this.baseurl + '/getUserById?id=' + phoneNo)
+          .pipe(
+            catchError(this.errorHandl)
+          )
+        }
+
   // GET
   GetIssues(): Observable<User> {
     return this.http.get<User>(this.baseurl + '/bugtracking/')

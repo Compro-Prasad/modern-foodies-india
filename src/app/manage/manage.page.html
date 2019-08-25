@@ -83,32 +83,28 @@
   <div class="home-dw"
   style="position: fixed; z-index:  111000; top:0; left:0; width:100%; height:100%; overflow-y: scroll; background: #333;">
   
-
   <div style="width:100%; height: 90px; position: absolute; top:0; left:0;  z-index: 1000000;">
-      <div class="flex-container" >
-    
-        <div style="text-align: left; font-size: 25px; padding: 10px; background: #fff;">
-          &nbsp; &nbsp; Food<span style="color: darkgreen; ">Ali</span>
-          &nbsp; &nbsp; &nbsp; &nbsp; <span style="font-size: 15px; cursor: pointer;"><u>Airoli, Sector 9</u>&nbsp; &nbsp;
-            <ion-icon class="icon" name="locate"></ion-icon></span>
-        </div>
-        <div style="text-align: left; font-size: 25px; position: relative;">
-          <div
-            style="width: 100%; padding:0; line-height:0; padding-right:20px;  position: absolute; top: 50%;  transform: translateY(-50%);">
-            <ion-icon  [routerLink]="['/profile']" routerDirection="forward" style="float: right; margin-top:5px;" class="icon" name="person"></ion-icon>
-          
-            <ion-icon style="float: right; margin-top:5px;" class="icon" name="search"></ion-icon>
-           
-            <div style="clear: both;"></div>
-          </div>
-    
-    
-        </div>
-    
+    <div class="flex-container">
+
+      <div style="text-align: left; font-size: 25px; padding: 10px; background: #fff;">
+        &nbsp; &nbsp; Food<span style="color: darkgreen; ">Ali</span>
       </div>
-    
-    
+      <div style="text-align: left; font-size: 25px; position: relative;">
+        <div
+          style="width: 100%; padding:0; line-height:0; padding-right:20px;  position: absolute; top: 50%;  transform: translateY(-50%);">
+
+          <ion-icon class="icon" style="float: right; margin-top:5px; " name="contact"></ion-icon>
+
+          <div style="clear: both;"></div>
+        </div>
+
+
+      </div>
+
     </div>
+
+
+  </div>
     <br/><br/><br/><br/>
     <ion-card style="background: #fff; margin: 120px;"> 
         <ion-card-header style="height: 80px;" >
@@ -185,35 +181,24 @@
                                 <div
                                   cdkDropList
                                   #todoList="cdkDropList"
-                                  [cdkDropListData]="todo"
+                                  [cdkDropListData]="dish"
                                   [cdkDropListConnectedTo]="[doneList]"
                                   class="example-list"
                                   (cdkDropListDropped)="drop($event)">
-                                  <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}
+                                  <div class="example-box"  *ngFor="let d of dish" cdkDrag>
 
-                                      <ion-item-sliding>
+                                      <ion-item-sliding >
                                           <ion-item>
-                                              <ion-thumbnail slot="start">
+                                        <ion-thumbnail slot="start">
                                             <img style="width: 200px;" src="https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/huevos-rancheros.jpg"/>
                                         </ion-thumbnail>
                                          
-                                            <ion-label>Allo Paratha</ion-label><br/>
+                                            <ion-label>{{d.dishName}}</ion-label><br/>
                             
                                           </ion-item>
-                                          <div style="margin: 10px 90px 10px 90px">
-                                              <ion-badge color="primary">Cuisine</ion-badge>   <br/>   
-                                              <ion-icon name="star"></ion-icon> 4.2
-                                              &nbsp;     <br/>
-                                              
-                                                  <ion-icon name="time"></ion-icon> 30 Min
-                                              
-                                              <br/>   
-                                                <b>₹ 150 for 2 servings </b> &nbsp;        <br/>
-                                                <b>Pick-up only </b> &nbsp;        <br/>
-                                              Make this beef stew when the nights draw in. With aubergine and Chinese spices, the flavours are warming and it's slow-cooked for deliciously tender meat...
-                                           </div>
+                                  
                                           <ion-item side="end">
-                                            <ion-item  slot="end"><ion-button color="primary"> <ion-icon slot="start" name="create"></ion-icon> Edit Food Card</ion-button></ion-item>
+                                            <ion-item  slot="end"><ion-button color="primary"> <ion-icon slot="start" name="create"></ion-icon>Edit Recipe</ion-button></ion-item>
                                           </ion-item>
                                         </ion-item-sliding>
 
@@ -231,34 +216,23 @@
                                   cdkDropList
                                   #doneList="cdkDropList"
                                   [cdkDropListData]="done"
-                                  [cdkDropListConnectedTo]="[todoList]"
+                                  [cdkDropListConnectedTo]="[dishList]"
                                   class="example-list"
                                   (cdkDropListDropped)="drop($event)">
-                                  <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}
+                                  <div class="example-box" *ngFor="let item of done" cdkDrag>
 
                                       <ion-item-sliding>
                                           <ion-item>
-                                              <ion-thumbnail slot="start">
+                                        <ion-thumbnail slot="start">
                                             <img style="width: 200px;" src="https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/huevos-rancheros.jpg"/>
                                         </ion-thumbnail>
                                          
-                                            <ion-label>Allo Paratha</ion-label><br/>
+                                            <ion-label>Food name</ion-label><br/>
                             
                                           </ion-item>
-                                          <div style="margin: 10px 90px 10px 90px">
-                                              <ion-badge color="primary">Cuisine</ion-badge>   <br/>   
-                                              <ion-icon name="star"></ion-icon> 4.2
-                                              &nbsp;     <br/>
-                                              
-                                                  <ion-icon name="time"></ion-icon> 30 Min
-                                              
-                                              <br/>   
-                                                <b>₹ 150 for 2 servings </b> &nbsp;        <br/>
-                                                <b>Pick-up only </b> &nbsp;        <br/>
-                                              Make this beef stew when the nights draw in. With aubergine and Chinese spices, the flavours are warming and it's slow-cooked for deliciously tender meat...
-                                           </div>
+                                  
                                           <ion-item side="end">
-                                            <ion-item  slot="end"><ion-button color="primary"> <ion-icon slot="start" name="create"></ion-icon>Edit food card</ion-button></ion-item>
+                                            <ion-item  slot="end"><ion-button color="primary"> <ion-icon slot="start" name="create"></ion-icon>Edit Recipe</ion-button></ion-item>
                                           </ion-item>
                                         </ion-item-sliding>
 
@@ -272,32 +246,11 @@
                          
                           
                         </ion-card-content>
-                        <ion-footer>
-                            <ion-toolbar>
-                              <ion-title style="cursor: pointer" slot="end">
-                                <img src="http://business-review.eu/wp-content/uploads/2018/02/250px-GoogleMaps.svg_.png" style="width: 40px; float: right;"/>
-                              
-                              </ion-title>
-            <div style="margin: 30px;">
-                              <p>
-                                 <b>Address:</b><br/> Sai Pooja Apartment , Near Airoli-Mulund Bridge, Service Rd, Diva Gaothan, Sector 9, Airoli, Navi Mumbai, Maharashtra 400708
-                                </p>
-                                <p>
-                                  <b>Phone:</b><br/>091673 35233
-            </p>
-            </div>
-            
-                            </ion-toolbar>
-                          </ion-footer> 
+                    
                       </ion-card>
                 </ion-col>
                   
-                <div style="width: 100%; text-align:center;">
-                    <ion-button size="small" color="primary">
-                        <ion-icon slot="start" name="create"></ion-icon>
-                      Edit contact</ion-button>    
-          
-                    </div>
+     
               </ion-row>
 
         </ion-card-content>

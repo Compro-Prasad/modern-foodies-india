@@ -1,6 +1,9 @@
 package com.example.demo.model;
 
+import java.time.LocalDateTime;
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -10,13 +13,16 @@ public class Session {
 	private String userId;
 	private String accessToken;
 	private String refreshToken;
+	
+	@Indexed(expireAfterSeconds = 60)
+	private LocalDateTime registeredTime;
 
-	public Session(String id, String userId, String accessToken, String refreshToken) {
+	public Session(String userId, String accessToken, String refreshToken, LocalDateTime registeredTime) {
 		super();
-		this.id = id;
 		this.userId = userId;
 		this.accessToken = accessToken;
 		this.refreshToken = refreshToken;
+		this.registeredTime =  LocalDateTime.now();
 	}
 
 	public String getId() {
@@ -51,10 +57,20 @@ public class Session {
 		this.refreshToken = refreshToken;
 	}
 
+	public LocalDateTime getRegisteredTime() {
+		return registeredTime;
+	}
+
+	public void setRegisteredTime(LocalDateTime registeredTime) {
+		this.registeredTime = registeredTime;
+	}
+
 	@Override
 	public String toString() {
 		return "Session [id=" + id + ", userId=" + userId + ", accessToken=" + accessToken + ", refreshToken="
-				+ refreshToken + "]";
+				+ refreshToken + ", registeredTime=" + registeredTime + "]";
 	}
+
+	
 
 }

@@ -1,6 +1,10 @@
 package com.example.demo.model;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -10,10 +14,19 @@ public class Otp {
 	private String userId;
 	private String otp;
 
-	public Otp( String userId, String otp) {
+	@Indexed(expireAfterSeconds = 50)
+	private LocalDateTime registeredDate;
+
+	public Otp(String userId, String otp, LocalDateTime registeredDate) {
 		super();
 		this.userId = userId;
 		this.otp = otp;
+
+		// LocalDateTime datetime1 = LocalDateTime.now();
+//		    DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");  
+//		    String formatDateTime = datetime1.format(format);   
+
+		this.registeredDate = LocalDateTime.now();
 	}
 
 	public String getId() {
@@ -40,9 +53,17 @@ public class Otp {
 		this.otp = otp;
 	}
 
+	public LocalDateTime getRegisteredDate() {
+		return registeredDate;
+	}
+
+	public void setRegisteredDate(LocalDateTime registeredDate) {
+		this.registeredDate = registeredDate;
+	}
+
 	@Override
 	public String toString() {
-		return "Otp [id=" + id + ", userId=" + userId + ", otp=" + otp + "]";
+		return "Otp [id=" + id + ", userId=" + userId + ", otp=" + otp + ", registeredDate=" + registeredDate + "]";
 	}
 
 }

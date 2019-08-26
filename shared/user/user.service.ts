@@ -8,6 +8,7 @@ import { retry, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UserService {
+  otp:string;
   // Base url
   baseurl = 'http://localhost:8080';
   constructor(private http: HttpClient) { }
@@ -62,6 +63,8 @@ export class UserService {
       catchError(this.errorHandl)
     )
   }
+
+ 
 
   // PUT
   UpdateBug(id, data): Observable<User> {

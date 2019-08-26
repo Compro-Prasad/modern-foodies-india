@@ -3,15 +3,17 @@ import { Component, Inject } from '@angular/core';
 
 import { NavController } from '@ionic/angular';
 import anime from 'animejs';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DialogBodyComponent } from "../dialog-body/dialog-body.component";
 // import { AuthService } from "angularx-social-login";
 // import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
-
+import { Observable, throwError } from 'rxjs';
+import { retry, catchError } from 'rxjs/operators';
 
 // import { SocialUser } from "angularx-social-login";
 import { UserService } from '../../../shared/user/user.service';
+import { OtpService } from '../../../shared/Otp/otp.service';
 import { SessionService } from '../../../shared/Session/session.service';
 import { LatLng } from '@ionic-native/google-maps';
 
@@ -31,6 +33,16 @@ import { LatLng } from '@ionic-native/google-maps';
 // export interface DialogData {
 //   animal: 'panda' | 'unicorn' | 'lion';
 // }
+export class Otp {
+	
+  id: string;
+
+ userId: string;
+   otp: string;
+
+ 
+
+}
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -52,7 +64,8 @@ export class HomePage {
   user_id: string;
 
   title = "Example Angular Material Dialog";
-  constructor(private navCtrl: NavController, private dialog2: MatDialog, public userService: UserService, public sessionService: SessionService) { }
+  otp: string;
+  constructor(private http: HttpClient, private navCtrl: NavController, private dialog2: MatDialog, public userService: UserService, public sessionService: SessionService, public otpService: OtpService) { }
   selected = 'option1';
   // constructor(private navCtrl: NavController, public dialog: MatDialog) {}
 
@@ -263,9 +276,19 @@ export class HomePage {
   }
 
   openDialog() {
+    
     const dialogConfig = new MatDialogConfig();
     const dialogRef = this.dialog2.open(DialogBodyComponent, dialogConfig);
+
+    
+
+
+
     dialogRef.afterClosed().subscribe(result => {
+
+    
+
+
 
       console.log(`Dialog data found at home page : ${result.message}`);
 
@@ -329,6 +352,9 @@ export class HomePage {
           }
 
           console.log("user id for " + result.message + " is " + response.id);
+
+      
+
 
           // now login the user 
           this.access_token = uuidv4();

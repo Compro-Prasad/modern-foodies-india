@@ -21,15 +21,17 @@ public class User {
 	private Boolean isVeg;
 	private List<String> cuisines;
 
+	//verified or not by otp 
+	private String isVerified;
+	
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(String id, String phoneNo, String googleName, String googleEmail, String googleImgUrl, String fbName,
-			String fbEmail, String fbImgUrl, Double lat, Double lng, String cookName, Boolean isPro, Boolean isVeg,
-			List<String> cuisines) {
+	public User(String id, String phoneNo, Double lat, Double lng, String cookName, Boolean isPro, Boolean isVeg,
+			List<String> cuisines, String isVerified) {
 		super();
-		this.id = id;
+		
 		this.phoneNo = phoneNo;
 		Lat = lat;
 		Lng = lng;
@@ -37,6 +39,7 @@ public class User {
 		this.isPro = isPro;
 		this.isVeg = isVeg;
 		this.cuisines = cuisines;
+		this.isVerified = isVerified;
 	}
 
 	public String getId() {
@@ -55,7 +58,6 @@ public class User {
 		this.phoneNo = phoneNo;
 	}
 
-	
 	public Double getLat() {
 		return Lat;
 	}
@@ -104,12 +106,21 @@ public class User {
 		this.cuisines = cuisines;
 	}
 
+	public String getIsVerified() {
+		return isVerified;
+	}
+
+	public void setIsVerified(String isVerified) {
+		this.isVerified = isVerified;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", phoneNo=" + phoneNo + ", Lat=" + Lat + ", Lng=" + Lng + ", cookName=" + cookName
-				+ ", isPro=" + isPro + ", isVeg=" + isVeg + ", cuisines=" + cuisines + "]";
+				+ ", isPro=" + isPro + ", isVeg=" + isVeg + ", cuisines=" + cuisines + ", isVerified=" + isVerified
+				+ "]";
 	}
 
-
+	
 
 }

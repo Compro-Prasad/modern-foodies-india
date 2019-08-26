@@ -15,4 +15,6 @@ export class User {
 	isVeg:boolean;
 	cuisines:Array<string>;
 
+	isVerified:string;
+
 }

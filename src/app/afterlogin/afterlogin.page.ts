@@ -10,7 +10,20 @@ import { UserService } from '../../../shared/user/user.service';
 import { SessionService } from '../../../shared/Session/session.service';
 import { ToastController } from '@ionic/angular';
 import $ from 'jquery';
+import { Observable, throwError } from 'rxjs';
+import { retry, catchError } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { OtpService } from '../../../shared/Otp/otp.service';
+export class Otp {
 
+  id: string;
+
+  userId: string;
+  otp: string;
+
+
+
+}
 
 export interface Fruit {
   name: string;
@@ -30,12 +43,16 @@ export interface Data {
 export class AfterloginPage implements OnInit {
 
   cookN: string;
-
+  verf: string;
+  userid: string;
+otpVal:string;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
 
   data: Data = <Data>{};
+
+  myNo: string;
 
 
   visible = true;
@@ -47,9 +64,10 @@ export class AfterloginPage implements OnInit {
     // {name: 'Chinese'},
     // {name: 'Indian'}
   ];
+  otp: string;
 
 
-  constructor(public toastController: ToastController,private navCtrl: NavController, private _formBuilder: FormBuilder, public userService: UserService, public sessionService: SessionService) { }
+  constructor(private http: HttpClient, public toastController: ToastController, private navCtrl: NavController, private _formBuilder: FormBuilder, public userService: UserService, public sessionService: SessionService, public otpService: OtpService) { }
   ionViewWillEnter() {
     $('#card1').fadeIn(500);
     anime({
@@ -76,33 +94,45 @@ export class AfterloginPage implements OnInit {
 
       this.sessionService.GetSessionAccess(user).subscribe(
         response => {
+          this.userid = response[0].userId;
           console.log(response[0].userId)
           this.userService.GetUserById(response[0].userId).subscribe(
-response =>{
-  console.log(response);
+            response => {
+              console.log(response);
+              this.myNo = response.phoneNo;
+              
+              this.cookN = response.cookName;
+              this.verf = response.isVerified;
+              console.log("cookN val " + this.cookN);
+              console.log("verf val " + this.verf);
+              console.log("myno val " + this.myNo);
+              if (this.verf !=null) {
+                if (this.cookN == null || this.cookN == "") {
+                  //user is not a cook 
+                  //stay on page ask as default
 
-  this.cookN = response.cookName;
-  console.log("cookN val "+ this.cookN);
-    if(this.cookN == null || this.cookN == ""){
-      //user is not a cook 
-      //stay on page ask as default
+                } else {
+                  //user is a cook
+                  //ask for two options whether to post food or search food
 
-    }else{
-      //user is a cook
-      //ask for two options whether to post food or search food
+                  //fadeout current card
+                  $("#card1").fadeOut(200);
 
-      //fadeout current card
-      $("#card1").fadeOut(200);
 
-      
-      //fadein the option
-      $("#card0").fadeIn(200);
+                  //fadein the option
+                  $("#card0").fadeIn(200);
 
-    }
-}
+                }
+              } else {
+                this.otpInit();
+                
+
+                $("#cardotp").fadeIn(200);
+              }
+            }
 
           );
-  
+
 
         },
         err => console.log(err)
@@ -178,17 +208,17 @@ response =>{
   }
   form2() {
     console.log(this.secondFormGroup.value);
-    if(this.secondFormGroup.value.secondCtrl == "yes"){
+    if (this.secondFormGroup.value.secondCtrl == "yes") {
       this.data.isVeg = true;
-    }else{
+    } else {
       this.data.isVeg = false;
     }
-   
+
   }
   form3() {
     console.log(this.fruits);
     var dataConvert = [];
-    for (var i = 0; i< this.fruits.length; i++ ){
+    for (var i = 0; i < this.fruits.length; i++) {
       dataConvert[i] = this.fruits[i].name
     }
 
@@ -212,7 +242,7 @@ response =>{
 
       this.sessionService.GetSessionAccess(user).subscribe(
         response => {
-          console.log("User id is "+response[0].userId)
+          console.log("User id is " + response[0].userId)
 
 
           //update user object's location with id 
@@ -225,8 +255,8 @@ response =>{
         },
         err => console.log(err)
       );
-     this.presentToast();
-     this.chefpanel() 
+      this.presentToast();
+      this.chefpanel()
     }
     function getCookie(cname) {
       var name = cname + "=";
@@ -243,5 +273,78 @@ response =>{
       }
       return "";
     }
+  }
+  otpSubmit(){
+    console.log(this.otpVal);
+  }
+  otpInit() {
+
+    this.SendOTP().subscribe(
+      response => {
+        console.log("Otp resp " + response)
+        var data = { "userId": this.userid, "otp": this.otp };
+        this.otpService.CreateOtp(data).subscribe(response => {
+          console.log(response);
+        },
+          err => console.log(err)
+        );
+      },
+      err => console.log(err)
+    );
+
+
+    this.otpService.DeleteOtp(this.userid).subscribe(response => {
+      console.log("otp service delete response "+response);
+
+    },
+    // Since multiple time the response is redirected to error code, i had to put create query here 
+      err => {console.log("del del err "+err);
+      var data = {"userId":this.userid,"otp":this.otp};
+    this.otpService.CreateOtp(data).subscribe(response => {
+      console.log("otp service create response "+response);
+    },
+      err => console.log("cre cre err "+err)
+    );
+    }
+    );
+    
+ 
+  
+ 
+
+  }
+  // SEND OTP
+  SendOTP() {
+
+    this.otp = generateOTP();
+    function generateOTP() {
+
+      // Declare a digits variable  
+      // which stores all digits 
+      var digits = '0123456789';
+      let OTP = '';
+      for (let i = 0; i < 4; i++) {
+        OTP += digits[Math.floor(Math.random() * 10)];
+      }
+      return OTP;
+    }
+    return this.http.get<Otp>('http://nimbusit.co.in/api/swsendSingle.asp?username=t1Foodali&password=26537993&sender=666666&sendto=91'+this.myNo+'&message=Your OTP for FoodAli is ' + this.otp)
+      .pipe(
+        retry(1),
+        catchError(this.errorHandl)
+      )
+  }
+  // Error handling
+  errorHandl(error) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // Get client-side error
+      errorMessage = error.error.message;
+    } else {
+      // Get server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.log(errorMessage);
+    return throwError(errorMessage);
   }
 }

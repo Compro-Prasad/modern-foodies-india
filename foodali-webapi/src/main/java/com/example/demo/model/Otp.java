@@ -14,8 +14,8 @@ public class Otp {
 	private String userId;
 	private String otp;
 
-	@Indexed(expireAfterSeconds = 50)
-	private LocalDateTime registeredDate;
+	@Indexed(expireAfterSeconds = 60)
+	private LocalDateTime registeredTime;
 
 	public Otp(String userId, String otp, LocalDateTime registeredDate) {
 		super();
@@ -26,7 +26,7 @@ public class Otp {
 //		    DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");  
 //		    String formatDateTime = datetime1.format(format);   
 
-		this.registeredDate = LocalDateTime.now();
+		this.registeredTime = LocalDateTime.now();
 	}
 
 	public String getId() {
@@ -54,16 +54,16 @@ public class Otp {
 	}
 
 	public LocalDateTime getRegisteredDate() {
-		return registeredDate;
+		return registeredTime;
 	}
 
-	public void setRegisteredDate(LocalDateTime registeredDate) {
-		this.registeredDate = registeredDate;
+	public void setRegisteredDate(LocalDateTime registeredTime) {
+		this.registeredTime = registeredTime;
 	}
 
 	@Override
 	public String toString() {
-		return "Otp [id=" + id + ", userId=" + userId + ", otp=" + otp + ", registeredDate=" + registeredDate + "]";
+		return "Otp [id=" + id + ", userId=" + userId + ", otp=" + otp + ", registeredTime=" + registeredTime + "]";
 	}
 
 }

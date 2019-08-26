@@ -38,6 +38,8 @@ public class OtpController {
 
 	}
 	
+
+	
 	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080" })
 	@RequestMapping(value = "/deleteOtpByUserId", method = RequestMethod.DELETE)
 	public String delete(@RequestParam String userid) {

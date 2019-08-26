@@ -84,6 +84,14 @@ export class UserService {
       )
     }
 
+        // PUT
+        UpdateUserVerfById(id, data): Observable<User> {
+          return this.http.put<User>(this.baseurl + '/updateUserVerfById?id=' + id, JSON.stringify(data), this.httpOptions)
+          .pipe(
+            catchError(this.errorHandl)
+          )
+        }
+
   // DELETE
   DeleteBug(id){
     return this.http.delete<User>(this.baseurl + '/bugtracking/' + id, this.httpOptions)

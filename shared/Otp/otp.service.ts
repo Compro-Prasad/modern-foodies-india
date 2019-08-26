@@ -31,8 +31,8 @@ export class OtpService {
   }  
 
   // GET
-  GetIssue(id): Observable<Otp> {
-    return this.http.get<Otp>(this.baseurl + '/bugtracking/' + id)
+  GetOtpById(id): Observable<Otp> {
+    return this.http.get<Otp>(this.baseurl + '/getOtpByUserId?UserId=' + id)
     .pipe(
       retry(1),
       catchError(this.errorHandl)

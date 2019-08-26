@@ -53,7 +53,7 @@ otpVal:string;
   data: Data = <Data>{};
 
   myNo: string;
-
+  value:string;
 
   visible = true;
   selectable = true;
@@ -65,11 +65,11 @@ otpVal:string;
     // {name: 'Indian'}
   ];
   otp: string;
-
+  enterdOtp: string;
 
   constructor(private http: HttpClient, public toastController: ToastController, private navCtrl: NavController, private _formBuilder: FormBuilder, public userService: UserService, public sessionService: SessionService, public otpService: OtpService) { }
   ionViewWillEnter() {
-    $('#card1').fadeIn(500);
+    // $('#card1').fadeIn(500);
     anime({
       targets: '.ell',
       translateX: 0
@@ -106,11 +106,12 @@ otpVal:string;
               console.log("cookN val " + this.cookN);
               console.log("verf val " + this.verf);
               console.log("myno val " + this.myNo);
+             
               if (this.verf !=null) {
                 if (this.cookN == null || this.cookN == "") {
                   //user is not a cook 
                   //stay on page ask as default
-
+                  $("#card1").fadeIn(200);
                 } else {
                   //user is a cook
                   //ask for two options whether to post food or search food
@@ -128,6 +129,11 @@ otpVal:string;
                 
 
                 $("#cardotp").fadeIn(200);
+                $("#card1").fadeOut(200);
+
+
+                //fadein the option
+                $("#card0").fadeOut(200);
               }
             }
 
@@ -277,6 +283,34 @@ otpVal:string;
   otpSubmit(){
     console.log(this.otpVal);
   }
+  onSubmit() {
+    console.log("Otp thus enterd is "+this.enterdOtp);
+  }
+  
+  onEnter(value: string) { 
+    this.value = value; 
+    console.log("You have entered the following otp > "+this.value);
+    //verify otp in server
+    this.otpService.GetOtpById(this.userid).subscribe(response => {
+      console.log(response[0].otp);
+      if (this.value == response[0].otp){
+        // update otp pojo 
+        let data = {"isVerified":"done"};
+        this.userService.UpdateUserVerfById(this.userid, data).subscribe(response =>{
+          console.log("Otp update success msg : "+response);
+        },
+        err => console.log(err)
+        );
+
+        $(".cardotp").fadeOut(200);
+        $(".card1").fadeIn(200);
+
+      }
+    },
+      err => console.log(err)
+    );
+  }
+
   otpInit() {
 
     this.SendOTP().subscribe(
@@ -307,11 +341,6 @@ otpVal:string;
     );
     }
     );
-    
- 
-  
- 
-
   }
   // SEND OTP
   SendOTP() {
@@ -330,7 +359,7 @@ otpVal:string;
     }
     return this.http.get<Otp>('http://nimbusit.co.in/api/swsendSingle.asp?username=t1Foodali&password=26537993&sender=666666&sendto=91'+this.myNo+'&message=Your OTP for FoodAli is ' + this.otp)
       .pipe(
-        retry(1),
+        // retry(1),
         catchError(this.errorHandl)
       )
   }

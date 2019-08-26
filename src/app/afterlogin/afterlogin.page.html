@@ -8,22 +8,27 @@
       </div>
       <div style="background: goldenrod; text-align: center; padding-right:2%; ">
       
-        <ion-card id="cardotp" style="display: none; background: #fff; width: 100%; height: 100%;  display: none;">
+        <ion-card id="cardotp" style="display: none; background: #fff; width: 100%; height: 100%;  ">
           <ion-card-header>
             <ion-card-title>FOODALI - OTP Verification is awaiting</ion-card-title>
             <hr />
             <ion-card-subtitle><b>Please type the OTP that is sent to your mobile number.</b></ion-card-subtitle>
           </ion-card-header>
           <ion-card-content>
-              <mat-form-field class="example-full-width">
-                  <input matInput placeholder="Type 4 digit OTP here">
+            
+              <!-- <mat-form-field   class="example-full-width">
+                  <input [(ngModel)]="enteredOtp" matInput placeholder="Type 4 digit OTP here">
+       
                 </mat-form-field>
-            <ion-button (click)="otpsubmit()" color="primary">
-              Submit OTP
-            </ion-button>
+                <ion-button (submit)="onSubmit()" color="primary">
+                    Submit OTP
+                  </ion-button> -->
+
+                  <input placeholder="Place your OTP here" #box (keyup.enter)="onEnter(box.value)">
+        
           </ion-card-content>
         </ion-card>
-        <ion-card id="card0" style="display: none; background: #fff; width: 100%; height: 100%;  display: none;">
+        <ion-card id="card0" style="display: none; background: #fff; width: 100%; height: 100%;  ">
           <ion-card-header>
             <ion-card-title>FOODALI CHEF's DASHBOARD</ion-card-title>
             <hr />

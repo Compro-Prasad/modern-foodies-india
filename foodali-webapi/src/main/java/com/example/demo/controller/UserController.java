@@ -60,7 +60,25 @@ public class UserController {
 		User u = userService.update(user);
 		return u.toString();
 	}
-	
+	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080"})
+	@RequestMapping(value = "/updateUserVerfById", method = RequestMethod.PUT)
+	public String updateUserVerf(@RequestParam String id,@RequestBody(required = false) User user) {
+		//Reference [1]
+		Optional<User> internaOptionallUser = userService.findById(id);
+		User internalUser = internaOptionallUser.get();
+		String phone = internalUser.getPhoneNo();
+		String cookName = internalUser.getCookName();
+		Boolean isVeg = internalUser.getIsVeg();
+		List<String> cuisines = internalUser.getCuisines();
+		 
+		user.setId(id);
+		user.setPhoneNo(phone);
+		user.setCookName(cookName);
+		user.setIsVeg(isVeg);
+		user.setCuisines(cuisines);
+		User u = userService.update(user);
+		return u.toString();
+	}
 	
 	@RequestMapping(value = "/deleteUserById", method = RequestMethod.DELETE)
 	public String delete(@RequestParam int id) {

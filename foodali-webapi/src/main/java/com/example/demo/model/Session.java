@@ -14,15 +14,15 @@ public class Session {
 	private String accessToken;
 	private String refreshToken;
 	
-	@Indexed(expireAfterSeconds = 60)
-	private LocalDateTime registeredTime;
+	@Indexed(expireAfterSeconds = 12*3600)
+	private LocalDateTime registeredTimeStamp;
 
-	public Session(String userId, String accessToken, String refreshToken, LocalDateTime registeredTime) {
+	public Session(String userId, String accessToken, String refreshToken) {
 		super();
 		this.userId = userId;
 		this.accessToken = accessToken;
 		this.refreshToken = refreshToken;
-		this.registeredTime =  LocalDateTime.now();
+		this.registeredTimeStamp =  LocalDateTime.now();
 	}
 
 	public String getId() {
@@ -57,18 +57,18 @@ public class Session {
 		this.refreshToken = refreshToken;
 	}
 
-	public LocalDateTime getRegisteredTime() {
-		return registeredTime;
+	public LocalDateTime getRegisteredTimeStamp() {
+		return registeredTimeStamp;
 	}
 
-	public void setRegisteredTime(LocalDateTime registeredTime) {
-		this.registeredTime = registeredTime;
+	public void setRegisteredTimeStamp(LocalDateTime registeredTimeStamp) {
+		this.registeredTimeStamp = registeredTimeStamp;
 	}
 
 	@Override
 	public String toString() {
 		return "Session [id=" + id + ", userId=" + userId + ", accessToken=" + accessToken + ", refreshToken="
-				+ refreshToken + ", registeredTime=" + registeredTime + "]";
+				+ refreshToken + ", registeredTime=" + registeredTimeStamp + "]";
 	}
 
 	

@@ -173,76 +173,63 @@
                       
                         <ion-card-content>
 
-                            <div class="example-container">
-                               
-                                <div style="width: 100%; text-align:center;">
-                                    <ion-badge color="dark"><h3>Un-published</h3></ion-badge>
-                                    </div>
-                                <div
-                                  cdkDropList
-                                  #todoList="cdkDropList"
-                                  [cdkDropListData]="dish"
-                                  [cdkDropListConnectedTo]="[doneList]"
-                                  class="example-list"
-                                  (cdkDropListDropped)="drop($event)">
-                                  <div class="example-box"  *ngFor="let d of dish" cdkDrag>
+                     
+                         
+                <ion-list>
+     
+                  <ion-item-sliding>
+                      <ion-item>
+                          <ion-thumbnail slot="start">
+                        <img style="width: 200px;" src="https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/huevos-rancheros.jpg"/>
+                    </ion-thumbnail>
+                     
+                        <ion-label>Allo Paratha</ion-label><br/>
+        
+                      </ion-item>
+                      <div style="margin: 10px 90px 10px 90px">
+                          <ion-badge color="primary">Cuisine</ion-badge>   <br/>   
+                          <ion-icon name="star"></ion-icon> 4.2
+                          &nbsp;     <br/>
+                          
+                              <ion-icon name="time"></ion-icon> 30 Min
+                          
+                          <br/>   
+                            <b>₹ 150 for 2 servings </b> &nbsp;        <br/>
+                          Make this beef stew when the nights draw in. With aubergine and Chinese spices, the flavours are warming and it's slow-cooked for deliciously tender meat...
+                       </div>
+                      <ion-item side="end">
+                        <ion-item  slot="end"><ion-button color="dark">PUBLISH</ion-button></ion-item>
+                      </ion-item>
+                    </ion-item-sliding>
 
-                                      <ion-item-sliding >
-                                          <ion-item>
-                                        <ion-thumbnail slot="start">
-                                            <img style="width: 200px;" src="https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/huevos-rancheros.jpg"/>
-                                        </ion-thumbnail>
-                                         
-                                            <ion-label>{{d.dishName}}</ion-label><br/>
-                            
-                                          </ion-item>
-                                  
-                                          <ion-item side="end">
-                                            <ion-item  slot="end"><ion-button color="primary"> <ion-icon slot="start" name="create"></ion-icon>Edit Recipe</ion-button></ion-item>
-                                          </ion-item>
-                                        </ion-item-sliding>
+                    <ion-item-sliding>
+                      <ion-item>
+                          <ion-thumbnail slot="start">
+                        <img style="width: 200px;" src="https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/huevos-rancheros.jpg"/>
+                    </ion-thumbnail>
+                     
+                        <ion-label>Allo Paratha</ion-label><br/>
+        
+                      </ion-item>
+                      <div style="margin: 10px 90px 10px 90px">
+                          <ion-badge color="primary">Cuisine</ion-badge>   <br/>   
+                          <ion-icon name="star"></ion-icon> 4.2
+                          &nbsp;     <br/>
+                          
+                              <ion-icon name="time"></ion-icon> 30 Min
+                          
+                          <br/>   
+                            <b>₹ 150 for 2 servings </b> &nbsp;        <br/>
+                          Make this beef stew when the nights draw in. With aubergine and Chinese spices, the flavours are warming and it's slow-cooked for deliciously tender meat...
+                       </div>
+                      <ion-item side="end">
+                        <ion-item  slot="end"><ion-button color="dark">PUBLISH</ion-button></ion-item>
+                      </ion-item>
+                    </ion-item-sliding>
 
-                                  </div>
-                              
-                                </div>
-                              </div>
-                              
-                              <div class="example-container">
-                                
-                                <div style="width: 100%; text-align:center;">
-                                <ion-badge color="dark"><h3>Published</h3></ion-badge>
-                                </div>
-                                <div
-                                  cdkDropList
-                                  #doneList="cdkDropList"
-                                  [cdkDropListData]="done"
-                                  [cdkDropListConnectedTo]="[dishList]"
-                                  class="example-list"
-                                  (cdkDropListDropped)="drop($event)">
-                                  <div class="example-box" *ngFor="let item of done" cdkDrag>
-
-                                      <ion-item-sliding>
-                                          <ion-item>
-                                        <ion-thumbnail slot="start">
-                                            <img style="width: 200px;" src="https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/huevos-rancheros.jpg"/>
-                                        </ion-thumbnail>
-                                         
-                                            <ion-label>Food name</ion-label><br/>
-                            
-                                          </ion-item>
-                                  
-                                          <ion-item side="end">
-                                            <ion-item  slot="end"><ion-button color="primary"> <ion-icon slot="start" name="create"></ion-icon>Edit Recipe</ion-button></ion-item>
-                                          </ion-item>
-                                        </ion-item-sliding>
-
-                                  </div>
-                              
-                                </div>
-                              </div>
-
-                      
-                    
+  
+                </ion-list>
+                          
                          
                           
                         </ion-card-content>

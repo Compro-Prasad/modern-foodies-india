@@ -9,6 +9,8 @@ import { ManagePage } from './manage.page';
 import { MaterialModule } from '../material.module';
 import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatGridListModule} from '@angular/material/grid-list';
+
 const routes: Routes = [
   {
     path: '',
@@ -24,7 +26,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     MaterialModule,
     ReactiveFormsModule,
-    DragDropModule
+    DragDropModule,
+    MatGridListModule
   ],
   declarations: [ManagePage]
 })

@@ -218,6 +218,16 @@ export class HomePage {
   goAnOtherPage() {
     this.navCtrl.navigateForward('location');
   }
+
+  MapMyIndia(lat, lng){
+    // reference : https://www.mapmyindia.com/api/advanced-maps/doc/reverse-geocoding-api
+    return this.http.get<Otp>("http://apis.mapmyindia.com/advancedmaps/v1/<licence_key>/rev_geocode?lat="+lat+"&lng="+lng)
+    .pipe(
+      // retry(1),
+      catchError(this.errorHandl)
+    )
+  }
+
   getLoc() {
     // var x = "";
 
@@ -239,6 +249,13 @@ export class HomePage {
       
       navigator.geolocation.getCurrentPosition((loc) => {
         this.loc = loc.coords.latitude + "," + loc.coords.longitude;
+
+        this.MapMyIndia(loc.coords.latitude, loc.coords.longitude).subscribe(response => {
+            console.log("Location found using mapmyindia is "+response);
+        },
+        err => console.log(err)
+        );
+
         console.log(this.loc);
         var d = new Date();
         // create cookie for address
@@ -467,7 +484,19 @@ export class HomePage {
   //   this.authService.signOut();
   // }
 
-
+ // Error handling
+ errorHandl(error) {
+  let errorMessage = '';
+  if (error.error instanceof ErrorEvent) {
+    // Get client-side error
+    errorMessage = error.error.message;
+  } else {
+    // Get server-side error
+    errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+  }
+  console.log(errorMessage);
+  return throwError(errorMessage);
+}
 }
 
 

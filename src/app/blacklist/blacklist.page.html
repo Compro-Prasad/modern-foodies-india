@@ -85,29 +85,26 @@
   
 
   <div style="width:100%; height: 90px; position: absolute; top:0; left:0;  z-index: 1000000;">
-      <div class="flex-container" >
-    
-        <div style="text-align: left; font-size: 25px; padding: 10px; background: #fff;">
+      <div class="flex-container">
+  
+        <div  [routerLink]="['/postmyfood']" routerDirection="forward" style="cursor: pointer;  text-align: left; font-size: 25px; padding: 10px; background: #fff;">
           &nbsp; &nbsp; Food<span style="color: darkgreen; ">Ali</span>
-          &nbsp; &nbsp; &nbsp; &nbsp; <span style="font-size: 15px; cursor: pointer;"><u>Airoli, Sector 9</u>&nbsp; &nbsp;
-            <ion-icon class="icon" name="locate"></ion-icon></span>
         </div>
-        <div style="text-align: left; font-size: 25px; position: relative;">
-          <div
+        <div [routerLink]="['/profile']" style=" cursor: pointer; text-align: left; font-size: 25px; position: relative;">
+          <div 
             style="width: 100%; padding:0; line-height:0; padding-right:20px;  position: absolute; top: 50%;  transform: translateY(-50%);">
-            <ion-icon style="float: right; margin-top:5px;" class="icon" name="person"></ion-icon>
-          
-            <ion-icon style="float: right; margin-top:5px;" class="icon" name="search"></ion-icon>
-           
+  
+            <ion-icon  class="icon" style="float: right; margin-top:5px; " name="contact"></ion-icon>
+  
             <div style="clear: both;"></div>
           </div>
-    
-    
+  
+  
         </div>
-    
+  
       </div>
-    
-    
+  
+  
     </div>
     <br/><br/><br/><br/>
     <ion-card style="background: #fff; margin: 120px;"> 
@@ -117,17 +114,17 @@
                 <ion-tab-bar slot="top">
            
               
-                  <ion-tab-button tab="tab1" >
+                  <ion-tab-button tab="tab1" [routerLink]="['/foodposter']" routerDirection="forward">
                     <ion-icon name="jet"></ion-icon>
                     <ion-label>Poster</ion-label>
                   </ion-tab-button>
               
-                  <ion-tab-button tab="tab2">
+                  <ion-tab-button tab="tab2" [routerLink]="['/manage']" routerDirection="forward">
                     <ion-icon name="menu"></ion-icon>
                     <ion-label>Manage</ion-label>
                   </ion-tab-button>
               
-                  <ion-tab-button tab="tab2">
+                  <ion-tab-button tab="tab2" style="background:goldenrod !important;   color: white !important;">
                     <ion-icon name="hand"></ion-icon>
                     <ion-label>Blacklist</ion-label>
                   </ion-tab-button>

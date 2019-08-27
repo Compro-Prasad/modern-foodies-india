@@ -107,7 +107,7 @@ otpVal:string;
               console.log("verf val " + this.verf);
               console.log("myno val " + this.myNo);
              
-              if (this.verf !=null) {
+              if (this.verf !=null ) {
                 if (this.cookN == null || this.cookN == "") {
                   //user is not a cook 
                   //stay on page ask as default
@@ -293,22 +293,30 @@ otpVal:string;
     //verify otp in server
     this.otpService.GetOtpById(this.userid).subscribe(response => {
       console.log(response[0].otp);
+     
       if (this.value == response[0].otp){
         // update otp pojo 
         let data = {"isVerified":"done"};
         this.userService.UpdateUserVerfById(this.userid, data).subscribe(response =>{
           console.log("Otp update success msg : "+response);
+          $("#cardotp").fadeOut(200);
+          $("#card1").fadeIn(200);
         },
-        err => console.log(err)
+        err => {console.log(err);
+          $("#cardotp").fadeOut(200);
+          $("#card1").fadeIn(200);
+        }
         );
 
-        $(".cardotp").fadeOut(200);
-        $(".card1").fadeIn(200);
 
       }
     },
-      err => console.log(err)
+      err => {console.log(err);     
+     
+    }
     );
+
+
   }
 
   otpInit() {

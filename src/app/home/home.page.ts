@@ -363,7 +363,21 @@ export class HomePage {
                 );
 
                 //redirect ot chef info page
-                this.navCtrl.navigateForward('afterlogin');
+                // this.navCtrl.navigateForward('afterlogin');
+                this.ifloggedin = "Signed up & logged in";
+                document.getElementById("login-icon").style.display = "none";
+                var b = document.querySelector("ion-button");
+                b.setAttribute("color", "dark");
+                b.setAttribute("disabled", "");
+                document.getElementById("loc-prompt").innerHTML = '*Please set your location to begin<br/><ion-icon  name="arrow-dropdown"></ion-icon>';
+                $("#locateme").addClass("focal");
+                $(".searchbar-input").focus();
+
+
+                
+
+
+
               },
               err => console.log(err)
             );

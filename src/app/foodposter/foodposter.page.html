@@ -87,10 +87,10 @@
   <div style="width:100%; height: 90px; position: absolute; top:0; left:0;  z-index: 1000000;">
     <div class="flex-container">
 
-      <div style="text-align: left; font-size: 25px; padding: 10px; background: #fff;">
-        &nbsp; &nbsp; Food<span style="color: darkgreen; ">Ali</span>
-      </div>
-      <div style="text-align: left; font-size: 25px; position: relative;">
+        <div  [routerLink]="['/postmyfood']" routerDirection="forward" style="cursor: pointer;  text-align: left; font-size: 25px; padding: 10px; background: #fff;">
+          &nbsp; &nbsp; Food<span style="color: darkgreen; ">Ali</span>
+        </div>
+      <div [routerLink]="['/profile']" style=" cursor: pointer; text-align: left; font-size: 25px; position: relative;">
         <div
           style="width: 100%; padding:0; line-height:0; padding-right:20px;  position: absolute; top: 50%;  transform: translateY(-50%);">
 
@@ -114,7 +114,7 @@
         <ion-tab-bar slot="top">
 
 
-          <ion-tab-button tab="tab1">
+          <ion-tab-button tab="tab1" style="background:goldenrod !important;   color: white !important;">
             <ion-icon name="jet"></ion-icon>
             <ion-label>Poster</ion-label>
           </ion-tab-button>
@@ -124,7 +124,7 @@
             <ion-label>Manage</ion-label>
           </ion-tab-button>
 
-          <ion-tab-button tab="tab2">
+          <ion-tab-button tab="tab2" [routerLink]="['/blacklist']" routerDirection="forward">
             <ion-icon name="hand"></ion-icon>
             <ion-label>Blacklist</ion-label>
           </ion-tab-button>

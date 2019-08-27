@@ -299,9 +299,9 @@
 
   </div>
   <!-- mat grid responsiveness ref : https://stackoverflow.com/a/48499719 -->
-  <mat-grid-list style="margin: 120px 120px 0px 120px;" [cols]="breakpoint"  (window:resize)="onResize($event)">
+  <mat-grid-list style="margin: 120px 120px 0px 120px;" rowHeight="1:2" [cols]="breakpoint"  (window:resize)="onResize($event)">
 
-    <mat-grid-tile *ngFor="let d of dish">
+    <mat-grid-tile *ngFor="let d of dish" >
 
       <ion-card style="background: #fff; ">
         <mat-progress-bar mode="indeterminate"></mat-progress-bar>
@@ -350,7 +350,7 @@
                     <ion-icon name="share"></ion-icon>
                   </ion-col>
 
-                  <ion-col (click)="goFoodInfo()" style="text-align: center; cursor: pointer">
+                  <ion-col (click)="goFoodInfo(d.id)" style="text-align: center; cursor: pointer">
 
                     <ion-icon name="eye"></ion-icon>
 

@@ -6,6 +6,7 @@ import { NavController } from '@ionic/angular';
 import { DishService } from '../../../shared/dish/dish.service';
 import $ from 'jquery';
 
+import { SessionService } from '../../../shared/Session/session.service';
 export interface FoodCard {
   userID: string;
   dishName: string;
@@ -45,8 +46,8 @@ export class FoodposterPage implements OnInit {
   sixthFormGroup: FormGroup;
   seventhFormGroup: FormGroup;
   eighthFormGroup: FormGroup;
-
-  constructor( public toastController: ToastController, private navCtrl: NavController, private _formBuilder: FormBuilder, public dishService: DishService) { }
+userid:string;
+  constructor( public sessionService: SessionService,public toastController: ToastController, private navCtrl: NavController, private _formBuilder: FormBuilder, public dishService: DishService) { }
   
   async presentToast() {
     const toast = await this.toastController.create({
@@ -83,6 +84,46 @@ export class FoodposterPage implements OnInit {
     this.eighthFormGroup = this._formBuilder.group({
       eighthCtrl: ['', Validators.required]
     });
+
+    var user = getCookie("foodali_access_token");
+    console.log(user + " <<< session access token ");
+    if (user != "") {
+
+      this.sessionService.GetSessionAccess(user).subscribe(
+        response => {
+          this.userid = response[0].userId;
+          console.log(response[0].userId);      
+        },
+        err => console.log(err)
+      );
+      // this.navCtrl.navigateForward("postmyfood");
+      this.dishService.GetDishId(this.userid).subscribe(
+        response => {
+          console.log(response);
+        }
+      );
+
+
+
+
+    }
+
+
+    function getCookie(cname) {
+      var name = cname + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
   }
   zero() {
     console.log(this.eighthFormGroup.value);
@@ -181,7 +222,7 @@ export class FoodposterPage implements OnInit {
   }
   createFoodcard(){
     console.log(this.foodCard);
-    var data = {"cuisine":this.foodCard.cuisine,"dishName":this.foodCard.dishName, "foodDescription":this.foodCard.foodDesc, "noOfServings": this.foodCard.noOfServings, "delivery":this.foodCard.delivery, "address":this.foodCard.address,"isVeg":this.foodCard.isVeg,"Image":this.foodCard.img };
+    var data = {"cuisine":this.foodCard.cuisine,"dishName":this.foodCard.dishName, "foodDescription":this.foodCard.foodDesc, "noOfServings": this.foodCard.noOfServings, "delivery":this.foodCard.delivery, "address":this.foodCard.address,"isVeg":this.foodCard.isVeg,"Image":this.foodCard.img,"uId":this.userid };
     this.dishService.CreateDish(data).subscribe(
       response => {
        console.log(response);

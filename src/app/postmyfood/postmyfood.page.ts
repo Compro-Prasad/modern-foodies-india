@@ -8,7 +8,6 @@ import anime from "animejs";
 import { ActionSheetController } from '@ionic/angular';
 import { DishService } from '../../../shared/dish/dish.service';
 import { Router } from '@angular/router';
-
 import $ from 'jquery';
 
 export interface Dish {
@@ -161,6 +160,10 @@ export class PostmyfoodPage implements OnInit {
       console.log('Async operation has ended');
       event.target.complete();
     }, 2000);
+  }
+  goFoodInfo( id:string){
+    console.log(id);
+    this.router.navigate(['/foodinfo', {uid : id}]);
   }
 
   showsearch(){

@@ -48,8 +48,17 @@ export class DishService {
   }
 
     // GET
-    GetDishId(phoneNo): Observable<Dish> {
-      return this.http.get<Dish>(this.baseurl + '/getDishByPhone?phoneNo=' + phoneNo)
+    GetDishId(id): Observable<Dish> {
+      return this.http.get<Dish>(this.baseurl + '/getDishById?id=' + id)
+      .pipe(
+        catchError(this.errorHandl)
+      )
+    }
+
+
+    // GET
+    GetAllDishesId(uid): Observable<Dish> {
+      return this.http.get<Dish>(this.baseurl + '/getDishesByuId?uid=' + uid)
       .pipe(
         catchError(this.errorHandl)
       )
@@ -75,12 +84,14 @@ export class DishService {
 
     // PUT
     UpdateDishById(id, data): Observable<Dish> {
-      return this.http.put<Dish>(this.baseurl + '/updateDishChefinfoById?id=' + id, JSON.stringify(data), this.httpOptions)
+      return this.http.put<Dish>(this.baseurl + '/updateDishById?id=' + id, JSON.stringify(data), this.httpOptions)
       .pipe(
         retry(1), 
         catchError(this.errorHandl)
       )
     }
+
+   
 
   // DELETE
   DeleteBug(id){

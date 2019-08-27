@@ -17,7 +17,7 @@ public class Otp {
 	@Indexed(expireAfterSeconds = 60)
 	private LocalDateTime registeredTime;
 
-	public Otp(String userId, String otp, LocalDateTime registeredDate) {
+	public Otp(String userId, String otp) {
 		super();
 		this.userId = userId;
 		this.otp = otp;

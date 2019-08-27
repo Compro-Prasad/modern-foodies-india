@@ -31,6 +31,10 @@ public class DishService {
 	public Optional<Dish> findById(String id){
 		return dishRepository.findById(id);
 	}
+	//Retrieve by uid
+		public List<Dish> findByuId(String uid){
+			return dishRepository.findByUId(uid);
+		}
 
 	//Update operation
 	public Dish update(Dish dish) {

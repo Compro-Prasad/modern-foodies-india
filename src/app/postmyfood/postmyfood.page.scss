@@ -3,14 +3,14 @@
 }
 
 mat-grid-list {
-  // background: lightblue;
+   background: lightblue;
 
-  padding-bottom:  calc(((2 * ((42% - 0.5px) * 1)) + 0px) + 1px) !important; //default is 50%, 42% is customed
+//  padding-bottom:  calc(((2 * ((42% - 0.5px) * 1)) + 0px) + 1px) !important; //default is 50%, 42% is customed
 }
 .sc-ion-card-md-h{
   //make ion-card compatible within mat-grid-tile
-  width: calc(100% - 120px);
-  height: calc(100% - 10px);
+  // width: calc(100% - 120px);
+  // height: calc(100% - 10px);
 }
 /* Custom Skeleton Line Height and Margin */
 .custom-skeleton ion-skeleton-text {

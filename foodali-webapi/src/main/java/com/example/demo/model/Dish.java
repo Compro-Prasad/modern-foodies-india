@@ -21,8 +21,9 @@ public class Dish { // Dish POJO
 	private String cuisine;
 	private MultipartFile image;
 
+
 	public Dish(String id, String uId, String dishName, String noOfServings, String foodDescription,
-			Boolean publishStatus, String isVeg, int serialNo, String address, String delivery, String cuisine,
+			 String isVeg, int serialNo, String address, String delivery, String cuisine,
 			MultipartFile image) {
 		super();
 		this.id = id;
@@ -30,7 +31,7 @@ public class Dish { // Dish POJO
 		this.dishName = dishName;
 		this.noOfServings = noOfServings;
 		this.foodDescription = foodDescription;
-		this.publishStatus = publishStatus;
+		this.publishStatus = false;
 		this.isVeg = isVeg;
 		this.serialNo = serialNo;
 		this.address = address;

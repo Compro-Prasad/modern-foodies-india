@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.model.Dish;
-import com.example.demo.model.User;
 import com.example.demo.service.DishService;
 
 @RestController
@@ -55,6 +54,7 @@ public class DishController {
 	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080"})
 	@RequestMapping(value = "/getAlldishes", method = RequestMethod.GET)
 	public List<Dish> getAll(){
+		
 		return dishService.getAll();
 	}
 	
@@ -64,13 +64,40 @@ public class DishController {
 
 		return dishService.findById(id);
 	}
+	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080"})
+	@RequestMapping(value = "/getDishesByuId", method = RequestMethod.GET)
+	public List<Dish> findByuId(@RequestParam(required = true) String uid){
+
+		return dishService.findByuId(uid);
+	}
 	
+	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080"})
 	@RequestMapping(value = "/updateDishById", method = RequestMethod.PUT)
 	public String update(@RequestParam String id,@RequestBody Dish dish) {
-		//Reference [1]
-		dish.setId(id);
-		Dish d = dishService.update(dish);
-		return d.toString();
+		Optional<Dish> internaOptionallDish = dishService.findById(id);
+		Dish internalDish = internaOptionallDish.get();
+		String dishname = internalDish.getDishName();
+		String userid = internalDish.getuId();
+		String servings = internalDish.getNoOfServings();
+		String desc = internalDish.getFoodDescription();
+		String isveg = internalDish.getIsVeg();
+		String address = internalDish.getAddress();
+		String delivery = internalDish.getDelivery();
+		String cuisine = internalDish.getCuisine();		
+		
+	    dish.setId(id);
+	    dish.setDishName(dishname);
+	    dish.setuId(userid);
+	    dish.setNoOfServings(servings);
+	    dish.setFoodDescription(desc);
+	    dish.setIsVeg(isveg);
+	    dish.setAddress(address);
+	    dish.setDelivery(delivery);
+	    dish.setCuisine(cuisine);
+
+	    Dish d = dishService.update(dish);
+		
+	    return d.toString();
 	}
 	
 	

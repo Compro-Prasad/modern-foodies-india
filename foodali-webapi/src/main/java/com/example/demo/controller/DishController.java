@@ -101,6 +101,8 @@ public class DishController {
 	}
 	
 	
+	
+	
 	@RequestMapping (value = "/deleteAllDishes", method = RequestMethod.DELETE)
 		public String deleteAll() {
 		dishService.deleteAll();

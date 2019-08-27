@@ -208,50 +208,50 @@
 
         <ion-card-content>
 
-            <ion-list>
+          <ion-list>
 
-                <ion-item-sliding *ngFor="let d of dish">
-                  <ion-item>
-                    <ion-thumbnail slot="start">
-                      <img style="width: 200px;"
-                        src="https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/huevos-rancheros.jpg" />
-                    </ion-thumbnail>
+            <ion-item-sliding *ngFor="let d of dish">
+              <ion-item>
+                <ion-thumbnail slot="start">
+                  <img style="width: 200px;"
+                    src="https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/huevos-rancheros.jpg" />
+                </ion-thumbnail>
 
-                    <ion-label>{{d.dishName}}</ion-label><br />
+                <ion-label>{{d.dishName}}</ion-label><br />
 
-                  </ion-item>
-                  <div style="margin: 10px 90px 10px 90px">
-                    <ion-badge color="primary">{{d.cuisine}}</ion-badge> <br />
-                    <ion-icon name="star"></ion-icon> 5.0
-                    &nbsp; <br />
+              </ion-item>
+              <div style="margin: 10px 90px 10px 90px">
+                <ion-badge color="primary">{{d.cuisine}}</ion-badge> <br />
+                <ion-icon name="star"></ion-icon> 5.0
+                &nbsp; <br />
 
 
-                    <b>{{d.noOfServings}} servings </b> &nbsp; <br />
-                    {{d.foodDescription}}
+                <b>{{d.noOfServings}} servings </b> &nbsp; <br />
+                {{d.foodDescription}}
+              </div>
+              <ion-item side="end">
+                <ion-item slot="end">
+                  <!-- {{d.publishStatus}} -->
+                  <div *ngIf="d.publishStatus == true">
+                    <ion-button ng-show="dish.publishStatus == true" id="u{{d.id}}" color="dark" (click)="cancle(d.id)">
+                      CANCEL REQUEST</ion-button>
+                    <ion-button id="p{{d.id}}"  color="dark" (click)="request(d.id)" style="display: none">REQUEST
+                    </ion-button>
                   </div>
-                  <ion-item side="end">
-                    <ion-item slot="end">
-                      <!-- {{d.publishStatus}} -->
-                      <div *ngIf="d.publishStatus == true">
-                        <ion-button ng-show="dish.publishStatus == true" id="u{{d.id}}" color="dark" (click)="unpublish(d.id)">
-                          UN-PUBLISH</ion-button>
-                        <ion-button id="p{{d.id}}"  color="dark" (click)="publish(d.id)" style="display: none">PUBLISH
-                        </ion-button>
-                      </div>
-                      <div *ngIf="d.publishStatus == false">
-                        <ion-button ng-show="dish.publishStatus == true" id="u{{d.id}}" color="dark" (click)="unpublish(d.id)"
-                          style="display: none">UN-PUBLISH</ion-button>
+                  <div *ngIf="d.publishStatus == false">
+                    <ion-button ng-show="dish.publishStatus == true" id="u{{d.id}}" color="dark" (click)="cancle(d.id)"
+                      style="display: none">CANCLE REQUEST</ion-button>
 
-                        <ion-button id="p{{d.id}}" color="dark" (click)="publish(d.id)">PUBLISH</ion-button>
-                      </div>
+                    <ion-button id="p{{d.id}}" color="dark" (click)="request(d.id)">REQUEST</ion-button>
+                  </div>
 
-                    </ion-item>
-                  </ion-item>
-                </ion-item-sliding>
+                </ion-item>
+              </ion-item>
+            </ion-item-sliding>
 
 
 
-              </ion-list>
+          </ion-list>
 
 
         </ion-card-content>

@@ -221,7 +221,7 @@ export class HomePage {
 
   MapMyIndia(lat, lng){
     // reference : https://www.mapmyindia.com/api/advanced-maps/doc/reverse-geocoding-api
-    let licence_key = "locxhfltr1j65p67ioxbncd68lwtfwwot";
+    let licence_key = "o5jls9cv4d81jihcipb3livmyedygsl4";
     return this.http.get<Otp>("http://apis.mapmyindia.com/advancedmaps/v1/"+licence_key+"/rev_geocode?lat="+lat+"&lng="+lng)
     .pipe(
       // retry(1),

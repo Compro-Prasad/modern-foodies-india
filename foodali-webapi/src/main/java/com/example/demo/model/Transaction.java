@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import java.time.LocalDateTime;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -9,25 +11,22 @@ public class Transaction {
 	@Id
 	String id;
 	
-	String userId;
-	String cookId;
-	String dishId;
-	String date;
-	String time;
-	Boolean status;
+	private String userId;
+	private String cookId;
+	private String dishId;
+	private LocalDateTime requestTime;
+	private Boolean status;
 	
-	public Transaction(String id, String userId, String cookId, String dishId, String date, String time,
-			Boolean status) {
+	private Transaction transaction;
+	
+	public Transaction(String userId, String cookId, String dishId, Boolean status) {
 		super();
-		this.id = id;
 		this.userId = userId;
 		this.cookId = cookId;
 		this.dishId = dishId;
-		this.date = date;
-		this.time = time;
 		this.status = status;
+		this.requestTime = LocalDateTime.now();
 	}
-	
 	public String getId() {
 		return id;
 	}
@@ -52,18 +51,7 @@ public class Transaction {
 	public void setDishId(String dishId) {
 		this.dishId = dishId;
 	}
-	public String getDate() {
-		return date;
-	}
-	public void setDate(String date) {
-		this.date = date;
-	}
-	public String getTime() {
-		return time;
-	}
-	public void setTime(String time) {
-		this.time = time;
-	}
+	
 	public Boolean getStatus() {
 		return status;
 	}
@@ -71,10 +59,20 @@ public class Transaction {
 		this.status = status;
 	}
 	
+	
+	
+	public Transaction getTransaction() {
+		return transaction;
+	}
+	public void setTransaction(Transaction transaction) {
+		this.transaction = transaction;
+	}
 	@Override
 	public String toString() {
-		return "Transactions [id=" + id + ", userId=" + userId + ", cookId=" + cookId + ", dishId=" + dishId + ", date="
-				+ date + ", time=" + time + ", status=" + status + "]";
+		return "Transaction [id=" + id + ", userId=" + userId + ", cookId=" + cookId + ", dishId=" + dishId
+				+ ", requestTime=" + requestTime + ", status=" + status + "]";
 	}
+	
+	
 	
 }

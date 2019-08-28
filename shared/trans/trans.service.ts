@@ -31,8 +31,8 @@ export class TransService {
   }  
 
   // GET
-  GetIssue(id): Observable<Trans> {
-    return this.http.get<Trans>(this.baseurl + '/bugtracking/' + id)
+  GetTrans(uid, cid, did): Observable<Trans> {
+    return this.http.get<Trans>(this.baseurl + '/getTrans?userId='+uid+'&cookId='+cid+'&dishId='+did)
     .pipe(
       retry(1),
       catchError(this.errorHandl)
@@ -93,8 +93,8 @@ export class TransService {
         }
 
   // DELETE
-  DeleteTrans(id){
-    return this.http.delete<Trans>(this.baseurl + '/deleteTransById?id=' + id, this.httpOptions)
+  DeleteTrans(uid, cid, did){
+    return this.http.delete<Trans>(this.baseurl + '/deleteTransById?userId='+uid+'&cookId='+cid+'&dishId='+did, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.errorHandl)

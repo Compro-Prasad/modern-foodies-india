@@ -30,11 +30,25 @@ public class TransactionController {
 		Transaction t = transactionservice.create(transaction);
 		return t.toString();
 	}
+
+	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080" })
+	@RequestMapping(value = "/getTrans", method = RequestMethod.GET)
+	public String getTrans(@RequestParam String userId, String cookId, String dishId) {
+		String id = "";
+		try {
+			id = transactionservice.find(userId, cookId, dishId);
+		} catch (NullPointerException e) {
+			id = null;
+		}
+		return "" + id;
+	}
+
 	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080" })
 	@RequestMapping(value = "/deleteTransById", method = RequestMethod.DELETE)
-	public String delete(@RequestParam int id) {
+	public String delete(@RequestParam String userId, String cookId, String dishId) {
+		String id = transactionservice.find(userId, cookId, dishId);
 		transactionservice.delete(id);
-		return "Deleted "+id;
+		return "Deleted " + id;
 	}
 }
 //[1] : https://examples.javacodegeeks.com/enterprise-java/spring/boot/spring-boot-mongodb-crud-operations-example/

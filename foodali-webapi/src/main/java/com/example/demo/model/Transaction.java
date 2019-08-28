@@ -15,16 +15,14 @@ public class Transaction {
 	private String cookId;
 	private String dishId;
 	private LocalDateTime requestTime;
-	private Boolean status;
+
 	
-	private Transaction transaction;
 	
-	public Transaction(String userId, String cookId, String dishId, Boolean status) {
+	public Transaction(String userId, String cookId, String dishId) {
 		super();
 		this.userId = userId;
 		this.cookId = cookId;
 		this.dishId = dishId;
-		this.status = status;
 		this.requestTime = LocalDateTime.now();
 	}
 	public String getId() {
@@ -52,25 +50,14 @@ public class Transaction {
 		this.dishId = dishId;
 	}
 	
-	public Boolean getStatus() {
-		return status;
-	}
-	public void setStatus(Boolean status) {
-		this.status = status;
-	}
+
 	
 	
-	
-	public Transaction getTransaction() {
-		return transaction;
-	}
-	public void setTransaction(Transaction transaction) {
-		this.transaction = transaction;
-	}
+
 	@Override
 	public String toString() {
 		return "Transaction [id=" + id + ", userId=" + userId + ", cookId=" + cookId + ", dishId=" + dishId
-				+ ", requestTime=" + requestTime + ", status=" + status + "]";
+				+ ", requestTime=" + requestTime + "]";
 	}
 	
 	

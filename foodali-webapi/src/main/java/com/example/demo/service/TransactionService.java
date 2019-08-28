@@ -25,17 +25,19 @@ public class TransactionService {
 	}
 
 	// Retrieve by id
-	public Optional<Transaction> findById(String id) {
-		return transactiondao.findById(id);
+	public String find(String userId, String cookId, String dishId) {
+		Transaction t =  transactiondao.findByUserIdAndCookIdAndDishId(userId, cookId, dishId);
+		String id = t.getId();
+		return id;
 	}
 
 	// Delete operation
 	public void deleteAll() {
 		transactiondao.deleteAll();
 	}
-	public void delete(int id) {
-		Transaction t = transactiondao.findById(id);
-		transactiondao.delete(t);
+	public void delete(String id) {
+//		Optional<Transaction> t = transactiondao.findById(id);
+		transactiondao.deleteById(id);
 	}
 
 }

@@ -11,4 +11,6 @@ import com.example.demo.model.User;
 @CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080" })
 public interface TransactionDao extends MongoRepository<Transaction, String> {
 	public Transaction findById(int id);
+	public Transaction findByUserIdAndCookIdAndDishId(String userId, String cookId, String dishId);
+	
 }

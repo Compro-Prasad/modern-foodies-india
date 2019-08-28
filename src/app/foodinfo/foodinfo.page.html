@@ -211,6 +211,7 @@
           <ion-list>
 
             <ion-item-sliding *ngFor="let d of dish">
+              <div *ngIf="d.publishStatus == true">
               <ion-item>
                 <ion-thumbnail slot="start">
                   <img style="width: 200px;"
@@ -231,22 +232,23 @@
               </div>
               <ion-item side="end">
                 <ion-item slot="end">
-                  <!-- {{d.publishStatus}} -->
-                  <div *ngIf="d.publishStatus == true">
-                    <ion-button ng-show="dish.publishStatus == true" id="u{{d.id}}" color="dark" (click)="cancle(d.id)">
+                  
+                  <div *ngIf="checkExist(d.id) != null">
+                    <ion-button id="u{{d.id}}" color="dark" (click)="cancle(d.id)">
                       CANCEL REQUEST</ion-button>
                     <ion-button id="p{{d.id}}"  color="dark" (click)="request(d.id)" style="display: none">REQUEST
                     </ion-button>
                   </div>
-                  <div *ngIf="d.publishStatus == false">
-                    <ion-button ng-show="dish.publishStatus == true" id="u{{d.id}}" color="dark" (click)="cancle(d.id)"
+                  <div *ngIf="checkExist(d.id) == null">
+                    <ion-button  id="u{{d.id}}" color="dark" (click)="cancle(d.id)"
                       style="display: none">CANCLE REQUEST</ion-button>
 
                     <ion-button id="p{{d.id}}" color="dark" (click)="request(d.id)">REQUEST</ion-button>
-                  </div>
+                  </div> 
 
                 </ion-item>
               </ion-item>
+              </div>
             </ion-item-sliding>
 
 

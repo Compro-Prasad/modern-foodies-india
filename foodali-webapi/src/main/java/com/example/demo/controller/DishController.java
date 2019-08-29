@@ -12,12 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.model.Dish;
 import com.example.demo.service.DishService;
@@ -25,8 +28,8 @@ import com.example.demo.service.DishService;
 @RestController
 
 public class DishController {
-
-	private static final String UPLOADED_FOLDER = "/home/rajkishor/Desktop/rj";
+	   //Save the uploaded file to this folder
+    private static String UPLOADED_FOLDER = "/home/rajkishor/Desktop/foodali/modern-foodies-india/images/";
 	@Autowired
 	private DishService dishService;
 	
@@ -34,23 +37,54 @@ public class DishController {
 	@RequestMapping(value = "/createDish", method = RequestMethod.POST)
 	public String create(@RequestBody(required = false) Dish dish) {
 		Dish d = dishService.create(dish);
-		 try {
-			saveUploadedFile(dish.getImage());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 		return d.toString();
 	}
 	
+	
+	@CrossOrigin(
+		    allowCredentials = "true",
+		    		origins = {"http://localhost:8100","http://localhost:8080"},
+		    allowedHeaders = "*", 
+		    methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT}
+		)
+    @PostMapping("/upload") // //new annotation since 4.3
+    public String singleFileUpload(@RequestParam("myFile") MultipartFile file,
+                                   RedirectAttributes redirectAttributes) {
 
-	private void saveUploadedFile(MultipartFile file) throws IOException {
-        if (!file.isEmpty()) {
+        if (file.isEmpty()) {
+            redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
+            return "redirect:uploadStatus";
+        }
+
+        try {
+
+            // Get the file and save it somewhere
             byte[] bytes = file.getBytes();
             Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
             Files.write(path, bytes);
+
+            redirectAttributes.addFlashAttribute("message",
+                    "You successfully uploaded '" + file.getOriginalFilename() + "'");
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
+        return "redirect:/uploadStatus";
     }
+	
+	@CrossOrigin(
+		    allowCredentials = "true",
+		    		origins = {"http://localhost:8100","http://localhost:8080"},
+		    allowedHeaders = "*", 
+		    methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT}
+		)
+    @GetMapping("/uploadStatus")
+    public String uploadStatus() {
+        return "uploadStatus";
+    }
+
 	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080"})
 	@RequestMapping(value = "/getAlldishes", method = RequestMethod.GET)
 	public List<Dish> getAll(){

@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 
+import { FileUploader, FileLikeObject } from 'ng2-file-upload';
 import { NavController } from '@ionic/angular';
 import { DishService } from '../../../shared/dish/dish.service';
 import $ from 'jquery';
 
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SessionService } from '../../../shared/Session/session.service';
 export interface FoodCard {
   userID: string;
@@ -22,6 +24,7 @@ export interface FoodCard {
   img:FormData;
 }
 
+const URL = 'http://localhost:8080/upload/';
 @Component({
   selector: 'app-foodposter',
   templateUrl: './foodposter.page.html',
@@ -47,8 +50,28 @@ export class FoodposterPage implements OnInit {
   seventhFormGroup: FormGroup;
   eighthFormGroup: FormGroup;
 userid:string;
-  constructor( public sessionService: SessionService,public toastController: ToastController, private navCtrl: NavController, private _formBuilder: FormBuilder, public dishService: DishService) { }
+  constructor( public http: HttpClient, public sessionService: SessionService,public toastController: ToastController, private navCtrl: NavController, private _formBuilder: FormBuilder, public dishService: DishService) { }
   
+
+
+  public uploader: FileUploader = new FileUploader({
+    url: URL,
+    disableMultipart : false,
+    autoUpload: true,
+    method: 'post',
+    itemAlias: 'myFile',
+    allowedFileType: ['image', 'pdf']
+
+
+    });
+
+  public onFileSelected(event: EventEmitter<File[]>) {
+    const file: File = event[0];
+    console.log(file);
+
+  }
+
+
   async presentToast() {
     const toast = await this.toastController.create({
       message: 'Your FOOD have been added successfully.',
@@ -208,12 +231,12 @@ userid:string;
 
 
   
-  // this.http.post('my-backend.com/file-upload', uploadData, {
-  //   reportProgress: true,
-  //   observe: 'events'
-  // }).subscribe(event => {
-  //     console.log(event); // handle event here
-  //   });
+  this.http.post('http://localhost:8080/upload', uploadData, {
+    reportProgress: true,
+    observe: 'events'
+  }).subscribe(event => {
+      console.log(event); // handle event here
+    });
 
 
   }

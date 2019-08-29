@@ -82,9 +82,6 @@
             <h1>Foodali</h1>
           </ion-text>
           <ion-toolbar style="float: left; width:50%;">
-
-
-
             <ion-title>
               <ion-label>
                 <span class="address">Diva Gaon, Airoli </span> &nbsp;
@@ -232,7 +229,7 @@
               </div>
               <ion-item side="end">
                 <ion-item slot="end">
-                  
+          
                   <div *ngIf="checkExist(d.id) != null">
                     <ion-button id="u{{d.id}}" color="dark" (click)="cancle(d.id)">
                       CANCEL REQUEST</ion-button>
@@ -245,6 +242,7 @@
 
                     <ion-button id="p{{d.id}}" color="dark" (click)="request(d.id)">REQUEST</ion-button>
                   </div> 
+
 
                 </ion-item>
               </ion-item>

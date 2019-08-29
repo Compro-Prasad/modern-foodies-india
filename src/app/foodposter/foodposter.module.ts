@@ -13,6 +13,11 @@ import { MaterialModule } from '../material.module';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 
+// import { BrowserModule } from '@angular/platform-browser';
+
+
+import { FileUploadModule } from 'ng2-file-upload';
+
 const routes: Routes = [
   {
     path: '',
@@ -29,7 +34,9 @@ const routes: Routes = [
     MaterialModule,
     ReactiveFormsModule,
     MatButtonToggleModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    // BrowserModule,
+    FileUploadModule
   ],
   declarations: [FoodposterPage]
 })

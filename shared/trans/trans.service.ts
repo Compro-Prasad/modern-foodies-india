@@ -31,10 +31,9 @@ export class TransService {
   }  
 
   // GET
-  GetTrans(uid, cid, did): Observable<Trans> {
-    return this.http.get<Trans>(this.baseurl + '/getTrans?userId='+uid+'&cookId='+cid+'&dishId='+did)
+  GetTrans(uid, cid, did) {
+    return this.http.get(this.baseurl + '/getTrans?userId='+uid+'&cookId='+cid+'&dishId='+did, {responseType: 'text'})
     .pipe(
-      retry(1),
       catchError(this.errorHandl)
     )
   }

@@ -34,13 +34,13 @@ import { LatLng } from '@ionic-native/google-maps';
 //   animal: 'panda' | 'unicorn' | 'lion';
 // }
 export class Otp {
-	
+
   id: string;
 
- userId: string;
-   otp: string;
+  userId: string;
+  otp: string;
 
- 
+
 
 }
 @Component({
@@ -148,15 +148,15 @@ export class HomePage {
 
     //set user session location in the search field on the load of app 
     var ses_lc = getCookie("foodali_address");
-    console.log("Session location is "+ses_lc);
-    if (ses_lc != null){
+    console.log("Session location is " + ses_lc);
+    if (ses_lc != null) {
       this.loc = ses_lc;
-    }else{
+    } else {
       console.log("Session location is not found");
     }
 
 
-    
+
     var user = getCookie("foodali_access_token");
     console.log(user + " <<< session access token ");
     if (user != "") {
@@ -219,15 +219,7 @@ export class HomePage {
     this.navCtrl.navigateForward('location');
   }
 
-  MapMyIndia(lat, lng){
-    // reference : https://www.mapmyindia.com/api/advanced-maps/doc/reverse-geocoding-api
-    let licence_key = "o5jls9cv4d81jihcipb3livmyedygsl4";
-    return this.http.get<Otp>("http://apis.mapmyindia.com/advancedmaps/v1/"+licence_key+"/rev_geocode?lat="+lat+"&lng="+lng)
-    .pipe(
-      // retry(1),
-      catchError(this.errorHandl)
-    )
-  }
+
 
   getLoc() {
     // var x = "";
@@ -245,32 +237,37 @@ export class HomePage {
     // }
     // console.log(x);
 
-  
-      //normal search as non user
-      
-      navigator.geolocation.getCurrentPosition((loc) => {
-        this.loc = loc.coords.latitude + "," + loc.coords.longitude;
 
-        this.MapMyIndia(loc.coords.latitude, loc.coords.longitude).subscribe(response => {
-            console.log("Location found using mapmyindia is "+response);
-        },
+    //normal search as non user
+
+    navigator.geolocation.getCurrentPosition((loc) => {
+     
+
+      this.userService.GetMapData(loc.coords.latitude, loc.coords.longitude).subscribe(response => {
+        var txt = JSON.stringify(response);
+        var obj = JSON.parse(txt);
+        var formatted_address = obj.results[0].formatted_address;
+        console.log(formatted_address);
+        setCookie("foodali_address", formatted_address, "1"); // expires in 1 day
+        this.loc = formatted_address;
+      },
         err => console.log(err)
-        );
+      );
 
-        console.log(this.loc);
-        var d = new Date();
-        // create cookie for address
-        setCookie("foodali_address",this.loc,"1");
-      })
-      console.log(this.loc+" temp loc")
-      if (this.loc == ""){
-         //skip
-      }else{
-        this.navCtrl.navigateForward('afterlogin');
-      }
-    function setCookie(cname,cvalue,exdays) {
+      console.log("this loc :" + this.loc);
       var d = new Date();
-      d.setTime(d.getTime() + (exdays*24*60*60*1000));
+      // create cookie for address
+
+    })
+    console.log(this.loc + " temp loc")
+    if (this.loc == "") {
+      //skip
+    } else {
+      this.navCtrl.navigateForward('afterlogin');
+    }
+    function setCookie(cname, cvalue, exdays) {
+      var d = new Date();
+      d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
       var expires = "expires=" + d.toUTCString;
       document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
     }
@@ -294,17 +291,17 @@ export class HomePage {
   }
 
   openDialog() {
-    
+
     const dialogConfig = new MatDialogConfig();
     const dialogRef = this.dialog2.open(DialogBodyComponent, dialogConfig);
 
-    
+
 
 
 
     dialogRef.afterClosed().subscribe(result => {
 
-    
+
 
 
 
@@ -374,7 +371,7 @@ export class HomePage {
                 $(".searchbar-input").focus();
 
 
-                
+
 
 
 
@@ -385,7 +382,7 @@ export class HomePage {
 
           console.log("user id for " + result.message + " is " + response.id);
 
-      
+
 
 
           // now login the user 
@@ -499,19 +496,19 @@ export class HomePage {
   //   this.authService.signOut();
   // }
 
- // Error handling
- errorHandl(error) {
-  let errorMessage = '';
-  if (error.error instanceof ErrorEvent) {
-    // Get client-side error
-    errorMessage = error.error.message;
-  } else {
-    // Get server-side error
-    errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+  // Error handling
+  errorHandl(error) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // Get client-side error
+      errorMessage = error.error.message;
+    } else {
+      // Get server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.log(errorMessage);
+    return throwError(errorMessage);
   }
-  console.log(errorMessage);
-  return throwError(errorMessage);
-}
 }
 
 

@@ -40,6 +40,14 @@ export class UserService {
   }
 
     // GET
+    GetMapData(lat, lng): Observable<string> {
+      return this.http.get<string>(this.baseurl + '/getMapData?lat='+lat+'&lng='+lng)
+      .pipe(
+        catchError(this.errorHandl)
+      )
+    }
+
+    // GET
     GetUserId(phoneNo): Observable<User> {
       return this.http.get<User>(this.baseurl + '/getUserByPhone?phoneNo=' + phoneNo)
       .pipe(

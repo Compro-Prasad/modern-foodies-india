@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.example.demo.model.User;
 import com.example.demo.service.PersonService;
@@ -85,7 +86,15 @@ public class UserController {
 		userService.delete(id);
 		return "Deleted "+id;
 	}
-	
+	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080"})
+	@RequestMapping(value = "/getMapData", method = RequestMethod.GET)
+	public String getMapData(@RequestParam String lat, String lng) {
+		final String uri = "https://apis.mapmyindia.com/advancedmaps/v1/o5jls9cv4d81jihcipb3livmyedygsl4/rev_geocode?lat="+lat+"&lng="+lng;
+	    RestTemplate restTemplate = new RestTemplate();
+	    String result = restTemplate.getForObject(uri, String.class);
+		return result;
+	}
+
 //	@RequestMapping (value = "/deleteAllUsers", method = RequestMethod.DELETE)
 //	public String deleteAll() {
 //		userService.deleteAll();

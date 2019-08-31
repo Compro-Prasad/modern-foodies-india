@@ -34,6 +34,7 @@ export class PostmyfoodPage implements OnInit {
   dataReturned: any;
 
   selectedDish:string;
+  loc:string;
 
   dish: Dish;
 
@@ -92,6 +93,31 @@ export class PostmyfoodPage implements OnInit {
       },
       err => console.log(err)
     );
+
+     //set user session location in the search field on the load of app 
+     var ses_lc = getCookie("foodali_address");
+     console.log("Session location is " + ses_lc);
+     if (ses_lc != null) {
+       let str = ses_lc;
+       this.loc  =  str.substring(0, 20)+"...";
+     } else {
+       console.log("Session location is not found");
+     }
+     function getCookie(cname) {
+      var name = cname + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
   }
   onResize(event) {
     this.breakpoint = (event.target.innerWidth <= 800) ? 1 : 2;

@@ -29,6 +29,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class DemoApplication {
 
 	public static void main(String[] args) {
+		//call java -jar /home/rajkishor/Desktop/foodali/modern-foodies-india/foodali-webapi/target/foodapi-0.0.1-SNAPSHOT.jar com.example.demo.DemoApplication 
 		SpringApplication.run(DemoApplication.class, args);
 	}
 	//Remove basic error controller 

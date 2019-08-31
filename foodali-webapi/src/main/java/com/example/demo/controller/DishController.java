@@ -33,7 +33,7 @@ public class DishController {
 	@Autowired
 	private DishService dishService;
 	
-	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080"})
+	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080", "http://108.179.222.240:8100"})
 	@RequestMapping(value = "/createDish", method = RequestMethod.POST)
 	public String create(@RequestBody(required = false) Dish dish) {
 		Dish d = dishService.create(dish);
@@ -44,7 +44,7 @@ public class DishController {
 	
 	@CrossOrigin(
 		    allowCredentials = "true",
-		    		origins = {"http://localhost:8100","http://localhost:8080"},
+		    		origins = {"http://localhost:8100","http://localhost:8080", "http://108.179.222.240:8100"},
 		    allowedHeaders = "*", 
 		    methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT}
 		)
@@ -76,7 +76,7 @@ public class DishController {
 	
 	@CrossOrigin(
 		    allowCredentials = "true",
-		    		origins = {"http://localhost:8100","http://localhost:8080"},
+		    		origins = {"http://localhost:8100","http://localhost:8080", "http://108.179.222.240:8100"},
 		    allowedHeaders = "*", 
 		    methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT}
 		)
@@ -85,7 +85,7 @@ public class DishController {
         return "uploadStatus";
     }
 
-	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080"})
+	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080", "http://108.179.222.240:8100"})
 	@RequestMapping(value = "/getAlldishes", method = RequestMethod.GET)
 	public List<Dish> getAll(){
 		
@@ -98,14 +98,14 @@ public class DishController {
 
 		return dishService.findById(id);
 	}
-	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080"})
+	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080", "http://108.179.222.240:8100"})
 	@RequestMapping(value = "/getDishesByuId", method = RequestMethod.GET)
 	public List<Dish> findByuId(@RequestParam(required = true) String uid){
 
 		return dishService.findByuId(uid);
 	}
 	
-	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080"})
+	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080", "http://108.179.222.240:8100"})
 	@RequestMapping(value = "/updateDishById", method = RequestMethod.PUT)
 	public String update(@RequestParam String id,@RequestBody Dish dish) {
 		Optional<Dish> internaOptionallDish = dishService.findById(id);

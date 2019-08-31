@@ -24,14 +24,14 @@ public class TransactionController {
 	@Autowired
 	private TransactionService transactionservice;
 
-	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080" })
+	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080" , "http://108.179.222.240:8100"})
 	@RequestMapping(value = "/createTransaction", method = RequestMethod.POST)
 	public String create(@RequestBody(required = false) Transaction transaction) {
 		Transaction t = transactionservice.create(transaction);
 		return t.toString();
 	}
 
-	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080" })
+	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080", "http://108.179.222.240:8100" })
 	@RequestMapping(value = "/getTrans", method = RequestMethod.GET)
 	public String getTrans(@RequestParam String userId, String cookId, String dishId) {
 		String id = "";
@@ -43,7 +43,7 @@ public class TransactionController {
 		return "" + id;
 	}
 
-	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080" })
+	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080" , "http://108.179.222.240:8100"})
 	@RequestMapping(value = "/deleteTransById", method = RequestMethod.DELETE)
 	public String delete(@RequestParam String userId, String cookId, String dishId) {
 		String id = transactionservice.find(userId, cookId, dishId);

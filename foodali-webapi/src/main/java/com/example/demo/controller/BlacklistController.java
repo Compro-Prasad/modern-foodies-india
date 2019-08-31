@@ -25,7 +25,7 @@ public class BlacklistController {
 	@Autowired
 	private BlacklistService blacklistService;
 
-	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080" })
+	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080", "http://108.179.222.240:8100" })
 	@RequestMapping(value = "/blacklistPerson", method = RequestMethod.POST)
 	public String create(@RequestBody(required = false) Blacklist blacklist) {
 		Blacklist b = blacklistService.create(blacklist);

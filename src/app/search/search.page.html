@@ -3,8 +3,11 @@
     <ion-title>
       <div style="font-size: 25px; width:100%; text-align:center; margin:10px;">FoodAli<span style="font-size: 10px;">search</span></div>
       <!-- Searchbar with a cancel button and custom cancel button text -->
-      <ion-searchbar value="{{searchedFor}}" placeholder="Search for food" showCancelButton="focus" cancelButtonText="Custom Cancel"></ion-searchbar>
-    <br/>  
+      <ion-searchbar  #q value="{{searchedFor}}" placeholder="Search for food" (ionCancel)="onCancel($event)" showCancelButton="focus" cancelButtonText="Custom Cancel" (keyup.enter)="search(q.value)"></ion-searchbar>
+<!--   
+      <ion-searchbar   [value]="selectedDish" placeholder="Search for food..." showCancelButton="focus" (ionCancel)="onCancel($event)"  cancelButtonText="Custom Cancel"   "></ion-searchbar> -->
+
+      <br/>  
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -57,79 +60,41 @@
               
                     <ion-list>
          
-                        <ion-item-sliding>
+                        <ion-item-sliding *ngFor="let d of dish">
+    
+                            <div *ngIf="d.publishStatus == true">
                             <ion-item>
-                                <ion-thumbnail slot="start">
-                              <img style="width: 200px;" src="https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/huevos-rancheros.jpg"/>
-                          </ion-thumbnail>
-                           
-                              <ion-label>Allo Paratha</ion-label><br/>
+                              <ion-thumbnail slot="start">
+                                <img style="width: 200px;"
+                                  src="https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/huevos-rancheros.jpg" />
+                              </ion-thumbnail>
+                              
+                              <ion-label>{{d.dishName}}</ion-label><br />
               
                             </ion-item>
                             <div style="margin: 10px 90px 10px 90px">
-                                <ion-badge color="primary">Cuisine</ion-badge>   <br/>   
-                                <ion-icon name="star"></ion-icon> 4.2
-                                &nbsp;     <br/>
-                                
-                                    <ion-icon name="time"></ion-icon> 30 Min
-                                
-                                <br/>   
-                                  <b>₹ 150 for 2 servings </b> &nbsp;        <br/>
-                                Make this beef stew when the nights draw in. With aubergine and Chinese spices, the flavours are warming and it's slow-cooked for deliciously tender meat...
-                             </div>
+                              <ion-badge color="primary">{{d.cuisine}}</ion-badge> <br />
+                              <ion-icon name="star"></ion-icon> 5.0
+                              &nbsp; <br />
+              
+              
+                              <b>{{d.noOfServings}} servings </b> &nbsp; <br />
+                              {{d.foodDescription}}
+                              <hr/>
+                              {{d.address}}
+                            </div>
                             <ion-item side="end">
-                              <ion-item  slot="end"><ion-button color="success">Request</ion-button></ion-item>
+                              <ion-item slot="end">
+                        
+                                  <ion-button color="dark" (click)="goFoodInfo(d.id)">View</ion-button>
+                            
+              
+              
+                              </ion-item>
                             </ion-item>
+                            </div>
                           </ion-item-sliding>
-    
-                          <ion-item-sliding>
-                              <ion-item>
-                                  <ion-thumbnail slot="start">
-                                <img style="width: 200px;" src="https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/huevos-rancheros.jpg"/>
-                            </ion-thumbnail>
-                             
-                                <ion-label>Allo Paratha</ion-label><br/>
-                
-                              </ion-item>
-                              <div style="margin: 10px 90px 10px 90px">
-                                  <ion-badge color="primary">Cuisine</ion-badge>   <br/>   
-                                  <ion-icon name="star"></ion-icon> 4.2
-                                  &nbsp;     <br/>
-                                  
-                                      <ion-icon name="time"></ion-icon> 30 Min
-                                  
-                                  <br/>   
-                                    <b>₹ 150 for 2 servings </b> &nbsp;        <br/>
-                                  Make this beef stew when the nights draw in. With aubergine and Chinese spices, the flavours are warming and it's slow-cooked for deliciously tender meat...
-                               </div>
-                              <ion-item side="end">
-                                <ion-item  slot="end"><ion-button color="success">Request</ion-button></ion-item>
-                              </ion-item>
-                            </ion-item-sliding>
-                            <ion-item-sliding>
-                                <ion-item>
-                                    <ion-thumbnail slot="start">
-                                  <img style="width: 200px;" src="https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/huevos-rancheros.jpg"/>
-                              </ion-thumbnail>
-                               
-                                  <ion-label>Allo Paratha</ion-label><br/>
-                  
-                                </ion-item>
-                                <div style="margin: 10px 90px 10px 90px">
-                                    <ion-badge color="primary">Cuisine</ion-badge>   <br/>   
-                                    <ion-icon name="star"></ion-icon> 4.2
-                                    &nbsp;     <br/>
-                                    
-                                        <ion-icon name="time"></ion-icon> 30 Min
-                                    
-                                    <br/>   
-                                      <b>₹ 150 for 2 servings </b> &nbsp;        <br/>
-                                    Make this beef stew when the nights draw in. With aubergine and Chinese spices, the flavours are warming and it's slow-cooked for deliciously tender meat...
-                                 </div>
-                                <ion-item side="end">
-                                  <ion-item  slot="end"><ion-button color="success">Request</ion-button></ion-item>
-                                </ion-item>
-                              </ion-item-sliding>
+              
         
                       </ion-list>
                  

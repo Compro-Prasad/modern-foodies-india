@@ -9,6 +9,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.TextCriteria;
+import org.springframework.data.mongodb.core.query.TextQuery;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -101,8 +105,19 @@ public class DishController {
 	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080", "http://108.179.222.240:8100"})
 	@RequestMapping(value = "/getDishesByuId", method = RequestMethod.GET)
 	public List<Dish> findByuId(@RequestParam(required = true) String uid){
-
+//ref 
+//https://spring.io/blog/2014/07/17/text-search-your-documents-with-spring-data-mongodb
+//	https://github.com/spring-projects/spring-data-examples/tree/master/mongodb/text-search/src/main/java/example/springdata/mongodb
+//		
 		return dishService.findByuId(uid);
+	}
+	
+	
+	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080", "http://108.179.222.240:8100"})
+	@RequestMapping(value = "/getDishesBySearch", method = RequestMethod.GET)
+	public List<Dish> findBySearch(@RequestParam(required = true) String q){
+
+		return dishService.findBySearch(q);
 	}
 	
 	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080", "http://108.179.222.240:8100"})

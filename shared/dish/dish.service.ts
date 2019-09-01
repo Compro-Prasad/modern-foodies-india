@@ -58,12 +58,20 @@ export class DishService {
 
 
     // GET
-    GetAllDishesId(uid): Observable<Array<Dish>> {
-      return this.http.get<Array<Dish>>(this.baseurl + '/getDishesByuId?uid=' + uid)
+    GetAllDishesBySearch(query): Observable<Array<Dish>> {
+      return this.http.get<Array<Dish>>(this.baseurl + '/getDishesBySearch?q=' + query)
       .pipe(
         catchError(this.errorHandl)
       )
     }
+
+      // GET
+      GetAllDishesId(uid): Observable<Array<Dish>> {
+        return this.http.get<Array<Dish>>(this.baseurl + '/getDishesByuId?uid=' + uid)
+        .pipe(
+          catchError(this.errorHandl)
+        )
+      }
 
   // GET
   GetAllDishes(): Observable<Dish> {

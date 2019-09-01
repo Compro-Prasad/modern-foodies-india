@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SessionService } from '../../../shared/Session/session.service';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { UserService } from '../../../shared/user/user.service';
 import { DishService } from '../../../shared/dish/dish.service';
 import { TransService } from '../../../shared/trans/trans.service';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
@@ -12,7 +12,6 @@ import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import * as $ from 'jquery';
 import { Router } from '@angular/router';
-import { UserService } from '../../../shared/user/user.service';
 
 
 import { NavController } from '@ionic/angular';

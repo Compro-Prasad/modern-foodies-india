@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -10,9 +11,9 @@ public class Dish { // Dish POJO
 	private String id;
 
 	private String uId;
-	private String dishName;
+	@TextIndexed(weight=2) private String dishName;
 	private String noOfServings;
-	private String foodDescription;
+	@TextIndexed private String foodDescription;
 	private Boolean publishStatus;
 	private String isVeg;
 	private int serialNo;

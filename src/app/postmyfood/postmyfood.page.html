@@ -211,9 +211,12 @@
   style="position: fixed; z-index: -111000; top:0; left:0; width:100%; height:100%; overflow-y: scroll; overflow-x: hidden; background-image: url('http://www.cleo-uk.org/wp-content/uploads/2016/03/white-curves-on-grey-background-bright-abstract-wallpaper.jpg')">
 
   <div class="search-component" style="position: fixed; display: none; z-index: 1000001; top:0; left:0; width:100%; height:100%; ">
-<div style="text-align: center; width: 100%; height: 100%; background:rgba(0,0,0,0.9);">
-<div style="width:50%;  position: relative;   top: 50%;   -webkit-transform: translateY(-50%);   -ms-transform: translateY(-50%);   transform: translateY(-50%); background:goldenrod;  display:inline-block;">
+<div style="text-align: center; width: 100%; height: 100%; background:rgba(250,250,250,0.9);">
+     
+<div style="width:50%;  position: relative;   top: 50%;   -webkit-transform: translateY(-50%);   -ms-transform: translateY(-50%);   transform: translateY(-50%); background:goldenrod; border-radius: 10px;  display:inline-block;">
 <!-- Searchbar with a cancel button and custom cancel button text -->
+
+<div style="font-size: 25px; width:100%; text-align:center; margin:10px; color: #fff;">FoodAli<span style="font-size: 10px;">search</span></div>
 <ion-searchbar  #q  [value]="selectedDish" placeholder="Search for food..." showCancelButton="focus" (ionCancel)="onCancel($event)"  cancelButtonText="Custom Cancel"   (keyup.enter)="search(q.value)"></ion-searchbar>
 
 </div>
@@ -287,7 +290,6 @@
           </ion-button> -->
           <ion-icon (click)="openProfile()" class="icon" style="float: right; margin-top:5px; cursor: pointer; " name="contact"></ion-icon>
 
-          <ion-icon (click)="showsearch()" style="float: right; margin-top:5px; cursor: pointer;" class="icon" name="search"></ion-icon>
           <div style="clear: both;"></div>
         </div>
 

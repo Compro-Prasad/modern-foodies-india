@@ -10,7 +10,7 @@ import { DishService } from '../../../shared/dish/dish.service';
 import { SessionService } from '../../../shared/Session/session.service';
 export interface Dish {
   id: string;
-  userID: string;
+  uId: string;
   dishName: string;
   dishPrice: string;
   noOfServings: string;
@@ -21,6 +21,8 @@ export interface Dish {
   address: string;
   delivery: string;
   cuisine: string;
+
+  request:boolean;
 }
 
 @Component({
@@ -30,7 +32,7 @@ export interface Dish {
 })
 export class ManagePage implements OnInit {
 
-  dish: Dish;
+  dish: Array<Dish>;
   dish2: Array<Dish>;
 
   todo = [

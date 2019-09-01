@@ -72,6 +72,7 @@ export class HomePage {
   // Ionic life cycles : https://ionicframework.com/blog/navigating-lifecycle-events/
 
   ionViewWillEnter() {
+  
     this.ifloggedin = "Log in"
     anime({
       targets: '.el',
@@ -163,8 +164,10 @@ export class HomePage {
 
       this.sessionService.GetSessionAccess(user).subscribe(
         response => {
-          console.log(response)
 
+     
+          console.log("session response from server : "+response);
+          if(response != null){
           this.ifloggedin = "Logged in";
           document.getElementById("login-icon").style.display = "none";
           var b = document.querySelector("ion-button");
@@ -173,6 +176,12 @@ export class HomePage {
           document.getElementById("loc-prompt").innerHTML = '*Please set your location to begin<br/><ion-icon  name="arrow-dropdown"></ion-icon>';
           $("#locateme").addClass("focal");
           $(".searchbar-input").focus();
+          }else{
+            //delete cookies in the broweser if session is not found in server for the particular access token 
+          document.cookie = 'foodali_access_token=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+          document.cookie = 'foodali_request_token=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+          document.cookie = 'foodali_address=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+          }
 
         },
         err => console.log(err)
@@ -184,6 +193,10 @@ export class HomePage {
 
 
     }
+
+
+
+
 
     function getCookie(cname) {
       var name = cname + "=";
@@ -241,7 +254,7 @@ export class HomePage {
     //normal search as non user
 
     navigator.geolocation.getCurrentPosition((loc) => {
-     
+
 
       this.userService.GetMapData(loc.coords.latitude, loc.coords.longitude).subscribe(response => {
         var txt = JSON.stringify(response);
@@ -260,11 +273,39 @@ export class HomePage {
 
     })
     console.log(this.loc + " temp loc")
-    if (this.loc == "") {
-      //skip
-    } else {
-      this.navCtrl.navigateForward('afterlogin');
-    }
+   
+    //if (this.loc == "") {
+      //skip 
+    //} else {
+    var user = getCookie("foodali_access_token");
+      this.sessionService.GetSessionAccess(user).subscribe(
+        response => {
+          console.log("session response from server : "+response[0].userId);
+          this.userService.GetUserById(response[0].userId).subscribe(
+            response => {
+
+              console.log("user response from server : "+response.cookName);
+              //if user is cook, go to after login page, else redirect as default. 
+              if (response.cookName != null){
+                 this.navCtrl.navigateForward('afterlogin');
+              }else{
+
+                this.navCtrl.navigateForward('postmyfood');
+              }
+
+            },
+            err => console.log(err)
+          );
+        },
+        err => console.log(err)
+      );
+
+
+   // };
+
+
+
+
     function setCookie(cname, cvalue, exdays) {
       var d = new Date();
       d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));

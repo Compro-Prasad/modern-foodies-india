@@ -72,7 +72,18 @@
 <div class="home-dw"
   style="position: fixed; z-index: -111000; top:0; left:0; width:100%; height:100%; overflow-y: scroll; background: #333;">
 
-
+  <div class="search-component" style="position: fixed; display: none; z-index: 1000001; top:0; left:0; width:100%; height:100%; ">
+      <div style="text-align: center; width: 100%; height: 100%; background:rgba(250,250,250,0.9);">
+           
+      <div style="width:50%;  position: relative;   top: 50%;   -webkit-transform: translateY(-50%);   -ms-transform: translateY(-50%);   transform: translateY(-50%); background:goldenrod; border-radius: 10px;  display:inline-block;">
+      <!-- Searchbar with a cancel button and custom cancel button text -->
+      
+      <div style="font-size: 25px; width:100%; text-align:center; margin:10px; color: #fff;">FoodAli<span style="font-size: 10px;">search</span></div>
+      <ion-searchbar  #q  [value]="selectedDish" placeholder="Search for food..." showCancelButton="focus" (ionCancel)="onCancel($event)"  cancelButtonText="Custom Cancel"   (keyup.enter)="search(q.value)"></ion-searchbar>
+      
+      </div>
+      </div>
+        </div>
   <!-- <ion-header>
 
     <ion-grid>
@@ -120,8 +131,8 @@
   <div class="flex-container" style="box-shadow: 0 5px 5px -6px rgba(0,0,0,0.5);">
 
     <div style="text-align: left; font-size: 25px; padding: 10px; background: #fff;">
-      &nbsp; &nbsp; Food<span style="color: blue; ">Ali</span>
-      &nbsp; &nbsp; &nbsp; &nbsp; <span style="font-size: 15px; cursor: pointer;"><u>Airoli, Sector 9</u>&nbsp; &nbsp;
+      &nbsp; &nbsp; Food<span style="color: green; ">Ali</span>
+      &nbsp; &nbsp; &nbsp; &nbsp; <span style="font-size: 15px; cursor: pointer;"><u>{{loc}}</u>&nbsp; &nbsp;
         <ion-icon class="icon" name="locate"></ion-icon></span>
     </div>
     <div style="text-align: left; font-size: 25px; position: relative;">
@@ -133,11 +144,10 @@
             Log in
 
           </ion-button> -->
-        <ion-icon (click)="openProfile()" class="icon" style="float: right; margin-top:5px; cursor: pointer; "
-          name="contact"></ion-icon>
+          <ion-icon (click)="openProfile()" class="icon" style="float: right; margin-top:5px; cursor: pointer; " name="contact"></ion-icon>
 
-        <ion-icon (click)="showsearch()" style="float: right; margin-top:5px; cursor: pointer;" class="icon"
-          name="search"></ion-icon>
+          <ion-icon (click)="showsearch()" style="float: right; margin-top:5px; cursor: pointer;" class="icon" name="search"></ion-icon>
+     
         <div style="clear: both;"></div>
       </div>
 
@@ -154,20 +164,29 @@
               -->
           <img
             src="https://media.gowallpaper.co.uk/media/catalog/product/r/a/rasch_geo_square_grey_silver_metallic_glitter_wallpaper_-_310238.jpg" />
-          <ion-card-title>Cook name</ion-card-title>
-          <ion-card-subtitle>Cuisine Type</ion-card-subtitle>
+          <ion-card-title>{{cookName}}</ion-card-title>
+          <ion-card-subtitle>Cuisine type : {{cookCuisine}}</ion-card-subtitle>
         </ion-card-header>
 
         <ion-card-content>
 
 
-          <ion-icon name="star"></ion-icon> 4.2
+          <ion-icon name="star"></ion-icon> --
           &nbsp;
 
-          <ion-icon name="time"></ion-icon> 30 Min
+          <ion-icon name="time"></ion-icon> --
 
           <br />
-          <b>₹ 150 for 2 servings </b> &nbsp; <b>Pickup only</b>
+          <b>
+            <div *ngIf="cookVeg==false">
+                Cook is a <span style="color:tomato;  ">*Non-Veg</span>
+            </div>
+            <div *ngIf="cookVeg==true">
+                Cook is a <span style="color:green">*Veg</span>
+                            </div>
+  
+
+          </b> 
 
         </ion-card-content>
       </ion-card>
@@ -208,13 +227,14 @@
           <ion-list>
 
             <ion-item-sliding *ngFor="let d of dish">
+    
               <div *ngIf="d.publishStatus == true">
               <ion-item>
                 <ion-thumbnail slot="start">
                   <img style="width: 200px;"
                     src="https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/huevos-rancheros.jpg" />
                 </ion-thumbnail>
-
+                
                 <ion-label>{{d.dishName}}</ion-label><br />
 
               </ion-item>
@@ -226,17 +246,19 @@
 
                 <b>{{d.noOfServings}} servings </b> &nbsp; <br />
                 {{d.foodDescription}}
+                <hr/>
+                {{d.address}}
               </div>
               <ion-item side="end">
                 <ion-item slot="end">
           
-                  <div *ngIf="checkExist(d.id) != null">
+                  <div *ngIf="d.request == true">
                     <ion-button id="u{{d.id}}" color="dark" (click)="cancle(d.id)">
                       CANCEL REQUEST</ion-button>
                     <ion-button id="p{{d.id}}"  color="dark" (click)="request(d.id)" style="display: none">REQUEST
                     </ion-button>
                   </div>
-                  <div *ngIf="checkExist(d.id) == null">
+                  <div *ngIf="d.request == false">
                     <ion-button  id="u{{d.id}}" color="dark" (click)="cancle(d.id)"
                       style="display: none">CANCLE REQUEST</ion-button>
 
@@ -264,11 +286,10 @@
             </ion-title>
             <div style="margin: 30px;">
               <p>
-                <b>Frequent Address:</b><br /> Sai Pooja Apartment , Near Airoli-Mulund Bridge, Service Rd, Diva
-                Gaothan, Sector 9, Airoli, Navi Mumbai, Maharashtra 400708
+                <b>Current Address:</b><br /> {{fullloc}}
               </p>
               <p>
-                <b>Phone:</b><br />091673 35233
+                <b>Phone:</b><br />+91 + {{cookPhone}}
               </p>
             </div>
 

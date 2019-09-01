@@ -29,9 +29,14 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class DemoApplication {
 
 	public static void main(String[] args) {
-		//call java -jar /home/rajkishor/Desktop/foodali/modern-foodies-india/foodali-webapi/target/foodapi-0.0.1-SNAPSHOT.jar com.example.demo.DemoApplication 
+		//call java -jar /home/mrcgddmy/public_html/modern-foodies-india/foodali-webapi/foodapi.jar com.example.demo.DemoApplication 
 		
-		 
+		// Run spring boot jar file as backgrund servicd in linux 
+//		nohup java -jar /home/mrcgddmy/public_html/modern-foodies-india/foodali-webapi/fapi.jar com.example.demo.DemoApplication &
+//		The & symbol, switches the program to run in the background.
+//
+//		The nohup utility makes the command passed as an argument run in the background even after you log out.
+//		
 		SpringApplication.run(DemoApplication.class, args);
 	}
 	//Remove basic error controller 

@@ -2,7 +2,7 @@ export class Dish {
 	
 	id:string;
 
-	userID:string;
+	uId:string;
 	dishName:string;
 	dishPrice:string;
 	noOfServings:string;
@@ -14,5 +14,7 @@ export class Dish {
 	delivery:string;
 	cuisine:string;
 	imgurl:string;
+
+	request:boolean;
 	
 }

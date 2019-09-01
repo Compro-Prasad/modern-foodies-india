@@ -20,11 +20,13 @@ public class Dish { // Dish POJO
 	private String delivery;
 	private String cuisine;
 	private MultipartFile image;
+	
+	private boolean request;
 
 
 	public Dish(String id, String uId, String dishName, String noOfServings, String foodDescription,
 			 String isVeg, int serialNo, String address, String delivery, String cuisine,
-			MultipartFile image) {
+			MultipartFile image, boolean request) {
 		super();
 		this.id = id;
 		this.uId = uId;
@@ -39,6 +41,7 @@ public class Dish { // Dish POJO
 		this.cuisine = cuisine;
 		
 		this.image = image;
+		this.request = false;
 		
 	}
 
@@ -137,18 +140,30 @@ public class Dish { // Dish POJO
 	public void setImage(MultipartFile image) {
 		this.image = image;
 	}
+	
+
+	public boolean isRequest() {
+		return request;
+	}
+
+	public void setRequest(boolean request) {
+		this.request = request;
+	}
 
 	@Override
 	public String toString() {
 		return "Dish [id=" + id + ", uId=" + uId + ", dishName=" + dishName + ", noOfServings=" + noOfServings
 				+ ", foodDescription=" + foodDescription + ", publishStatus=" + publishStatus + ", isVeg=" + isVeg
 				+ ", serialNo=" + serialNo + ", address=" + address + ", delivery=" + delivery + ", cuisine=" + cuisine
-				+ ", Image=" + image + ", getId()=" + getId() + ", getuId()=" + getuId() + ", getDishName()="
-				+ getDishName() + ", getNoOfServings()=" + getNoOfServings() + ", getFoodDescription()="
-				+ getFoodDescription() + ", getPublishStatus()=" + getPublishStatus() + ", getIsVeg()=" + getIsVeg()
-				+ ", getSerialNo()=" + getSerialNo() + ", getAddress()=" + getAddress() + ", getDelivery()="
-				+ getDelivery() + ", getCuisine()=" + getCuisine() + ", getImage()=" + getImage() + ", getClass()="
-				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+				+ ", image=" + image + ", request=" + request + ", getId()=" + getId() + ", getuId()=" + getuId()
+				+ ", getDishName()=" + getDishName() + ", getNoOfServings()=" + getNoOfServings()
+				+ ", getFoodDescription()=" + getFoodDescription() + ", getPublishStatus()=" + getPublishStatus()
+				+ ", getIsVeg()=" + getIsVeg() + ", getSerialNo()=" + getSerialNo() + ", getAddress()=" + getAddress()
+				+ ", getDelivery()=" + getDelivery() + ", getCuisine()=" + getCuisine() + ", getImage()=" + getImage()
+				+ ", isRequest()=" + isRequest() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", toString()=" + super.toString() + "]";
 	}
+
+
 
 }

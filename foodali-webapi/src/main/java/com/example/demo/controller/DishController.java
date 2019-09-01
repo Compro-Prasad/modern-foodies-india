@@ -92,9 +92,9 @@ public class DishController {
 		return dishService.getAll();
 	}
 	
-	
-	@RequestMapping(value = "/getDishById", method = RequestMethod.POST)
-	public Optional<Dish> findById(@RequestBody(required = true) String id){
+	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080", "http://108.179.222.240:8100"})
+	@RequestMapping(value = "/getDishById", method = RequestMethod.GET)
+	public Optional<Dish> findById(@RequestParam(required = true) String id){
 
 		return dishService.findById(id);
 	}

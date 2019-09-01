@@ -12,7 +12,7 @@ import $ from 'jquery';
 
 export interface Dish {
   id: string;
-  userID: string;
+  uId: string;
   dishName: string;
   dishPrice: string;
   noOfServings: string;
@@ -189,7 +189,7 @@ export class PostmyfoodPage implements OnInit {
   }
   goFoodInfo( id:string){
     console.log(id);
-    this.router.navigate(['/foodinfo', {uid : id}]);
+    this.router.navigate(['/foodinfo', {did : id}]);
   }
 
   showsearch(){

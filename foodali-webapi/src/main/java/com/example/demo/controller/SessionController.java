@@ -33,8 +33,11 @@ public class SessionController {
 	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080", "http://108.179.222.240:8100"})
 	@RequestMapping(value = "/getSessionByAccessToken", method = RequestMethod.GET)
 	public List<Session> findByAccessId(@RequestParam(required = true) String accessToken){
-		return sessionService.findByAccessToken(accessToken);
-		
+		List<Session> list =  sessionService.findByAccessToken(accessToken);
+		if (list.size() == 0) {
+			list = null;
+		}
+		return list;	
 	}
 
 	@RequestMapping(value = "/getAllsessions", method = RequestMethod.GET)

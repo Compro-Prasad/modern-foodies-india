@@ -4,6 +4,7 @@ import { ModalPage } from '../modal/modal.page'
 
 import { NavController } from '@ionic/angular';
 
+import { ToastController } from '@ionic/angular';
 import anime from "animejs";
 import { ActionSheetController } from '@ionic/angular';
 import { DishService } from '../../../shared/dish/dish.service';
@@ -49,7 +50,7 @@ export class PostmyfoodPage implements OnInit {
   breakpoint: number;
   loginStatus: boolean;
 
-  constructor(private router: Router, public dishService: DishService, public modalController: ModalController, private navCtrl: NavController, public actionSheetController: ActionSheetController, public userService: UserService, public sessionService:SessionService) { }
+  constructor(public toastController: ToastController, private router: Router, public dishService: DishService, public modalController: ModalController, private navCtrl: NavController, public actionSheetController: ActionSheetController, public userService: UserService, public sessionService:SessionService) { }
 
 
   ionViewWillEnter() {
@@ -71,6 +72,13 @@ export class PostmyfoodPage implements OnInit {
     });
 
 
+  }
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'You current location is updating...',
+      duration: 2000
+    });
+    toast.present();
   }
 
   async openModal() {
@@ -188,7 +196,8 @@ getLoc() {
       var formatted_address = obj.results[0].formatted_address;
       console.log(formatted_address);
       setCookie("foodali_address", formatted_address, "1"); // expires in 1 day
-      this.loc = formatted_address.substring(0, 20)+"...";;
+      this.loc = formatted_address.substring(0, 20)+"...";
+      this.presentToast();
     },
       err => console.log(err)
     );

@@ -9,7 +9,7 @@ import { retry, catchError } from 'rxjs/operators';
 })
 export class OtpService {
   // Base url
-  baseurl = 'http://localhost:8080';
+  baseurl = 'http://108.179.222.240:8080';
 
   otp: string;
   constructor(private http: HttpClient) { }

@@ -1,82 +1,92 @@
-
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
 app-home {
-    .square, .circle {
-      pointer-events: none;
-      position: relative;
-      width: 28px;
-      height: 28px;
-      margin: 1px;
-      background-color: currentColor;
-      font-size: 12px;
-    }
+  .square,
+  .circle {
+    pointer-events: none;
+    position: relative;
+    width: 28px;
+    height: 28px;
+    margin: 1px;
+    background-color: currentColor;
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .logo-main {
+    font-size: 25px;
+  }
+  .home-dw {
+    overflow-x: hidden;
+  }
+  .ml11 {
+    text-align: center;
+  }
+  #foodimg {
+    position: absolute;
+    color: seashell;
+    top: 45%;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    text-align: center;
+  }
+  .logol {
+    display: none;
+  }
+  .logor {
+    width: 100%;
+    margin: 30px;
+    text-align: center;
+  }
+  .not-logged-in {
+    display: inline-block;
+  }
+  .f2 {
+    text-align: center;
+  }
+  .fh {
+    text-align: center;
+  }
+  .f {
+    width: 50%;
+    float: left;
   }
 
-  @media only screen and (max-width: 600px) {
-    .logo-main{
-      font-size: 25px;
-    }
-    .home-dw{
-      overflow-x: hidden;
+  #footer-end {
+    display: none;
+  }
+  .foo {
+    text-align: center;
+  }
+  .fooh {
+    text-align: center;
+  }
+  .footer {
+    width: 100%;
+    padding-bottom: 30px;
+    background: rgb(56, 40, 9);
+    color: honeydew;
+  }
+}
 
-    }
-    .ml11{
-      text-align: center;
-    }
-    #foodimg{
-      position: absolute; 
-      color: seashell; 
-      top:45%; left:0; 
-      width:100%; height:50%; text-align: center; 
-    }
-    .logol{
-      display: none;
-    }
-    .logor{
-      width: 100%;
-      margin: 30px;
-      text-align: center;
-    }
-    .not-logged-in{
-      display:inline-block;
-    }
-    .f2{
-      text-align: center;
-    }
-    .fh{
-      text-align: center;
-    }
-    .f{
-      width: 50%;
-      float: left;
-    }
-
-    #footer-end{
-     display: none;
-    }
-    .foo{
-      text-align: center;
-    }
-    .fooh{
-      text-align: center;
-    }
-    .footer{
-      width: 100%; padding-bottom: 30px; background: rgb(56, 40, 9); color: honeydew;
-    }
-      }
-
-      @media only screen and (min-width: 600px) {
-        #foodimg{
-          position: absolute; 
-          color: seashell; 
-          top:30%; left:0; 
-          width:100%; height:50%; text-align: center; 
-        }
-        .fooh{
-          text-align: left;;
-        }
-        .footer{
-          width: 100%; padding-bottom: 40px; background: rgb(56, 40, 9); color: honeydew;
-        }
-          }
-
+@media only screen and (min-width: 600px) {
+  #foodimg {
+    position: absolute;
+    color: seashell;
+    top: 30%;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    text-align: center;
+  }
+  .fooh {
+    text-align: left;
+  }
+  .footer {
+    width: 100%;
+    padding-bottom: 40px;
+    background: rgb(56, 40, 9);
+    color: honeydew;
+  }
+}

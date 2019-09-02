@@ -1,12 +1,43 @@
-<ion-header class="home-mw">
+
+  <div class="mobile-tab">
+
+      <ion-tabs>
+          <ion-tab-bar slot="bottom">
+            <ion-tab-button tab="schedule">
+              <ion-icon name="home"></ion-icon>
+              <ion-label>Home</ion-label>
+              <ion-badge>{{dishlen}}</ion-badge>
+            </ion-tab-button>
+
+            <ion-tab-button *ngIf="loginStatus == false" (click)="goHome()" tab="speakers">
+                <ion-icon name="log-in"></ion-icon>
+                <ion-label>Login</ion-label>
+              </ion-tab-button>
+
+            <ion-tab-button (click)="showsearch()" *ngIf="loginStatus == true" tab="speakers">
+              <ion-icon name="search"></ion-icon>
+              <ion-label>Search</ion-label>
+            </ion-tab-button>
+      
+        
+      
+            <ion-tab-button *ngIf="loginStatus == true" (click)="profilePage()" tab="about">
+              <ion-icon name="person"></ion-icon>
+              <ion-label>Profile</ion-label>
+            </ion-tab-button>
+
+          </ion-tab-bar>
+        </ion-tabs>
+      
+
+  </div>
+<!-- <ion-header class="home-mw">
 
   <ion-grid>
     <ion-row>
       <ion-col>
-        <div style="margin: 20px;" (click)="presentActionSheet()">FoodAli</div>
-        <!-- <ion-icon style="float: right; width: 30px; height: 30px; margin: 20px; cursor: pointer;"
-              name="search"></ion-icon> -->
-        <!-- <div style="clear: both;"></div> -->
+        <div style="margin: 20px;" >FoodAli</div>
+
       </ion-col>
       <ion-col>
         <ion-toolbar>
@@ -32,152 +63,6 @@
 </ion-header>
 
 <ion-content class="home-mw">
-
-  <!-- Custom Refresher Properties -->
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
-      refreshingText="Refreshing...">
-    </ion-refresher-content>
-  </ion-refresher>
-
-
-  <!-- fab placed to the top end -->
-  <ion-fab (click)="presentActionSheet()" vertical="top" horizontal="end" slot="fixed">
-    <ion-fab-button>
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-
-
-
-
-
-  <!-- Data to display after skeleton screen -->
-  <div *ngIf="data">
-    <div class="ion-padding">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac eros est. Cras iaculis pulvinar arcu non
-      vehicula. Fusce at quam a eros malesuada condimentum. Aliquam tincidunt tincidunt vehicula.
-    </div>
-
-    <ion-list>
-      <ion-list-header>Data</ion-list-header>
-      <ion-item>
-        <ion-avatar slot="start">
-          <img src="./avatar.svg">
-        </ion-avatar>
-        <ion-label>
-          <h3>
-            {{ data.heading }}
-          </h3>
-          <p>
-            {{ data.para1 }}
-          </p>
-          <p>
-            {{ data.para2 }}
-          </p>
-        </ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail slot="start">
-          <img src="./thumbnail.svg">
-        </ion-thumbnail>
-        <ion-label>
-          <h3>
-            {{ data.heading }}
-          </h3>
-          <p>
-            {{ data.para1 }}
-          </p>
-          <p>
-            {{ data.para2 }}
-          </p>
-        </ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="call" slot="start"></ion-icon>
-        <ion-label>
-          <h3>
-            {{ data.heading }}
-          </h3>
-          <p>
-            {{ data.para1 }}
-          </p>
-          <p>
-            {{ data.para2 }}
-          </p>
-        </ion-label>
-      </ion-item>
-    </ion-list>
-  </div>
-
-  <!-- Skeleton screen -->
-  <div *ngIf="!data">
-    <div class="ion-padding custom-skeleton">
-      <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
-      <ion-skeleton-text animated></ion-skeleton-text>
-      <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
-      <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
-      <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
-    </div>
-
-    <ion-list>
-      <ion-list-header>
-        <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
-      </ion-list-header>
-      <ion-item>
-        <ion-avatar slot="start">
-          <ion-skeleton-text animated></ion-skeleton-text>
-        </ion-avatar>
-        <ion-label>
-          <h3>
-            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
-          </h3>
-          <p>
-            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
-          </p>
-          <p>
-            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
-          </p>
-        </ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail slot="start">
-          <ion-skeleton-text animated></ion-skeleton-text>
-        </ion-thumbnail>
-        <ion-label>
-          <h3>
-            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
-          </h3>
-          <p>
-            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
-          </p>
-          <p>
-            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
-          </p>
-        </ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-skeleton-text animated style="width: 27px; height: 27px" slot="start"></ion-skeleton-text>
-        <ion-label>
-          <h3>
-            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
-          </h3>
-          <p>
-            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
-          </p>
-          <p>
-            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
-          </p>
-        </ion-label>
-      </ion-item>
-    </ion-list>
-  </div>
-
-
-
-
-
-
 
   <ion-tabs>
     <ion-tab-bar slot="bottom">
@@ -205,23 +90,29 @@
   </ion-tabs>
 
 
-</ion-content>
+</ion-content> -->
 
 <div class="home-dw"
   style="position: fixed; z-index: -111000; top:0; left:0; width:100%; height:100%; overflow-y: scroll; overflow-x: hidden; background-image: url('http://www.cleo-uk.org/wp-content/uploads/2016/03/white-curves-on-grey-background-bright-abstract-wallpaper.jpg')">
 
-  <div class="search-component"  style=" position: fixed; display: none; z-index: 1000001; top:0; left:0; width:100%; height:100%; ">
-<div style="text-align: center; width: 100%; height: 100%; background:rgba(250,250,250,0.9);">
-     
-<div style="width:50%;  position: relative;   top: 50%;   -webkit-transform: translateY(-50%);   -ms-transform: translateY(-50%);   transform: translateY(-50%); background:goldenrod; border-radius: 10px;  display:inline-block;">
-<!-- Searchbar with a cancel button and custom cancel button text -->
-<div style="width: 100%; margin: 10px;"> <ion-icon style="width: 40px; cursor:pointer;" (click)="hideSearch()" name="close-circle-outline"></ion-icon></div>
+  <div class="search-component"
+    style=" position: fixed; display: none; z-index: 1000001; top:0; left:0; width:100%; height:100%; ">
+    <div style="text-align: center; width: 100%; height: 100%; background:rgba(250,250,250,0.9);">
 
-<div style="font-size: 25px; width:100%; text-align:center; margin:10px; color: #fff;">FoodAli<span style="font-size: 10px;">search</span></div>
-<ion-searchbar  #q  [value]="selectedDish" placeholder="Search for food..." showCancelButton="focus" (ionCancel)="onCancel($event)"  cancelButtonText="Custom Cancel"   (keyup.enter)="search(q.value)"></ion-searchbar>
+      <div class="main-search">
+        <!-- Searchbar with a cancel button and custom cancel button text -->
+        <div style="width: 100%; margin: 10px;">
+          <ion-icon style="width: 40px; cursor:pointer;" (click)="hideSearch()" name="close-circle-outline"></ion-icon>
+        </div>
 
-</div>
-</div>
+        <div class="search-logo" >FoodAli<span
+            style="font-size: 10px;">search</span></div>
+        <ion-searchbar #q [value]="selectedDish" placeholder="Search for food..." showCancelButton="focus"
+          (ionCancel)="onCancel($event)" cancelButtonText="Custom Cancel" (keyup.enter)="search(q.value)">
+        </ion-searchbar>
+
+      </div>
+    </div>
   </div>
 
   <!-- <ion-header>
@@ -275,28 +166,30 @@
     style="width:100%; height: 90px; position: fixed; top:0; left:0;  z-index: 1000000; transform: translateY(-100px);">
     <div class="flex-container" style="box-shadow: 0 5px 5px -6px rgba(0,0,0,0.5);">
 
-      <div style="text-align: left; font-size: 25px; padding: 10px; background: #fff;">
-        &nbsp; &nbsp; Food<span style="color: green; ">Ali</span>
-        &nbsp; &nbsp; &nbsp; &nbsp; <span style="font-size: 15px; cursor: pointer;"><u>{{loc}}</u>&nbsp; &nbsp;
-          <ion-icon class="icon" (click)="getLoc()" name="locate"></ion-icon></span>
+      <div class="left-flex">
+        <span [routerLink]="['/postmyfood']" routerDirection="forward"  > Food<span style="color: green; ">Ali</span></span>
+        <span style="font-size: 15px; cursor: pointer; float:right;"><u>{{loc}}</u>
+          <ion-icon class="locate-icon" class="icon" (click)="getLoc()" name="locate"></ion-icon></span>
       </div>
-      <div style="text-align: left; font-size: 25px; position: relative;">
+      <div class="right-flex" style="text-align: left; font-size: 25px; position: relative;">
         <div
           style="width: 100%; padding:0; line-height:0; padding-right:20px;  position: absolute; top: 50%;  transform: translateY(-50%);">
-<div *ngIf="loginStatus == false">
-          <ion-button (click)="goHome()" style="float: right;">
-            <ion-icon slot="start" name="log-in"></ion-icon>
-            Log in
+          <div *ngIf="loginStatus == false">
+            <ion-button (click)="goHome()" style="float: right;">
+              <ion-icon slot="start" name="log-in"></ion-icon>
+              Log in
 
-          </ion-button> 
-     </div>
-     <div *ngIf="loginStatus == true">
-          <ion-icon (click)="openProfile()" class="icon" style="float: right; margin-top:5px; cursor: pointer; " name="contact"></ion-icon>
+            </ion-button>
+          </div>
+          <div *ngIf="loginStatus == true">
+            <ion-icon (click)="openProfile()" class="icon" style="float: right; margin-top:5px; cursor: pointer; "
+              name="contact"></ion-icon>
 
-          <ion-icon (click)="showsearch()" style="float: right; margin-top:5px; cursor: pointer;" class="icon" name="search"></ion-icon>
-     
-          <div style="clear: both;"></div>
-        </div>
+            <ion-icon (click)="showsearch()" style="float: right; margin-top:5px; cursor: pointer;" class="icon"
+              name="search"></ion-icon>
+
+            <div style="clear: both;"></div>
+          </div>
         </div>
 
 
@@ -310,9 +203,9 @@
 
 
   <!-- my foating component  -->
-  <div style="margin: 120px 120px 0px 120px; text-align: center;" >
+  <div class="custom-wrapper">
 
-    <div style="display:inline-block; width:30%;  height:400px; margin: 10px" *ngFor="let d of dish" >
+    <div class="custom-component" *ngFor="let d of dish">
       <ion-card style="background: #fff; ">
         <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 
@@ -344,49 +237,52 @@
           </ion-badge>
           <ion-badge style="margin-left:10px " color="primary">
             <ion-icon name="bicycle"></ion-icon>
-            
-          <span *ngIf="d.delivery == 0">
-            <span>Pick-up only</span>
-          </span>
-          <span *ngIf="d.delivery == 1">
+
+            <span *ngIf="d.delivery == 0">
+              <span>Pick-up only</span>
+            </span>
+            <span *ngIf="d.delivery == 1">
               <span>Delivery</span>
             </span>
           </ion-badge><br />
           <b> {{d.noOfServings}} servings</b>
           <br />
           <b>Address</b> : {{d.address}}
-       
+
         </ion-card-content>
         <ion-footer>
-            <ion-toolbar>
+          <ion-toolbar>
 
-              <ion-grid>
-                <ion-row>
+            <ion-grid>
+              <ion-row>
 
-                  <ion-col style="text-align: center;">
-                    <!-- <ion-icon name="share"></ion-icon> -->
-                    <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&layout=button&size=small&appId=484770218980582&width=59&height=20" width="59" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe> 
-                  </ion-col>
+                <ion-col style="text-align: center;">
+                  <!-- <ion-icon name="share"></ion-icon> -->
+                  <iframe
+                    src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&layout=button&size=small&appId=484770218980582&width=59&height=20"
+                    width="59" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+                    allowTransparency="true" allow="encrypted-media"></iframe>
+                </ion-col>
 
-                  <ion-col (click)="goFoodInfo(d.id)" style="text-align: center; cursor: pointer">
+                <ion-col (click)="goFoodInfo(d.id)" style="text-align: center; cursor: pointer">
 
-                    <ion-icon name="eye"></ion-icon>
+                  <ion-icon name="eye"></ion-icon>
 
-                  </ion-col>
+                </ion-col>
 
-                </ion-row>
+              </ion-row>
 
-              </ion-grid>
-
-
+            </ion-grid>
 
 
-            </ion-toolbar>
-          </ion-footer>
+
+
+          </ion-toolbar>
+        </ion-footer>
       </ion-card>
+    </div>
   </div>
-  </div>
-<br/>
+  <br />
 
   <!-- mat grid responsiveness ref : https://stackoverflow.com/a/48499719 -->
   <!-- <mat-grid-list style="margin: 120px 120px 0px 120px;" rowHeight="1:2" [cols]="breakpoint"  (window:resize)="onResize($event)">
@@ -463,7 +359,9 @@
   </mat-grid-list> -->
 
   <div *ngIf="dishlen > 9" style="width: 100%; text-align:center; margin: 10px;">
-      <ion-button color="dark" style="display: inline-block"><ion-icon name="refresh"></ion-icon> &nbsp; Load more</ion-button>
+    <ion-button color="dark" style="display: inline-block">
+      <ion-icon name="refresh"></ion-icon> &nbsp; Load more
+    </ion-button>
   </div>
 
   <!-- <ion-grid>
@@ -676,49 +574,48 @@
 
   </ion-grid> -->
 
-  <div style="width: 100%; height:450px; background: rgb(56, 40, 9); color: honeydew">
-    <div class="flex-container">
-
-      <div class="foo">
-        <br />
-        <ion-text style="text-align: left">
-          <h3>About Foodali</h3>
-        </ion-text>
-        <p class="listing-foo">About us</p>
-        <p class="listing-foo">Team</p>
-        <p class="listing-foo">Careers</p>
-        <p class="listing-foo">Offers</p>
-        <p class="listing-foo">Contact</p>
-      </div>
-      <div class="foo">
-        <br />
-        <ion-text style="text-align: left">
-          <h3>Get Help</h3>
-        </ion-text>
-        <p class="listing-foo">Help and support</p>
-        <p class="listing-foo">Partner with us</p>
-        <p class="listing-foo">Ride with us</p>
-        <p class="listing-foo">Blog</p>
-      </div>
-      <div class="foo">
-        <br />
-        <ion-text style="text-align: left">
-          <h3>Get FoodAli in your phone</h3>
-        </ion-text>
-        <img style="margin-top: 10px; float:left; margin-right: 10px;" width="150px;"
-          src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_108/play_ip0jfp" />
-
-        <img style="margin-top: 10px; float:left; " width="150px;"
-          src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_108/iOS_ajgrty" />
-
-      </div>
-
+  <div class="footer" >
+      <div class="flex-container">
+        
+        <div class="foo">
+          <br/>
+           <ion-text class="fooh">
+               <h3>About Foodali</h3>
+             </ion-text>
+             <p class="listing-foo">About us</p>
+             <p class="listing-foo">Team</p>
+             <p class="listing-foo">Careers</p>
+             <p class="listing-foo">Offers</p>
+             <p class="listing-foo">Contact</p>
+        </div>
+        <div  class="foo">
+           <br/>
+           <ion-text class="fooh" >
+               <h3>Get Help</h3>
+             </ion-text>
+             <p class="listing-foo">Help and support</p>
+             <p class="listing-foo">Partner with us</p>
+             <p class="listing-foo">Ride with us</p>
+             <p class="listing-foo">Blog</p>
+        </div>
+        <div class="foo" id="footer-end">
+           <br/>
+           <ion-text class="fooh">
+               <h3>Get FoodAli in your phone</h3>
+             </ion-text>
+             <div class="download-wrapper">
+             <img class="download" style="margin-top: 10px; float: left;" width="150px;" src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_108/play_ip0jfp"/>
+            
+             <img class="download" style="margin-top: 10px; float: left;" width="150px;" src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_108/iOS_ajgrty"/>
     </div>
-  </div>
-  <ion-footer style="background: rgb(20, 20, 20); text-align:center">
-    <ion-toolbar>
-      <ion-title>Copyright 2019, Foodali inc.
-      </ion-title>
-    </ion-toolbar>
-  </ion-footer>
+        </div>
+
+        </div>
+        </div>
+        <ion-footer style=" text-align:center">
+           <ion-toolbar>
+             <ion-title>Copyright 2019, Foodali inc.
+             </ion-title>
+           </ion-toolbar>
+         </ion-footer>
 </div>

@@ -38,6 +38,12 @@ public class DemoApplication {
 //		The nohup utility makes the command passed as an argument run in the background even after you log out.
 //		
 		SpringApplication.run(DemoApplication.class, args);
+		
+		// yes | cp -rf /zzz/zzz/* /xxx/xxx
+		// yes | cp -rf /home/mrcgddmy/public_html/modern-foodies-india/www/* /home/mrcgddmy/public_html/
+		//cp -a /source/. /dest/
+         //cp -a /home/mrcgddmy/public_html/modern-foodies-india/www/. /home/mrcgddmy/public_html/
+
 	}
 	//Remove basic error controller 
 	@Bean

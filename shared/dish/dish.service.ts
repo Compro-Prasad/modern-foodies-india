@@ -10,7 +10,7 @@ import { retry, catchError } from 'rxjs/operators';
 
 export class DishService {
   // Base url
-  baseurl = 'http://108.179.222.240:8080';
+  baseurl = 'http://localhost:8080';
   constructor(private http: HttpClient) { }
 
    // Http Headers
@@ -74,8 +74,8 @@ export class DishService {
       }
 
   // GET
-  GetAllDishes(): Observable<Dish> {
-    return this.http.get<Dish>(this.baseurl + '/getAlldishes/')
+  GetAllDishes(): Observable<Array<Dish>> {
+    return this.http.get<Array<Dish>>(this.baseurl + '/getAlldishes/')
     .pipe(
       retry(1),
       catchError(this.errorHandl)

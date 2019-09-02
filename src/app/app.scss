@@ -37,6 +37,8 @@
   box-shadow: 0 0 5px #07c;
   outline: none;
 }
+
+
 .ml11 {
   font-weight: 700;
   font-size: 0.8em;
@@ -96,6 +98,9 @@ hr {
   border: 0.5px solid #eaeaea !important;
 }
 @media only screen and (min-width: 600px) {
+  .foodimg{
+    display: none;
+  }
   /* DEMO-SPECIFIC STYLES */
 .typewriter h4 {
   overflow: hidden; /* Ensures the content is not revealed until the animation */
@@ -186,11 +191,7 @@ hr {
 }
 }
 
-@media only screen and (max-width: 600px) {
-  .home-dw{
-    display: none;
-  }
-  }
+
   /*
   .context {
 

@@ -10,6 +10,11 @@ import { DishService } from '../../../shared/dish/dish.service';
 import { Router } from '@angular/router';
 import $ from 'jquery';
 
+
+import { UserService } from '../../../shared/user/user.service';
+import { SessionService } from '../../../shared/Session/session.service';
+
+
 export interface Dish {
   id: string;
   uId: string;
@@ -36,13 +41,15 @@ export class PostmyfoodPage implements OnInit {
   selectedDish:string;
   loc:string;
 
-  dish: Dish;
+  dish: Array<Dish>;
+  dishlen:number;
 
   ngVersion: string = VERSION.full;
   matVersion: string = '5.1.0';
   breakpoint: number;
+  loginStatus: boolean;
 
-  constructor(private router: Router, public dishService: DishService, public modalController: ModalController, private navCtrl: NavController, public actionSheetController: ActionSheetController) { }
+  constructor(private router: Router, public dishService: DishService, public modalController: ModalController, private navCtrl: NavController, public actionSheetController: ActionSheetController, public userService: UserService, public sessionService:SessionService) { }
 
 
   ionViewWillEnter() {
@@ -85,11 +92,15 @@ export class PostmyfoodPage implements OnInit {
     return await modal.present();
   }
   ngOnInit() {
+
+    this.loginStatus = false;
     this.breakpoint = (window.innerWidth <= 800) ? 1 : 2;
     this.dishService.GetAllDishes().subscribe(
       response => {
         console.log(response);
         this.dish = response;
+        this.dishlen = this.dish.length;
+
       },
       err => console.log(err)
     );
@@ -118,6 +129,41 @@ export class PostmyfoodPage implements OnInit {
       }
       return "";
     }
+
+    var user = getCookie("foodali_access_token");
+    console.log(user + " <<< session access token ");
+    if (user != "") {
+      this.sessionService.GetSessionAccess(user).subscribe(
+        response => {
+          console.log("session response from server : "+response);
+          if(response != null){
+          this.loginStatus = true;
+
+          }else{
+            this.loginStatus = false;
+            //delete cookies in the broweser if session is not found in server for the particular access token 
+          document.cookie = 'foodali_access_token=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+          document.cookie = 'foodali_request_token=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        //  document.cookie = 'foodali_address=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+          }
+
+        },
+        err => console.log(err)
+      );
+      // this.navCtrl.navigateForward("postmyfood");
+
+
+
+
+
+    }
+
+
+
+
+
+
+
   }
   onResize(event) {
     this.breakpoint = (event.target.innerWidth <= 800) ? 1 : 2;
@@ -131,6 +177,30 @@ export class PostmyfoodPage implements OnInit {
   search(q: string) { 
     console.log("searched value is "+q); 
     this.router.navigate(['/search', { svalue: q }]);
+}
+
+
+getLoc() {
+  navigator.geolocation.getCurrentPosition((loc) => {
+    this.userService.GetMapData(loc.coords.latitude, loc.coords.longitude).subscribe(response => {
+      var txt = JSON.stringify(response);
+      var obj = JSON.parse(txt);
+      var formatted_address = obj.results[0].formatted_address;
+      console.log(formatted_address);
+      setCookie("foodali_address", formatted_address, "1"); // expires in 1 day
+      this.loc = formatted_address.substring(0, 20)+"...";;
+    },
+      err => console.log(err)
+    );
+    console.log("this loc :" + this.loc);
+    var d = new Date();
+  })
+  function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toUTCString;
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
 }
 
  
@@ -195,11 +265,18 @@ export class PostmyfoodPage implements OnInit {
   showsearch(){
     $(".search-component").fadeIn(200);
   }
+
+  hideSearch(){
+    $(".search-component").fadeOut(200);
+  }
   onCancel(event) {
     console.log('CANCEL', event);
     $(".search-component").fadeOut(200);
   }
   openProfile(){
     this.navCtrl.navigateForward("profile");
+  }
+  goHome(){
+    this.navCtrl.navigateForward("home");
   }
 }

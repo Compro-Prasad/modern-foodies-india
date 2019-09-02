@@ -56,6 +56,7 @@ r:boolean;
   cookCuisine: Array<string>;
   cookVeg:boolean;
 
+  selectedDish:string;
 
   constructor( private router: Router, private navCtrl: NavController, public userService:UserService, private http: HttpClient,public activatedRoute: ActivatedRoute, public dishService: DishService, public transService: TransService, public sessionService: SessionService) { }
 

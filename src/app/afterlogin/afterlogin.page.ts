@@ -54,7 +54,7 @@ otpVal:string;
 
   myNo: string;
   value:string;
-
+  isLinear :boolean;
   visible = true;
   selectable = true;
   removable = true;

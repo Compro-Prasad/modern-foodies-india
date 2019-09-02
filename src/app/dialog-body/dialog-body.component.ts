@@ -35,7 +35,7 @@ export class DialogBodyComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
 
-  getLoc(data)
+  getLoc()
   {
     this.dialogRef.close({
       message: this.phn

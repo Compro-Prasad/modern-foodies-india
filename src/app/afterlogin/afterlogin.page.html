@@ -73,12 +73,12 @@
               </ion-card-header>
 
               <ion-card-content>
-                <!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+               <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
                   {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
-                </button> -->
+                </button>
                 <!-- stepper reference 
                 https://stackblitz.com/edit/angular-vufhvk?file=app%2Fstepper-overview-example.html -->
-                <mat-vertical-stepper [linear]="!isLinear" #stepper>
+                <mat-vertical-stepper [linear]="isLinear" #stepper>
                   <mat-step [stepControl]="firstFormGroup">
                     <form [formGroup]="firstFormGroup" (ngSubmit)="form1()" #formone="ngForm">
                       <ng-template matStepLabel>Fill out your name below</ng-template>

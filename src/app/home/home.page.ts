@@ -56,6 +56,7 @@ export class HomePage {
   latlon: string;
   locationData: any;
   loc: string;
+  isenabled:boolean=false;
   ifloggedin: string;
 
 
@@ -98,7 +99,7 @@ export class HomePage {
         opacity: 0,
         duration: 1000,
         easing: "easeOutExpo",
-        delay: 1000
+        delay: 5000
       });
     // Wrap every letter in a span
     var textWrapper = document.querySelector('.ml11 .letters');
@@ -132,7 +133,7 @@ export class HomePage {
         opacity: 0,
         duration: 1000,
         easing: "easeOutExpo",
-        delay: 1000
+        delay: 5000
       });
     // signInWithGoogle(): void {
     //   this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
@@ -152,6 +153,16 @@ export class HomePage {
     console.log("Session location is " + ses_lc);
     if (ses_lc != null) {
       this.loc = ses_lc;
+
+
+    if(this.loc !== ''){
+      //enable the button
+      this.isenabled=true; 
+      }else{
+      //disable the button
+      this.isenabled=false;
+      }
+
     } else {
       console.log("Session location is not found");
     }
@@ -215,7 +226,6 @@ export class HomePage {
     }
 
 
-
   }
   // ngOnInit() {
 
@@ -263,6 +273,16 @@ export class HomePage {
         console.log(formatted_address);
         setCookie("foodali_address", formatted_address, "1"); // expires in 1 day
         this.loc = formatted_address;
+
+        if(this.loc !== ''){
+          //enable the button
+          this.isenabled=true; 
+          }else{
+          //disable the button
+          this.isenabled=false;
+          }
+    
+
       },
         err => console.log(err)
       );
@@ -273,35 +293,9 @@ export class HomePage {
 
     })
     console.log(this.loc + " temp loc")
-   
-    //if (this.loc == "") {
-      //skip 
-    //} else {
-    var user = getCookie("foodali_access_token");
-      this.sessionService.GetSessionAccess(user).subscribe(
-        response => {
-          console.log("session response from server : "+response[0].userId);
-          this.userService.GetUserById(response[0].userId).subscribe(
-            response => {
 
-              console.log("user response from server : "+response.cookName);
-              //if user is cook, go to after login page, else redirect as default. 
-              if (response.cookName != null){
-                 this.navCtrl.navigateForward('afterlogin');
-              }else{
+  
 
-                this.navCtrl.navigateForward('postmyfood');
-              }
-
-            },
-            err => console.log(err)
-          );
-        },
-        err => console.log(err)
-      );
-
-
-   // };
 
 
 
@@ -312,6 +306,51 @@ export class HomePage {
       var expires = "expires=" + d.toUTCString;
       document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
     }
+    
+
+
+  }
+  forward(){
+    if (this.loc == "") {
+      //skip 
+    } else {
+    var user = getCookie("foodali_access_token");
+      this.sessionService.GetSessionAccess(user).subscribe(
+        response => {
+
+          if(response == null){
+            //user not logged in 
+            this.navCtrl.navigateForward('postmyfood');
+          }else{
+            console.log("session response from server : "+response[0].userId);
+         
+          
+          this.userService.GetUserById(response[0].userId).subscribe(
+            response => {
+
+              console.log("user response from server : "+response.cookName);
+              //if user is cook, go to after login page, else redirect as default. 
+              if (response.cookName != null){
+                this.navCtrl.navigateForward('afterlogin');
+              }else{
+
+                this.navCtrl.navigateForward('postmyfood');
+              }
+
+            },
+            err => console.log(err)
+          );
+        }
+        },
+        err => console.log(err)
+      );
+
+
+    };
+
+
+
+
     function getCookie(cname) {
       var name = cname + "=";
       var decodedCookie = decodeURIComponent(document.cookie);
@@ -327,10 +366,7 @@ export class HomePage {
       }
       return "";
     }
-
-
   }
-
   openDialog() {
 
     const dialogConfig = new MatDialogConfig();

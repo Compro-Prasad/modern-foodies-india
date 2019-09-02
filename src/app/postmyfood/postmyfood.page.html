@@ -210,11 +210,12 @@
 <div class="home-dw"
   style="position: fixed; z-index: -111000; top:0; left:0; width:100%; height:100%; overflow-y: scroll; overflow-x: hidden; background-image: url('http://www.cleo-uk.org/wp-content/uploads/2016/03/white-curves-on-grey-background-bright-abstract-wallpaper.jpg')">
 
-  <div class="search-component" style="position: fixed; display: none; z-index: 1000001; top:0; left:0; width:100%; height:100%; ">
+  <div class="search-component"  style=" position: fixed; display: none; z-index: 1000001; top:0; left:0; width:100%; height:100%; ">
 <div style="text-align: center; width: 100%; height: 100%; background:rgba(250,250,250,0.9);">
      
 <div style="width:50%;  position: relative;   top: 50%;   -webkit-transform: translateY(-50%);   -ms-transform: translateY(-50%);   transform: translateY(-50%); background:goldenrod; border-radius: 10px;  display:inline-block;">
 <!-- Searchbar with a cancel button and custom cancel button text -->
+<div style="width: 100%; margin: 10px;"> <ion-icon style="width: 40px; cursor:pointer;" (click)="hideSearch()" name="close-circle-outline"></ion-icon></div>
 
 <div style="font-size: 25px; width:100%; text-align:center; margin:10px; color: #fff;">FoodAli<span style="font-size: 10px;">search</span></div>
 <ion-searchbar  #q  [value]="selectedDish" placeholder="Search for food..." showCancelButton="focus" (ionCancel)="onCancel($event)"  cancelButtonText="Custom Cancel"   (keyup.enter)="search(q.value)"></ion-searchbar>
@@ -275,24 +276,27 @@
     <div class="flex-container" style="box-shadow: 0 5px 5px -6px rgba(0,0,0,0.5);">
 
       <div style="text-align: left; font-size: 25px; padding: 10px; background: #fff;">
-        &nbsp; &nbsp; Food<span style="color: blue; ">Ali</span>
+        &nbsp; &nbsp; Food<span style="color: green; ">Ali</span>
         &nbsp; &nbsp; &nbsp; &nbsp; <span style="font-size: 15px; cursor: pointer;"><u>{{loc}}</u>&nbsp; &nbsp;
-          <ion-icon class="icon" name="locate"></ion-icon></span>
+          <ion-icon class="icon" (click)="getLoc()" name="locate"></ion-icon></span>
       </div>
       <div style="text-align: left; font-size: 25px; position: relative;">
         <div
           style="width: 100%; padding:0; line-height:0; padding-right:20px;  position: absolute; top: 50%;  transform: translateY(-50%);">
-<!-- 
-          <ion-button style="float: right;">
+<div *ngIf="loginStatus == false">
+          <ion-button (click)="goHome()" style="float: right;">
             <ion-icon slot="start" name="log-in"></ion-icon>
             Log in
 
-          </ion-button> -->
+          </ion-button> 
+     </div>
+     <div *ngIf="loginStatus == true">
           <ion-icon (click)="openProfile()" class="icon" style="float: right; margin-top:5px; cursor: pointer; " name="contact"></ion-icon>
 
           <ion-icon (click)="showsearch()" style="float: right; margin-top:5px; cursor: pointer;" class="icon" name="search"></ion-icon>
      
           <div style="clear: both;"></div>
+        </div>
         </div>
 
 
@@ -348,9 +352,9 @@
               <span>Delivery</span>
             </span>
           </ion-badge><br />
-          <b> {{d.noOfServings}} number of servings</b>
+          <b> {{d.noOfServings}} servings</b>
           <br />
-          {{d.address}}
+          <b>Address</b> : {{d.address}}
        
         </ion-card-content>
         <ion-footer>
@@ -360,7 +364,8 @@
                 <ion-row>
 
                   <ion-col style="text-align: center;">
-                    <ion-icon name="share"></ion-icon>
+                    <!-- <ion-icon name="share"></ion-icon> -->
+                    <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&layout=button&size=small&appId=484770218980582&width=59&height=20" width="59" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe> 
                   </ion-col>
 
                   <ion-col (click)="goFoodInfo(d.id)" style="text-align: center; cursor: pointer">
@@ -381,7 +386,7 @@
       </ion-card>
   </div>
   </div>
-
+<br/>
 
   <!-- mat grid responsiveness ref : https://stackoverflow.com/a/48499719 -->
   <!-- <mat-grid-list style="margin: 120px 120px 0px 120px;" rowHeight="1:2" [cols]="breakpoint"  (window:resize)="onResize($event)">
@@ -457,7 +462,7 @@
     
   </mat-grid-list> -->
 
-  <div style="width: 100%; text-align:center; margin: 10px;">
+  <div *ngIf="dishlen > 9" style="width: 100%; text-align:center; margin: 10px;">
       <ion-button color="dark" style="display: inline-block"><ion-icon name="refresh"></ion-icon> &nbsp; Load more</ion-button>
   </div>
 

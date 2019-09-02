@@ -1,4 +1,4 @@
-
+<!-- 
 <div class="home-mw" style="position: fixed; top:0; right:0; width:100%; height:100%; background: #000000;">
   
   <div style="position: relative; width: 100%; height:100%;">
@@ -58,47 +58,26 @@
       
           </ion-row>
     </div>
-<!-- <ion-card class="context home-mw" style="background: rgba(0,0,0,0.7); height:100%; margin:0;">
 
-
-  <ion-card-header class="context-header">
-    <ion-card-title style="color: seashell;">Foodali</ion-card-title>
-  </ion-card-header>
-
-  <ion-card-content class="context-body">
-
-  <ion-item>
-    <ion-label position="floating">Phone number*</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
-<ion-button expand="block" (click)="goAnOtherPage()">Register</ion-button>
-
-
-<div class="reg-icon-holder">
- 
-<ion-icon class="reg-icon" style="color: red; background: seashell;"  name="logo-googleplus"></ion-icon>
-<ion-icon class="reg-icon" style="color: blue; background: seashell;"   name="logo-facebook"></ion-icon>
 </div>
-</ion-card-content>
-
-</ion-card> -->
-</div>
-</div>
+</div> -->
 
 <div class="home-dw" style="position: fixed; z-index: -111000; top:0; left:0; width:100%; height:100%; overflow-y: scroll;">
   <div class="flex-container">
-    <div style="position: relative">
+    <div  style="position: relative">
       <div style="position: absolute; width: 100%; height: 100%; background: rgba(0,0,0,0.7);">
       
-        <!-- <div style="position: relative; width:100%; height:100%;">
+        <div style="position: relative; width:100%; height:100%;">
         
-          <div style="position: absolute; top:0; left:0; width:100%; height:100%; background:#fff">
+          <div id="foodimg">
           
-          F
+          <div class="logo-main" style="display: inline-block;">FoodAli inc. <br/> <b>Discover food nearby</b></div>
+         
+          
             
           </div>
 
-        </div> -->
+        </div>
       
       </div>
      
@@ -108,11 +87,11 @@
     <div>
         <ion-grid>
             <ion-row>
-              <ion-col>
+              <ion-col class="logol">
                
      <p style="font-size: 30px; transform: translateX(-40px); " class="logofa el"><b>FOODALI</b></p> 
               </ion-col>
-              <ion-col style=" position: relative;">
+              <ion-col class="logor" style=" position: relative;">
         
                 <div style="width: 100%; padding:0; line-height:0;  position: absolute; top: 50%;  transform: translateY(-50%);">
                   <!-- <ion-button color="dark" class="not-logged-in" (click)="openDialog(asd)">
@@ -174,10 +153,14 @@
 
         <ion-label><ion-searchbar id="sloc" placeholder="Search for location" value="{{loc}}"></ion-searchbar></ion-label>
         <ion-icon name="locate" slot="end" (click)="getLoc()"></ion-icon>
-        <ion-icon name="arrow-forward" slot="end" ></ion-icon>
+        
+        <button  [disabled]="!isenabled" (click)="forward()" slot="end" mat-button>
+        <ion-icon name="arrow-forward"></ion-icon>
+        </button>
+      
       </ion-item>
     </ion-card>
-    <div style="color:purple; font-size: 15px;" id="loc-prompt"></div>
+    <div style="color:indianred; margin: 10px; font-size: 15px; text-align: center;" id="loc-prompt"></div>
 
     </div>
   </div>
@@ -185,17 +168,17 @@
       <div class="flex-container">
           <div class="f2" style="padding: 10%; text-align:left;">
        
-              <ion-text>
+              <ion-text class="fh">
                   <h1><b>Discover in iOS & Android</b></h1>
                 </ion-text>
-                <ion-text>
+                <ion-text class="fh">
                     <h5>Order from your favorite Cooks & track on the go, with the all-new Foodali app.</h5>
                   </ion-text>
 
-                <img style="margin-top: 10px;" width="150px;" src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_108/play_ip0jfp"/>
-                &nbsp;
-                <img style="margin-top: 10px;" width="150px;" src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_108/iOS_ajgrty"/>
-       
+                <img class="f" style="margin-top: 10px;" width="150px;" src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_108/play_ip0jfp"/>
+           
+                <img class="f" style="margin-top: 10px;" width="150px;" src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_108/iOS_ajgrty"/>
+      
               </div>
           <div class="f2" style="line-height: 0; font-size: 0;">
 
@@ -206,12 +189,12 @@
       
         
 
-  <div style="width: 100%; height:450px; background: rgb(56, 40, 9); color: honeydew">
+  <div class="footer" >
        <div class="flex-container">
          
          <div class="foo">
            <br/>
-            <ion-text style="text-align: left">
+            <ion-text class="fooh">
                 <h3>About Foodali</h3>
               </ion-text>
               <p class="listing-foo">About us</p>
@@ -222,7 +205,7 @@
          </div>
          <div  class="foo">
             <br/>
-            <ion-text style="text-align: left">
+            <ion-text class="fooh" >
                 <h3>Get Help</h3>
               </ion-text>
               <p class="listing-foo">Help and support</p>
@@ -230,20 +213,20 @@
               <p class="listing-foo">Ride with us</p>
               <p class="listing-foo">Blog</p>
          </div>
-         <div class="foo">
+         <div class="foo" id="footer-end">
             <br/>
-            <ion-text style="text-align: left">
+            <ion-text class="fooh">
                 <h3>Get FoodAli in your phone</h3>
               </ion-text>
-              <img style="margin-top: 10px; float:left; margin-right: 10px;" width="150px;" src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_108/play_ip0jfp"/>
+              <img style="margin-top: 10px;" width="150px;" src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_108/play_ip0jfp"/>
              
-              <img style="margin-top: 10px; float:left; " width="150px;" src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_108/iOS_ajgrty"/>
+              <img style="margin-top: 10px; " width="150px;" src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_108/iOS_ajgrty"/>
      
          </div>
 
          </div>
          </div>
-         <ion-footer style="background: rgb(20, 20, 20); text-align:center">
+         <ion-footer style=" text-align:center">
             <ion-toolbar>
               <ion-title>Copyright 2019, Foodali inc.
               </ion-title>

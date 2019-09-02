@@ -73,6 +73,10 @@ export class HomePage {
   // Ionic life cycles : https://ionicframework.com/blog/navigating-lifecycle-events/
 
   ionViewWillEnter() {
+
+    //generate www folder 
+    //ionic build --prod 
+
   
     this.ifloggedin = "Log in"
     anime({

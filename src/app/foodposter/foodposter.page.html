@@ -1,102 +1,55 @@
-<ion-header class="home-mw">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="postmyfood"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Food Details</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content>
+  <div class="mobile-tab">
 
-  <!-- Textarea in an item with a floating label -->
-  <ion-item class="home-mw">
-    <ion-label position="floating">Food Title</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
-  <ion-item class="home-mw">>
-    <ion-label position="floating">Description</ion-label>
-    <ion-textarea></ion-textarea>
-  </ion-item>
+    <ion-tabs>
+        <ion-tab-bar slot="bottom">
+          <ion-tab-button tab="schedule">
+            <ion-icon name="home"></ion-icon>
+            <ion-label>Home</ion-label>
+          </ion-tab-button>
 
+          <ion-tab-button *ngIf="loginStatus == false" (click)="goHome()" tab="speakers">
+              <ion-icon name="log-in"></ion-icon>
+              <ion-label>Login</ion-label>
+            </ion-tab-button>
+    
+      
+    
+          <ion-tab-button *ngIf="loginStatus == true" (click)="profilePage()" tab="about">
+            <ion-icon name="person"></ion-icon>
+            <ion-label>Profile</ion-label>
+          </ion-tab-button>
 
-  <ion-grid class="home-mw">
-    <ion-row>
-      <ion-col>
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title>Upload Food Picture</ion-card-title>
-          </ion-card-header>
+        </ion-tab-bar>
+      </ion-tabs>
+    
 
-          <ion-card-content>
-
-            <img style="width: 50px;" src="/assets/icon/_ionicons_svg_md-cloud-upload.svg">
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-
-
-      <ion-col>
-
-        <ion-card class="home-mw">
-          <ion-card-header>
-            <ion-card-title>Number of Servings</ion-card-title>
-          </ion-card-header>
-
-          <ion-card-content>
-            <ion-input type="number" value="5"></ion-input>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-
-
-
-    </ion-row>
-  </ion-grid>
-
-  <!-- Default Segment -->
-  <ion-segment class="home-mw">
-    <ion-segment-button value="friends">
-      <ion-label>Pick-up only</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="enemies">
-      <ion-label>Deliver</ion-label>
-    </ion-segment-button>
-  </ion-segment>
-
-</ion-content>
-
-<ion-footer class="home-mw">
-
-  <ion-toolbar>
-    <ion-title>
-
-
-      <ion-button expand="full">Publish</ion-button>
-
-    </ion-title>
-  </ion-toolbar>
-</ion-footer>
-
-
+</div>
 
 <div class="home-dw"
   style="position: fixed; z-index:  111000; top:0; left:0; width:100%; height:100%; overflow-y: scroll; background: #333;">
+  <div class="list-x"
+    style="width:100%; height: 90px; position: fixed; top:0; left:0;  z-index: 1000000; transform: translateY(-100px);">
+    <div class="flex-container" style="box-shadow: 0 5px 5px -6px rgba(0,0,0,0.5);">
 
-
-  <div style="width:100%; height: 90px; position: absolute; top:0; left:0;  z-index: 1000000;">
-    <div class="flex-container">
-
-        <div  [routerLink]="['/postmyfood']" routerDirection="forward" style="cursor: pointer;  text-align: left; font-size: 25px; padding: 10px; background: #fff;">
-          &nbsp; &nbsp; Food<span style="color: darkgreen; ">Ali</span>
+      <div class="left-flex">
+        <span [routerLink]="['/postmyfood']" routerDirection="forward"  > Food<span style="color: green; ">Ali</span></span>
         </div>
-      <div [routerLink]="['/profile']" style=" cursor: pointer; text-align: left; font-size: 25px; position: relative;">
+      <div class="right-flex" style="text-align: left; font-size: 25px; position: relative;">
         <div
           style="width: 100%; padding:0; line-height:0; padding-right:20px;  position: absolute; top: 50%;  transform: translateY(-50%);">
+          <div *ngIf="loginStatus == false">
+            <ion-button (click)="goHome()" style="float: right;">
+              <ion-icon slot="start" name="log-in"></ion-icon>
+              Log in
 
-          <ion-icon class="icon" style="float: right; margin-top:5px; " name="contact"></ion-icon>
+            </ion-button>
+          </div>
+          <div *ngIf="loginStatus == true">
+            <ion-icon (click)="openProfile()" class="icon" style="float: right; margin-top:5px; cursor: pointer; "
+              name="contact"></ion-icon>
 
-          <div style="clear: both;"></div>
+          </div>
         </div>
 
 
@@ -106,7 +59,6 @@
 
 
   </div>
-  <br /><br /><br /><br />
   <ion-card style="background: #fff; margin: 120px;">
     <ion-card-header style="height: 100px;">
       <ion-tabs>

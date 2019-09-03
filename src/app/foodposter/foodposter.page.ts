@@ -6,7 +6,7 @@ import { FileUploader, FileLikeObject } from 'ng2-file-upload';
 import { NavController } from '@ionic/angular';
 import { DishService } from '../../../shared/dish/dish.service';
 import $ from 'jquery';
-
+import anime from "animejs";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SessionService } from '../../../shared/Session/session.service';
 export interface FoodCard {
@@ -24,7 +24,7 @@ export interface FoodCard {
   img:FormData;
 }
 
-const URL = 'http://localhost:8080/upload/';
+const URL = 'https://localhost:8080/upload/';
 @Component({
   selector: 'app-foodposter',
   templateUrl: './foodposter.page.html',
@@ -50,6 +50,7 @@ export class FoodposterPage implements OnInit {
   seventhFormGroup: FormGroup;
   eighthFormGroup: FormGroup;
 userid:string;
+loginStatus: boolean;
   constructor( public http: HttpClient, public sessionService: SessionService,public toastController: ToastController, private navCtrl: NavController, private _formBuilder: FormBuilder, public dishService: DishService) { }
   
 
@@ -59,18 +60,39 @@ userid:string;
     disableMultipart : false,
     autoUpload: true,
     method: 'post',
+    // additionalParameter:[{"fileData":  this.getCookie(this.userid+"_dishId") }],
     itemAlias: 'myFile',
     allowedFileType: ['image', 'pdf']
 
 
     });
+    
+
+ 
 
   public onFileSelected(event: EventEmitter<File[]>) {
     const file: File = event[0];
-    console.log(file);
+    console.log(file) ;
 
   }
 
+  
+
+  getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
 
   async presentToast() {
     const toast = await this.toastController.create({
@@ -80,9 +102,35 @@ userid:string;
     });
     toast.present();
   }
+  ionViewWillEnter() {
 
+
+    anime({
+      targets: '.menu',
+      translateX: 0
+    });
+    anime({
+      targets: '.list-x',
+      translateY: 0
+    });
+
+
+  }
   ngOnInit() {
 
+    this.uploader.onBuildItemForm = (fileItem: any, form: any) => {
+      form.append('fileData' , this.getCookie(this.userid+"_dishId") );
+     };
+//     this.uploader.uploadAll();
+//     this.uploader.onSuccessItem = (item: any, response: string, status: number, headers: any): any => {
+//    if(response){
+//     console.log("response"+JSON.stringify(response));
+//   }
+//  }
+
+
+
+    this.loginStatus = false;
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
     });
@@ -115,7 +163,17 @@ userid:string;
       this.sessionService.GetSessionAccess(user).subscribe(
         response => {
           this.userid = response[0].userId;
-          console.log(response[0].userId);      
+          console.log(response[0].userId); 
+          if(response != null){
+            this.loginStatus = true;
+  
+            }else{
+              this.loginStatus = false;
+              //delete cookies in the broweser if session is not found in server for the particular access token 
+            document.cookie = 'foodali_access_token=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            document.cookie = 'foodali_request_token=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+          //  document.cookie = 'foodali_address=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            }     
         },
         err => console.log(err)
       );
@@ -152,12 +210,29 @@ userid:string;
     console.log(this.eighthFormGroup.value);
     this.foodCard.cuisine = this.eighthFormGroup.value.eighthCtrl;
     this.Cuisinename = this.foodCard.cuisine;
+    var data = {"cuisine":this.foodCard.cuisine};
+
+    this.dishService.CreateDish(data).subscribe(
+      response => {
+       console.log(response.id);
+       setCookie(this.userid+"_dishId",response.id,1);
+       function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toUTCString;
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+      }
+      },
+      err => console.log(err)
+    );
   }
   form1() {
     console.log(this.firstFormGroup.value);
     this.foodCard.dishName = this.firstFormGroup.value.firstCtrl;
     this.Foodname = this.foodCard.dishName;
+ 
   }
+ 
   form2() {
     console.log(this.secondFormGroup.value);
     this.foodCard.foodDesc = this.secondFormGroup.value.secondCtrl;
@@ -231,7 +306,7 @@ userid:string;
 
 
   
-  this.http.post('http://localhost:8080/upload', uploadData, {
+  this.http.post('https://localhost:8080/upload', uploadData, {
     reportProgress: true,
     observe: 'events'
   }).subscribe(event => {
@@ -254,5 +329,14 @@ userid:string;
     );  
     this.presentToast()
     this.navCtrl.navigateForward('manage');
+  }
+  goHome(){
+    this.navCtrl.navigateForward("home");
+  }
+  showsearch(){
+    $(".search-component").fadeIn(200);
+  }
+  profilePage() {
+    this.navCtrl.navigateForward('profile');
   }
 }

@@ -50,7 +50,15 @@ export class PostmyfoodPage implements OnInit {
   breakpoint: number;
   loginStatus: boolean;
 
-  constructor(public toastController: ToastController, private router: Router, public dishService: DishService, public modalController: ModalController, private navCtrl: NavController, public actionSheetController: ActionSheetController, public userService: UserService, public sessionService:SessionService) { }
+  constructor(
+    public toastController: ToastController, 
+    private router: Router, 
+    public dishService: DishService, 
+    public modalController: ModalController, 
+    private navCtrl: NavController, 
+    public actionSheetController: ActionSheetController, 
+    public userService: UserService, 
+    public sessionService:SessionService ) { }
 
 
   ionViewWillEnter() {

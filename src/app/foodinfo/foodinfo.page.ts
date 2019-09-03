@@ -16,6 +16,16 @@ import { Router } from '@angular/router';
 
 import { NavController } from '@ionic/angular';
 
+import { VERSION } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { ModalPage } from '../modal/modal.page'
+
+
+import { ToastController } from '@ionic/angular';
+import anime from "animejs";
+import { ActionSheetController } from '@ionic/angular';
+
+
 export interface Dish {
   id: string;
   uId: string;
@@ -29,7 +39,6 @@ export interface Dish {
   address: string;
   delivery: string;
   cuisine: string;
-
   request: boolean;
 }
 @Component({
@@ -40,7 +49,7 @@ export interface Dish {
 export class FoodinfoPage implements OnInit {
 
   isit: number;
-r:boolean;
+  r:boolean;
   dish: Array<Dish>;
   userid: string;
   cookid: string;
@@ -57,8 +66,29 @@ r:boolean;
   cookVeg:boolean;
 
   selectedDish:string;
+  data: any;
+  dataReturned: any;
 
-  constructor( private router: Router, private navCtrl: NavController, public userService:UserService, private http: HttpClient,public activatedRoute: ActivatedRoute, public dishService: DishService, public transService: TransService, public sessionService: SessionService) { }
+  dishlen:number;
+
+  ngVersion: string = VERSION.full;
+  matVersion: string = '5.1.0';
+  breakpoint: number;
+  loginStatus: boolean;
+  constructor(
+    private navCtrl: NavController, 
+    public userService:UserService, 
+    private http: HttpClient,
+    public activatedRoute: ActivatedRoute, 
+    public dishService: DishService, 
+    public transService: TransService, 
+    public sessionService: SessionService ,
+    public toastController: ToastController, 
+    private router: Router, 
+    public modalController: ModalController, 
+    public actionSheetController: ActionSheetController, 
+   ) { }
+
 
   ngOnInit() {
     this.isit = 0;

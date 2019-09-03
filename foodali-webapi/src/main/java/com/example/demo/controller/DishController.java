@@ -39,10 +39,9 @@ public class DishController {
 	
 	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080", "http://108.179.222.240:8100"})
 	@RequestMapping(value = "/createDish", method = RequestMethod.POST)
-	public String create(@RequestBody(required = false) Dish dish) {
+	public Dish create(@RequestBody(required = false) Dish dish) {
 		Dish d = dishService.create(dish);
-
-		return d.toString();
+		return d;
 	}
 	
 	
@@ -53,7 +52,7 @@ public class DishController {
 		    methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT}
 		)
     @PostMapping("/upload") // //new annotation since 4.3
-    public String singleFileUpload(@RequestParam("myFile") MultipartFile file,
+    public String singleFileUpload(@RequestParam("myFile") MultipartFile file,@RequestParam("fileData") String fileData,
                                    RedirectAttributes redirectAttributes) {
 
         if (file.isEmpty()) {
@@ -65,7 +64,8 @@ public class DishController {
 
             // Get the file and save it somewhere
             byte[] bytes = file.getBytes();
-            Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
+            Path path = Paths.get(UPLOADED_FOLDER + fileData);
+//            Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
             Files.write(path, bytes);
 
             redirectAttributes.addFlashAttribute("message",

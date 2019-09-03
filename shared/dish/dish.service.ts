@@ -10,7 +10,7 @@ import { retry, catchError } from 'rxjs/operators';
 
 export class DishService {
   // Base url
-  baseurl = 'https://108.179.222.240:8080';
+  baseurl = 'https://localhost:8080';
   constructor(private http: HttpClient) { }
 
    // Http Headers

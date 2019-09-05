@@ -97,17 +97,18 @@
 
   <div class="search-component"
     style=" position: fixed; display: none; z-index: 1000001; top:0; left:0; width:100%; height:100%; ">
-    <div style="text-align: center; width: 100%; height: 100%; background:rgba(250,250,250,0.9);">
+    <div style="text-align: center; width: 100%; height: 100%; background:rgb(219, 153, 0.9);">
 
       <div class="main-search">
         <!-- Searchbar with a cancel button and custom cancel button text -->
         <div style="width: 100%; margin: 10px;">
-          <ion-icon style="width: 40px; cursor:pointer;" (click)="hideSearch()" name="close-circle-outline"></ion-icon>
+          
+          <ion-icon style="zoom:2.0; width: 40px; cursor:pointer;" (click)="hideSearch()" name="close-circle-outline"></ion-icon>
         </div>
 
-        <div class="search-logo" >FoodAli<span
-            style="font-size: 10px;">search</span></div>
-        <ion-searchbar #q [value]="selectedDish" placeholder="Search for food..." showCancelButton="focus"
+        <div style="font-size: 30px;" class="search-logo" ><b>FoodAli</b><span
+            style="font-size: 20px;"><b>search</b></span></div>
+        <ion-searchbar #q [value]="selectedDish" placeholder="Search for food nearby..." showCancelButton="focus"
           (ionCancel)="onCancel($event)" cancelButtonText="Custom Cancel" (keyup.enter)="search(q.value)">
         </ion-searchbar>
 
@@ -205,14 +206,15 @@
   <!-- my foating component  -->
   <div class="custom-wrapper">
 
-    <div class="custom-component" *ngFor="let d of dish">
-      <ion-card style="background: #fff; ">
+    <div class="custom-component" *ngFor="let d of dish ">
+    
+      <ion-card style="background: #fff; " >
         <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 
 
         <ion-card-header>
 
-          <img src="https://www.mylands.com/media/wysiwyg/Colour_Palettes/Mylands_Grey_Palette_Main_Image_.jpg" />
+          <img src="../../assets/images/{{d.id}}" width="200px;" height="200px;" />
 
           <img class="veg" style="width: 20px !important; margin: 10px; float: right; display: none;"
             src="https://cdn.iconscout.com/icon/premium/png-512-thumb/vegetarian-3-565377.png" />
@@ -280,6 +282,7 @@
           </ion-toolbar>
         </ion-footer>
       </ion-card>
+  
     </div>
   </div>
 

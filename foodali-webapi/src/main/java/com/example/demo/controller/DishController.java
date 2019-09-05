@@ -33,11 +33,11 @@ import com.example.demo.service.DishService;
 
 public class DishController {
 	   //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER = "/home/rajkishor/Desktop/foodali/modern-foodies-india/images/";
+    private static String UPLOADED_FOLDER = "/home/rajkishor/Desktop/foodali/modern-foodies-india/src/assets/images/";
 	@Autowired
 	private DishService dishService;
 	
-	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080", "http://108.179.222.240:8100"})
+	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080", "http://108.179.222.240:8100","https://phorons.com"})
 	@RequestMapping(value = "/createDish", method = RequestMethod.POST)
 	public Dish create(@RequestBody(required = false) Dish dish) {
 		Dish d = dishService.create(dish);
@@ -92,6 +92,7 @@ public class DishController {
 	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080", "http://108.179.222.240:8100"})
 	@RequestMapping(value = "/getAlldishes", method = RequestMethod.GET)
 	public List<Dish> getAll(){
+		//List<Dish> d = dishService.getAll();
 		
 		return dishService.getAll();
 	}

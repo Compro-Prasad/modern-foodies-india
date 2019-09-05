@@ -6,7 +6,9 @@ import $ from 'jquery';
 
 // import { SocialUser } from "angularx-social-login";
 import { DishService } from '../../../shared/dish/dish.service';
+import { Router } from '@angular/router';
 
+import { NavController } from '@ionic/angular';
 import { SessionService } from '../../../shared/Session/session.service';
 export interface Dish {
   id: string;
@@ -51,7 +53,7 @@ export class ManagePage implements OnInit {
   ];
   userid: string;
 
-  constructor(public dishService: DishService, public sessionService: SessionService) { }
+  constructor(private router: Router, private navCtrl: NavController, public dishService: DishService, public sessionService: SessionService) { }
 
   ngOnInit() {
     // this.dishService.GetAllDishes().subscribe(
@@ -108,6 +110,14 @@ export class ManagePage implements OnInit {
 
 
   }
+
+
+  updateCard(did){
+    this.router.navigate(['/foodposter',  {did : did}]);
+
+  }
+
+
   toppings = new FormControl();
   toppingList: string[] = ['American', 'British', 'Caribbean', 'Chinese', 'French', 'Greek', 'Indian', 'Italian', 'Japanese', 'Mediterranean', 'Mexican', 'Moroccan', 'Spanish', 'Thai', 'Turkish', 'Vietnamese'];
 
@@ -149,4 +159,5 @@ export class ManagePage implements OnInit {
     }
     );
   }
+  
 }

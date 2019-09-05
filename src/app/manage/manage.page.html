@@ -199,6 +199,8 @@
                   <ion-item side="end">
                     <ion-item slot="end">
                       <!-- {{d.publishStatus}} -->
+                      <ion-button (click)="updateCard(d.id)"  color="dark">EDIT
+                      </ion-button>
                       <div *ngIf="d.publishStatus == true">
                         <ion-button ng-show="dish.publishStatus == true" id="u{{d.id}}" color="dark" (click)="unpublish(d.id)">
                           UN-PUBLISH</ion-button>

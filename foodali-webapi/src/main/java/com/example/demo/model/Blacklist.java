@@ -7,14 +7,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Blacklist {
 	@Id
 	String id;
-	String userId;
-	String cookId;
+	String fromId;
+	String toId;
 
-	public Blacklist(String id, String userId, String cookId) {
+	public Blacklist(String fromId, String toId) {
 		super();
-		this.id = id;
-		this.userId = userId;
-		this.cookId = cookId;
+		this.fromId = fromId;
+		this.toId = toId;
 	}
 
 	public String getId() {
@@ -25,25 +24,25 @@ public class Blacklist {
 		this.id = id;
 	}
 
-	public String getUserId() {
-		return userId;
+	public String getFromId() {
+		return fromId;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setFromId(String fromId) {
+		this.fromId = fromId;
 	}
 
-	public String getCookId() {
-		return cookId;
+	public String getToId() {
+		return toId;
 	}
 
-	public void setCookId(String cookId) {
-		this.cookId = cookId;
+	public void setToId(String toId) {
+		this.toId = toId;
 	}
 
 	@Override
 	public String toString() {
-		return "Blacklisted [id=" + id + ", userId=" + userId + ", cookId=" + cookId + "]";
+		return "Blacklist [id=" + id + ", fromId=" + fromId + ", toId=" + toId + "]";
 	}
 
 }

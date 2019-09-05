@@ -139,34 +139,79 @@
               stepper ref : 
               https://devdactic.com/angular-material-ionic-4/ -->
        
-          
-                
-                <ion-item>
-                  <ion-avatar slot="start">
-                    <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-                  </ion-avatar>
-                  <ion-label>Vijay Mallya
-                  </ion-label>
-                  <ion-button color="danger">Unblock</ion-button>
-                </ion-item>
+          Transaction history
+ 
+              <ion-list>
+                <ion-item-sliding *ngFor="let t of trans">
+        
 
-                <ion-item>
-                    <ion-avatar slot="start">
-                      <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-                    </ion-avatar>
-                    <ion-label>Nirav Modi
-                    </ion-label>
-                    <ion-button color="danger">Unblock</ion-button>
-                  </ion-item>
+                    <ion-card>
+                        <ion-card-header>
+                          <ion-card-subtitle>Transaction ID</ion-card-subtitle>
+                          <ion-card-title>{{t.id}}</ion-card-title>
+                        </ion-card-header>
+                      
+                        <ion-card-content>
+                         <ion-button  (click)="goProfile(t.userId)" color="dark">User profile</ion-button>
+                         
+                        <ion-button  (click)="goDish(t.dishId)" color="dark">Dish Page</ion-button>
+                       
+                        
 
-                  <ion-item>
-                      <ion-avatar slot="start">
-                        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-                      </ion-avatar>
-                      <ion-label>Rahul Gandhi
-                      </ion-label>
-                      <ion-button color="danger">Unblock</ion-button>
+
+                          
+                  <div style="width: 100%; text-align:right;" *ngIf="t.bstatus == true">
+                      <ion-button style="display: inline-block;"  id="u{{t.id}}" (click)="unblock(t.id)"   color="danger">Un-block this User</ion-button>
+                      <ion-button style="display: inline-block; display: none" id="p{{t.id}}"  (click)="block(t.id)" color="danger">Block this User</ion-button>
+               
+                    </div>
+                    <div style="width: 100%; text-align:right;" *ngIf="t.bstatus == false">
+  
+                        <ion-button style="display: inline-block; display: none"  id="u{{t.id}}" (click)="unblock(t.id)" color="danger">Un-block this User</ion-button>
+                        <ion-button style="display: inline-block;" id="p{{t.id}}"  (click)="block(t.id)" color="danger">Block this User</ion-button>
+                      </div> 
+
+
+                       
+                        </ion-card-content>
+                      </ion-card>
+                  
+
+                  <!-- <div style="margin: 10px 90px 10px 90px">
+
+                    <ion-badge color="primary">{{d.cuisine}}</ion-badge> <br />
+               
+    
+                  </div>
+                  <ion-item side="end">
+             <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&layout=button&size=small&appId=484770218980582&width=59&height=20" width="59" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe> 
+             
+                    <ion-item slot="end">
+                     
+                      <div *ngIf="d.request == true">
+                        <ion-button id="u{{d.id}}" color="dark" (click)="cancle(d.id)">
+                          CANCEL REQUEST</ion-button>
+                        <ion-button id="p{{d.id}}"  color="dark" (click)="request(d.id)" style="display: none">REQUEST
+                        </ion-button>
+                      </div>
+                      <div *ngIf="d.request == false">
+                        <ion-button  id="u{{d.id}}" color="dark" (click)="cancle(d.id)"
+                          style="display: none">CANCLE REQUEST</ion-button>
+    
+                        <ion-button id="p{{d.id}}" color="dark" (click)="request(d.id)">REQUEST</ion-button>
+                      </div> 
+    
+    
                     </ion-item>
+                  </ion-item> -->
+               
+                </ion-item-sliding>
+    
+    
+    
+              </ion-list>
+    
+    
 
         </ion-card-content>
 

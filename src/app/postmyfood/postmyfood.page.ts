@@ -114,6 +114,12 @@ export class PostmyfoodPage implements OnInit {
     this.dishService.GetAllDishes().subscribe(
       response => {
         console.log(response);
+
+        //before assigning to dish... make sure this logged in user has any blocked transactions
+        // if anywhere the blist : true appears, get the cookid of that transaction 
+        // and don't show the contents of that cook to this logged in user.
+
+
         this.dish = response;
         this.dishlen = this.dish.length;
 
@@ -280,11 +286,11 @@ getLoc() {
   }
 
   showsearch(){
-    $(".search-component").fadeIn(200);
+    $(".search-component").fadeIn(500);
   }
 
   hideSearch(){
-    $(".search-component").fadeOut(200);
+    $(".search-component").fadeOut(500);
   }
   onCancel(event) {
     console.log('CANCEL', event);

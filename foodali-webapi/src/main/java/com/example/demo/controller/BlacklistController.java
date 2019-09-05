@@ -32,16 +32,19 @@ public class BlacklistController {
 		return b.toString();
 	}
 
+	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080", "http://108.179.222.240:8100" })
 	@RequestMapping(value = "/getAllblacklisted", method = RequestMethod.GET)
 	public List<Blacklist> getAll() {
 		return blacklistService.getAll();
 	}
 
+	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080", "http://108.179.222.240:8100" })
 	@RequestMapping(value = "/getBlacklistById", method = RequestMethod.POST)
 	public Optional<Blacklist> findById(@RequestBody(required = true) String id) {
 		return blacklistService.findById(id);
 	}
 
+	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080", "http://108.179.222.240:8100" })
 	@RequestMapping(value = "/deleteAllUsers", method = RequestMethod.DELETE)
 	public String deleteAll() {
 		blacklistService.deleteAll();

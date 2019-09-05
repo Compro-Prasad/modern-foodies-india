@@ -15,6 +15,8 @@ public class Transaction {
 	private String cookId;
 	private String dishId;
 	private LocalDateTime requestTime;
+	
+	private boolean bstatus;
 
 	
 	
@@ -24,6 +26,7 @@ public class Transaction {
 		this.cookId = cookId;
 		this.dishId = dishId;
 		this.requestTime = LocalDateTime.now();
+		this.bstatus = false;
 	}
 	public String getId() {
 		return id;
@@ -54,10 +57,22 @@ public class Transaction {
 	
 	
 
+	public LocalDateTime getRequestTime() {
+		return requestTime;
+	}
+	public void setRequestTime(LocalDateTime requestTime) {
+		this.requestTime = requestTime;
+	}
+	public boolean isBstatus() {
+		return bstatus;
+	}
+	public void setBstatus(boolean bstatus) {
+		this.bstatus = bstatus;
+	}
 	@Override
 	public String toString() {
 		return "Transaction [id=" + id + ", userId=" + userId + ", cookId=" + cookId + ", dishId=" + dishId
-				+ ", requestTime=" + requestTime + "]";
+				+ ", requestTime=" + requestTime + ", bstatus=" + bstatus + "]";
 	}
 	
 	

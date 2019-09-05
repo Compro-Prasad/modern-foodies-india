@@ -6,6 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { BlacklistPage } from './blacklist.page';
+import {MatCardModule} from '@angular/material/card';
+
 
 const routes: Routes = [
   {
@@ -19,6 +21,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    MatCardModule,
     RouterModule.forChild(routes)
   ],
   declarations: [BlacklistPage]

@@ -9,6 +9,8 @@ import $ from 'jquery';
 import anime from "animejs";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SessionService } from '../../../shared/Session/session.service';
+// Receive Parameter
+import { ActivatedRoute } from '@angular/router';
 export interface FoodCard {
   userID: string;
   dishName: string;
@@ -49,9 +51,24 @@ export class FoodposterPage implements OnInit {
   sixthFormGroup: FormGroup;
   seventhFormGroup: FormGroup;
   eighthFormGroup: FormGroup;
+  dish_img_loc:string;
 userid:string;
 loginStatus: boolean;
-  constructor( public http: HttpClient, public sessionService: SessionService,public toastController: ToastController, private navCtrl: NavController, private _formBuilder: FormBuilder, public dishService: DishService) { }
+  currentloc: string;
+  route_did:string;
+
+
+  //get dish by id variables
+  cuisine: string;
+  dishName: string;
+  dishDesc: string;
+  noOfServings: string;
+  deliveryOption: string;
+  dishLoc: string;
+  isVeg: boolean;
+
+
+  constructor( private route: ActivatedRoute, public http: HttpClient, public sessionService: SessionService,public toastController: ToastController, private navCtrl: NavController, private _formBuilder: FormBuilder, public dishService: DishService) { }
   
 
 
@@ -63,8 +80,6 @@ loginStatus: boolean;
     // additionalParameter:[{"fileData":  this.getCookie(this.userid+"_dishId") }],
     itemAlias: 'myFile',
     allowedFileType: ['image', 'pdf']
-
-
     });
     
 
@@ -73,6 +88,7 @@ loginStatus: boolean;
   public onFileSelected(event: EventEmitter<File[]>) {
     const file: File = event[0];
     console.log(file) ;
+ 
 
   }
 
@@ -117,9 +133,43 @@ loginStatus: boolean;
 
   }
   ngOnInit() {
+    
+ 
+    this.route.params.subscribe(params => {
+      this.route_did = params['did']; 
+      if(this.route_did !=undefined){
+      this.dishService.GetDishId(this.route_did).subscribe(
+        response => {
+          console.log("Dish id response "+JSON.stringify(response)); 
+
+          this.cuisine = response.cuisine;
+          this.dishName = response.dishName;
+          this.dishDesc = response.foodDescription;
+          this.noOfServings= response.noOfServings;
+          this.deliveryOption = response.delivery;
+          this.dishLoc= response.address;
+          this.isVeg = response.isVeg;
+
+
+        //update spome globals here such as image and booleans 
+        this.dish_img_loc = "../../assets/images/"+this.route_did;
+        console.log(this.dish_img_loc);
+        this.foodCard.isVeg = this.isVeg;
+        this.deliverytype = this.deliveryOption;
+    
+
+      
+        },
+        err => console.log(err)
+      );
+
+      }
+ });
 
     this.uploader.onBuildItemForm = (fileItem: any, form: any) => {
       form.append('fileData' , this.getCookie(this.userid+"_dishId") );
+     let dishId = this.getCookie(this.userid+"_dishId");
+     this.dish_img_loc = "../../assets/images/"+dishId;
      };
 //     this.uploader.uploadAll();
 //     this.uploader.onSuccessItem = (item: any, response: string, status: number, headers: any): any => {
@@ -156,6 +206,9 @@ loginStatus: boolean;
       eighthCtrl: ['', Validators.required]
     });
 
+
+
+
     var user = getCookie("foodali_access_token");
     console.log(user + " <<< session access token ");
     if (user != "") {
@@ -188,7 +241,8 @@ loginStatus: boolean;
 
 
     }
-
+    
+    this.currentloc = getCookie("foodali_address");
 
     function getCookie(cname) {
       var name = cname + "=";
@@ -210,7 +264,7 @@ loginStatus: boolean;
     console.log(this.eighthFormGroup.value);
     this.foodCard.cuisine = this.eighthFormGroup.value.eighthCtrl;
     this.Cuisinename = this.foodCard.cuisine;
-    var data = {"cuisine":this.foodCard.cuisine};
+    var data = {"cuisine":this.foodCard.cuisine, "uId":this.userid };
 
     this.dishService.CreateDish(data).subscribe(
       response => {
@@ -248,7 +302,9 @@ loginStatus: boolean;
   }
   form5() {
     console.log(this.fifthFormGroup.value);
+    
     this.foodCard.delivery = this.fifthFormGroup.value.fifthCtrl;
+   
     if (this.foodCard.delivery == true){
       this.deliverytype = "Delivery";
     }else{
@@ -263,6 +319,7 @@ loginStatus: boolean;
   }
   form7() {
     console.log(this.seventhFormGroup.value);
+   
     this.foodCard.isVeg = this.seventhFormGroup.value.seventhCtrl;
     if(this.foodCard.isVeg == true){
       $(".veg").fadeIn(1);
@@ -320,10 +377,13 @@ loginStatus: boolean;
   }
   createFoodcard(){
     console.log(this.foodCard);
-    var data = {"cuisine":this.foodCard.cuisine,"dishName":this.foodCard.dishName, "foodDescription":this.foodCard.foodDesc, "noOfServings": this.foodCard.noOfServings, "delivery":this.foodCard.delivery, "address":this.foodCard.address,"isVeg":this.foodCard.isVeg,"Image":this.foodCard.img,"uId":this.userid };
-    this.dishService.CreateDish(data).subscribe(
+    var data = {"dishName":this.foodCard.dishName, "foodDescription":this.foodCard.foodDesc, "noOfServings": this.foodCard.noOfServings, "delivery":this.foodCard.delivery, "address":this.foodCard.address,"isVeg":this.foodCard.isVeg,"Image":this.foodCard.img};
+    var dId =  this.getCookie(this.userid+"_dishId");
+    this.dishService.UpdateDishById(data, dId).subscribe(
       response => {
        console.log(response);
+       //once the dish is updated remove the cookie of dishid
+       document.cookie = this.userid+'"_dishId"=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
       },
       err => console.log(err)
     );  

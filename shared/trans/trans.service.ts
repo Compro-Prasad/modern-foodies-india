@@ -56,8 +56,8 @@ export class TransService {
         }
 
   // GET
-  GetIssues(): Observable<Trans> {
-    return this.http.get<Trans>(this.baseurl + '//')
+  GetAllTrans(): Observable<Array<Trans>> {
+    return this.http.get<Array<Trans>>(this.baseurl + '/getAlltrans/')
     .pipe(
       retry(1),
       catchError(this.errorHandl)
@@ -92,6 +92,14 @@ export class TransService {
           )
         }
 
+               // PUT
+               UpdateTransblistById(id, data): Observable<Trans> {
+                return this.http.put<Trans>(this.baseurl + '/updateTransById?id=' + id, JSON.stringify(data), this.httpOptions)
+                .pipe(
+                  catchError(this.errorHandl)
+                )
+              }
+
   // DELETE
   DeleteTrans(uid, cid, did){
     return this.http.delete<Trans>(this.baseurl + '/deleteTransById?userId='+uid+'&cookId='+cid+'&dishId='+did, this.httpOptions)
@@ -100,6 +108,7 @@ export class TransService {
       catchError(this.errorHandl)
     )
   }
+
 
   // Error handling
   errorHandl(error) {

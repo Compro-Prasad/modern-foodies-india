@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.example.demo.model.Dish;
 import com.example.demo.model.Transaction;
 import com.example.demo.model.User;
 import com.example.demo.repository.TransactionDao;
@@ -35,9 +37,20 @@ public class TransactionService {
 	public void deleteAll() {
 		transactiondao.deleteAll();
 	}
+	
+	// Retrieve by id
+		public Optional<Transaction> findById(String id) {
+			return transactiondao.findById(id);
+		}
+
 	public void delete(String id) {
 //		Optional<Transaction> t = transactiondao.findById(id);
 		transactiondao.deleteById(id);
 	}
-
+	
+	
+	// Update operation
+	public Transaction update(Transaction trans) {
+		return transactiondao.save(trans);
+	}
 }

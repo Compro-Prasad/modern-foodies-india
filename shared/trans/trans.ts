@@ -6,6 +6,6 @@ export class Trans {
 	cookId:string;
 	dishId:string;
 	
-	status:boolean;
+	bstatus:boolean;
 
 }

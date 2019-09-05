@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,7 +43,38 @@ public class TransactionController {
 		}
 		return "" + id;
 	}
+	
+	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080", "http://108.179.222.240:8100" })
+	@RequestMapping(value = "/getAlltrans", method = RequestMethod.GET)
+	public List<Transaction> getAll(){
+		return transactionservice.getAll();
+	}
 
+	
+	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080", "http://108.179.222.240:8100"})
+	@RequestMapping(value = "/updateTransById", method = RequestMethod.PUT)
+	public String update(@RequestParam String id,@RequestBody(required = false) Transaction trans) {
+		Optional<Transaction> internaOptionallTransactioon = transactionservice.findById(id);
+		Transaction internalTransaction = internaOptionallTransactioon.get();
+		String tid = internalTransaction.getId();
+		String userId = internalTransaction.getUserId();
+		String cookId = internalTransaction.getCookId();
+		String dishId = internalTransaction.getDishId();
+		LocalDateTime timer = internalTransaction.getRequestTime();
+		
+		
+	    trans.setId(tid);
+	    trans.setUserId(userId);
+	    trans.setCookId(cookId);
+	    trans.setDishId(dishId);
+	    trans.setRequestTime(timer);
+
+	    Transaction t = transactionservice.update(trans);
+		
+	    return t.toString();
+	}
+	
+	
 	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080" , "http://108.179.222.240:8100"})
 	@RequestMapping(value = "/deleteTransById", method = RequestMethod.DELETE)
 	public String delete(@RequestParam String userId, String cookId, String dishId) {
@@ -50,5 +82,13 @@ public class TransactionController {
 		transactionservice.delete(id);
 		return "Deleted " + id;
 	}
+	
+//	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080" , "http://108.179.222.240:8100"})
+//	@RequestMapping(value = "/deleteUserByTransId", method = RequestMethod.DELETE)
+//	public String delete(@RequestParam String tid) {
+//		transactionservice.delete(tid);
+//		return "Deleted "+tid;
+//	}
+	
 }
 //[1] : https://examples.javacodegeeks.com/enterprise-java/spring/boot/spring-boot-mongodb-crud-operations-example/

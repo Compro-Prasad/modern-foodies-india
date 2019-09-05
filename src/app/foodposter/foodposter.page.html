@@ -106,7 +106,7 @@
               <form [formGroup]="eighthFormGroup" (ngSubmit)="zero()" #formone="ngForm">
                 <ng-template matStepLabel>Which cuisine type your food belong to?</ng-template>
                 <mat-form-field>
-                  <input matInput placeholder="Cuisine type" formControlName="eighthCtrl" required>
+                  <input value="{{cuisine}}" matInput placeholder="Cuisine type" formControlName="eighthCtrl" required>
                 </mat-form-field>
                 <div>
                   <button mat-button matStepperNext>Next</button>
@@ -117,7 +117,7 @@
               <form [formGroup]="firstFormGroup" (ngSubmit)="form1()" #formone="ngForm">
                 <ng-template matStepLabel>Fill your Dish name</ng-template>
                 <mat-form-field>
-                  <input matInput placeholder="Food title" formControlName="firstCtrl" required>
+                  <input value="{{dishName}}" matInput placeholder="Food title" formControlName="firstCtrl" required>
                 </mat-form-field>
                 <div>
                   <button mat-button matStepperNext>Next</button>
@@ -129,7 +129,7 @@
               <form [formGroup]="secondFormGroup" (ngSubmit)="form2()" #formone="ngForm">
                 <ng-template matStepLabel>Fill out your food description</ng-template>
                 <mat-form-field>
-                  <input matInput placeholder="Food description" formControlName="secondCtrl" required>
+                  <input value="{{dishDesc}}" matInput placeholder="Food description" formControlName="secondCtrl" required>
                 </mat-form-field>
                 <div>
                   <button mat-button matStepperPrevious>Back</button>
@@ -221,7 +221,7 @@
                 <ng-template matStepLabel>Provide number of servings</ng-template>
 
                 <mat-form-field>
-                  <input matInput type="number" placeholder="Number of servings" min="1" formControlName="fourthCtrl"
+                  <input value="{{noOfServings}}" matInput type="number" placeholder="Number of servings" min="1" formControlName="fourthCtrl"
                     required>
                 </mat-form-field>
 
@@ -256,7 +256,10 @@
               <form [formGroup]="sixthFormGroup" (ngSubmit)="form6()" #formone="ngForm">
                 <ng-template matStepLabel>Choose your location</ng-template>
                 <mat-form-field>
-                  <input matInput placeholder="Search for location" formControlName="sixthCtrl" required>
+               
+                  <input *ngIf="dishLoc == null" value="{{currentloc}}" matInput placeholder="Search for location" formControlName="sixthCtrl" required>
+                  <input *ngIf="dishLoc != null" value="{{dishLoc}}" matInput placeholder="Search for location" formControlName="sixthCtrl" required>
+               
                 </mat-form-field>
                 <div>
                   <button mat-button matStepperNext>Next</button>
@@ -304,8 +307,8 @@
 
                 <ion-card-header>
 
-                  <img
-                    src="https://www.mylands.com/media/wysiwyg/Colour_Palettes/Mylands_Grey_Palette_Main_Image_.jpg" />
+                  <img src="{{dish_img_loc}}" />
+                  <!--default img src --- https://www.mylands.com/media/wysiwyg/Colour_Palettes/Mylands_Grey_Palette_Main_Image_.jpg -->
 
                   <img class="veg" style="width: 20px !important; margin: 10px; float: right; display: none;"
                     src="https://cdn.iconscout.com/icon/premium/png-512-thumb/vegetarian-3-565377.png" />

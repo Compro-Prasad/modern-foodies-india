@@ -33,7 +33,11 @@ import com.example.demo.service.DishService;
 
 public class DishController {
 	   //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER = "/home/rajkishor/Desktop/foodali/modern-foodies-india/src/assets/images/";
+    //private static String UPLOADED_FOLDER = "/home/rajkishor/Desktop/foodali/modern-foodies-india/src/assets/images/";
+    private static String UPLOADED_FOLDER = "/home/mrcgddmy/public_html/modern-foodies-india/src/assets/images/";
+
+    
+
 	@Autowired
 	private DishService dishService;
 	

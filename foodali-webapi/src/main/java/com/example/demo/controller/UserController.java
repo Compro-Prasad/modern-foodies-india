@@ -81,11 +81,12 @@ public class UserController {
 		return u.toString();
 	}
 	
-	@RequestMapping(value = "/deleteUserById", method = RequestMethod.DELETE)
-	public String delete(@RequestParam int id) {
-		userService.delete(id);
-		return "Deleted "+id;
-	}
+//	@RequestMapping(value = "/deleteUserById", method = RequestMethod.DELETE)
+//	public String delete(@RequestParam int id) {
+//		userService.delete(id);
+//		return "Deleted "+id;
+//	}
+	
 	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080", "http://108.179.222.240:8100"})
 	@RequestMapping(value = "/getMapData", method = RequestMethod.GET)
 	public String getMapData(@RequestParam String lat, String lng) {
@@ -95,11 +96,11 @@ public class UserController {
 		return result;
 	}
 
-//	@RequestMapping (value = "/deleteAllUsers", method = RequestMethod.DELETE)
-//	public String deleteAll() {
-//		userService.deleteAll();
-//		return "Deleted all records";
-//	}
+	@RequestMapping (value = "/deleteAllUsers", method = RequestMethod.DELETE)
+	public String deleteAll() {
+		userService.deleteAll();
+		return "Deleted all records";
+	}
 	
 }
 //[1] : https://examples.javacodegeeks.com/enterprise-java/spring/boot/spring-boot-mongodb-crud-operations-example/

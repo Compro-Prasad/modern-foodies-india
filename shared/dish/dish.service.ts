@@ -10,7 +10,7 @@ import { retry, catchError } from 'rxjs/operators';
 
 export class DishService {
   // Base url
-  baseurl = 'https://localhost:8080';
+  baseurl = 'https://petuks.com:8080';
   constructor(private http: HttpClient) { }
 
    // Http Headers

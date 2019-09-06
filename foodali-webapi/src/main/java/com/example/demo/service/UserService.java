@@ -57,8 +57,9 @@ public class UserService {
 	
 	//Delete operation
 	public void deleteAll() {
-		userRepository.deleteAll();	
+		userRepository.deleteAll();
 	}
+	
 	public void delete(int id) {
 		User u = userRepository.findById(id);
 		userRepository.delete(u);

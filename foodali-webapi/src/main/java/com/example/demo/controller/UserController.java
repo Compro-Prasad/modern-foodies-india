@@ -25,31 +25,32 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080", "http://108.179.222.240:8100"})
+	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080", "http://108.179.222.240:8100","https://phorons.com","https://phorons.com:80"})
 	@RequestMapping(value = "/createUser", method = RequestMethod.POST)
 	public User create(@RequestBody(required = false) User user ) {
 		User u = userService.create(user);
 		return u;
 	}
 	
+	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080", "http://108.179.222.240:8100","https://phorons.com","https://phorons.com:80"})
 	@RequestMapping(value = "/getAllusers", method = RequestMethod.GET)
 	public List<User> getAll(){
 		return userService.getAll();
 	}
 	
-	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080", "http://108.179.222.240:8100"})
+	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080", "http://108.179.222.240:8100","https://phorons.com","https://phorons.com:80"})
 	@RequestMapping(value = "/getUserByPhone", method = RequestMethod.GET)
 	public Optional<User> findByPhoneNo(@RequestParam(required = true) String phoneNo){
 		return userService.findByPhoneNo(phoneNo);
 	}
 	
-	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080", "http://108.179.222.240:8100"})
+	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080", "http://108.179.222.240:8100","https://phorons.com","https://phorons.com:80"})
 	@RequestMapping(value = "/getUserById", method = RequestMethod.GET)
 	public Optional<User> findById(@RequestParam(required = true) String id){
 
 		return userService.findById(id);
 	}
-	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080", "http://108.179.222.240:8100"})
+	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080", "http://108.179.222.240:8100","https://phorons.com","https://phorons.com:80"})
 	@RequestMapping(value = "/updateUserChefinfoById", method = RequestMethod.PUT)
 	public String update(@RequestParam String id,@RequestBody(required = false) User user) {
 		//Reference [1]
@@ -61,7 +62,7 @@ public class UserController {
 		User u = userService.update(user);
 		return u.toString();
 	}
-	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080", "http://108.179.222.240:8100"})
+	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080", "http://108.179.222.240:8100","https://phorons.com","https://phorons.com:80"})
 	@RequestMapping(value = "/updateUserVerfById", method = RequestMethod.PUT)
 	public String updateUserVerf(@RequestParam String id,@RequestBody(required = false) User user) {
 		//Reference [1]
@@ -87,7 +88,7 @@ public class UserController {
 //		return "Deleted "+id;
 //	}
 	
-	@CrossOrigin(origins = {"http://localhost:8100","http://localhost:8080", "http://108.179.222.240:8100"})
+	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080", "http://108.179.222.240:8100","https://phorons.com","https://phorons.com:80"})
 	@RequestMapping(value = "/getMapData", method = RequestMethod.GET)
 	public String getMapData(@RequestParam String lat, String lng) {
 		final String uri = "https://apis.mapmyindia.com/advancedmaps/v1/o5jls9cv4d81jihcipb3livmyedygsl4/rev_geocode?lat="+lat+"&lng="+lng;
@@ -96,6 +97,7 @@ public class UserController {
 		return result;
 	}
 
+	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080", "http://108.179.222.240:8100","https://phorons.com","https://phorons.com:80"})
 	@RequestMapping (value = "/deleteAllUsers", method = RequestMethod.DELETE)
 	public String deleteAll() {
 		userService.deleteAll();

@@ -25,20 +25,20 @@ public class BlacklistController {
 	@Autowired
 	private BlacklistService blacklistService;
 
-	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080", "http://108.179.222.240:8100" })
+	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080", "http://108.179.222.240:8100","https://phorons.com","https://phorons.com:80"})
 	@RequestMapping(value = "/blacklistPerson", method = RequestMethod.POST)
 	public String create(@RequestBody(required = false) Blacklist blacklist) {
 		Blacklist b = blacklistService.create(blacklist);
 		return b.toString();
 	}
 
-	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080", "http://108.179.222.240:8100" })
+	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080", "http://108.179.222.240:8100","https://phorons.com","https://phorons.com:80"})
 	@RequestMapping(value = "/getAllblacklisted", method = RequestMethod.GET)
 	public List<Blacklist> getAll() {
 		return blacklistService.getAll();
 	}
 
-	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080", "http://108.179.222.240:8100" })
+	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080", "http://108.179.222.240:8100","https://phorons.com","https://phorons.com:80"})
 	@RequestMapping(value = "/getBlacklistById", method = RequestMethod.POST)
 	public Optional<Blacklist> findById(@RequestBody(required = true) String id) {
 		return blacklistService.findById(id);

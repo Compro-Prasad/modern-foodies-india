@@ -23,14 +23,14 @@ public class SessionController {
 	@Autowired
 	private SessionService sessionService;
 	
-	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080", "http://108.179.222.240:8100","https://phorons.com","https://phorons.com:80"})
+	@CrossOrigin(origins = {"*"})
 	@RequestMapping(value = "/createSession", method = RequestMethod.POST)
 	public String create(@RequestBody(required = false) Session session ) {
 		Session s = sessionService.create(session);
 		return s.toString();
 	}
 	
-	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080", "http://108.179.222.240:8100","https://phorons.com","https://phorons.com:80"})
+	@CrossOrigin(origins = {"*"})
 	@RequestMapping(value = "/getSessionByAccessToken", method = RequestMethod.GET)
 	public List<Session> findByAccessId(@RequestParam(required = true) String accessToken){
 		List<Session> list =  sessionService.findByAccessToken(accessToken);
@@ -39,13 +39,13 @@ public class SessionController {
 		}
 		return list;	
 	}
-	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080", "http://108.179.222.240:8100","https://phorons.com","https://phorons.com:80"})
+	@CrossOrigin(origins = {"*"})
 	@RequestMapping(value = "/getAllsessions", method = RequestMethod.GET)
 	public List<Session> getAll(){
 		return sessionService.getAll();
 	}	
 	
-	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080", "http://108.179.222.240:8100","https://phorons.com","https://phorons.com:80"})
+	@CrossOrigin(origins = {"*"})
 	@RequestMapping (value = "/deleteAllSession", method = RequestMethod.DELETE)
 	public String deleteAll() {
 		sessionService.deleteAll();

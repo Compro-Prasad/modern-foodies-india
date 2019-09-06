@@ -24,14 +24,14 @@ public class OtpController {
 	@Autowired
 	private OtpService otpService;
 
-	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080", "http://108.179.222.240:8100","https://phorons.com","https://phorons.com:80"})
+	@CrossOrigin(origins = {"*"})
 	@RequestMapping(value = "/createOtp", method = RequestMethod.POST)
 	public String create(@RequestBody(required = false) Otp otp) {
 		Otp o = otpService.create(otp);
 		return o.toString();
 	}
 
-	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080", "http://108.179.222.240:8100","https://phorons.com","https://phorons.com:80"})
+	@CrossOrigin(origins = {"*"})
 	@RequestMapping(value = "/getOtpByUserId", method = RequestMethod.GET)
 	public List<Otp> findByUserId(@RequestParam(required = true) String UserId) {
 		return otpService.findByUserId(UserId);
@@ -40,7 +40,7 @@ public class OtpController {
 	
 
 	
-	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080", "http://108.179.222.240:8100","https://phorons.com","https://phorons.com:80"})
+	@CrossOrigin(origins = {"*"})
 	@RequestMapping(value = "/deleteOtpByUserId", method = RequestMethod.DELETE)
 	public String delete(@RequestParam String userid) {
 		otpService.delete(userid);

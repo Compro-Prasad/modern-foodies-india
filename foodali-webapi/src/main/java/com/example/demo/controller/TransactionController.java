@@ -25,14 +25,14 @@ public class TransactionController {
 	@Autowired
 	private TransactionService transactionservice;
 
-	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080", "http://108.179.222.240:8100","https://phorons.com","https://phorons.com:80"})
+	@CrossOrigin(origins = {"*"})
 	@RequestMapping(value = "/createTransaction", method = RequestMethod.POST)
 	public String create(@RequestBody(required = false) Transaction transaction) {
 		Transaction t = transactionservice.create(transaction);
 		return t.toString();
 	}
 
-	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080", "http://108.179.222.240:8100","https://phorons.com","https://phorons.com:80"})
+	@CrossOrigin(origins = {"*"})
 	@RequestMapping(value = "/getTrans", method = RequestMethod.GET)
 	public String getTrans(@RequestParam String userId, String cookId, String dishId) {
 		String id = "";
@@ -44,14 +44,14 @@ public class TransactionController {
 		return "" + id;
 	}
 	
-	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080", "http://108.179.222.240:8100","https://phorons.com","https://phorons.com:80"})
+	@CrossOrigin(origins = {"*"})
 	@RequestMapping(value = "/getAlltrans", method = RequestMethod.GET)
 	public List<Transaction> getAll(){
 		return transactionservice.getAll();
 	}
 
 	
-	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080", "http://108.179.222.240:8100","https://phorons.com","https://phorons.com:80"})
+	@CrossOrigin(origins = {"*"})
 	@RequestMapping(value = "/updateTransById", method = RequestMethod.PUT)
 	public String update(@RequestParam String id,@RequestBody(required = false) Transaction trans) {
 		Optional<Transaction> internaOptionallTransactioon = transactionservice.findById(id);
@@ -75,7 +75,7 @@ public class TransactionController {
 	}
 	
 	
-	@CrossOrigin(origins = { "http://localhost:8100", "http://localhost:8080", "http://108.179.222.240:8100","https://phorons.com","https://phorons.com:80"})
+	@CrossOrigin(origins = {"*"})
 	@RequestMapping(value = "/deleteTransById", method = RequestMethod.DELETE)
 	public String delete(@RequestParam String userId, String cookId, String dishId) {
 		String id = transactionservice.find(userId, cookId, dishId);

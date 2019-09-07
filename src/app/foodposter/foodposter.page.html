@@ -33,7 +33,7 @@
     <div class="flex-container" style="box-shadow: 0 5px 5px -6px rgba(0,0,0,0.5);">
 
       <div class="left-flex">
-        <span [routerLink]="['/postmyfood']" routerDirection="forward"  > Food<span style="color: green; ">Ali</span></span>
+        <span [routerLink]="['/postmyfood']" routerDirection="forward"  >&nbsp; Food<span style="color: green; ">Ali</span></span>
         </div>
       <div class="right-flex" style="text-align: left; font-size: 25px; position: relative;">
         <div
@@ -303,7 +303,9 @@
             <ion-col>
               <ion-card style="background: #fff; ">
                 <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-
+                <ion-card-header>
+                  <ion-card-title>Dish Preview</ion-card-title>
+                </ion-card-header>
 
                 <ion-card-header>
 

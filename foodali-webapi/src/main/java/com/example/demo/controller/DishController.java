@@ -10,6 +10,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.TextCriteria;
 import org.springframework.data.mongodb.core.query.TextQuery;
@@ -134,22 +135,71 @@ public class DishController {
 		String userid = internalDish.getuId();
 		String cuisine = internalDish.getCuisine();		
 		
+		
+		dish.setCuisine(cuisine);
 	    dish.setId(id);
-	    dish.setDishName(dish.getDishName());
 	    dish.setuId(userid);
+	    dish.setDishName(dish.getDishName());
 	    dish.setNoOfServings(dish.getNoOfServings());
 	    dish.setFoodDescription(dish.getFoodDescription());
 	    dish.setIsVeg(dish.getIsVeg());
 	    dish.setAddress(dish.getAddress());
 	    dish.setDelivery(dish.getDelivery());
-	    dish.setCuisine(cuisine);
+	    
+	  
 
 	    Dish d = dishService.update(dish);
 		
 	    return d.toString();
 	}
 	
-	
+	@RequestMapping(value = "/publishDishById", method = RequestMethod.PUT)
+	public String updateP(@RequestParam String id,@RequestBody Dish dish) {
+		Optional<Dish> internaOptionallDish = dishService.findById(id);
+		Dish internalDish = internaOptionallDish.get();
+		
+//		private String id;
+//		private String uId;
+//		@TextIndexed(weight=2) private String dishName;
+//		private String noOfServings;
+//		@TextIndexed private String foodDescription;
+//		private Boolean publishStatus;
+//		private String isVeg;
+//		private int serialNo;
+//		private String address;
+//		private String delivery;
+//		private String cuisine;
+//		private MultipartFile image;
+//		private boolean request;
+		
+		
+		String userid = internalDish.getuId();
+		String dishName = internalDish.getDishName();
+		String noOfServings = internalDish.getNoOfServings();
+		String foodDesc = internalDish.getFoodDescription();
+		String isVeg = internalDish.getIsVeg();
+		String address = internalDish.getAddress();
+		String delivery = internalDish.getDelivery();
+		String cuisine = internalDish.getCuisine();			
+		dish.setCuisine(cuisine);
+	    dish.setId(id);
+	    dish.setuId(userid);
+	    dish.setDishName(dishName);
+	    dish.setNoOfServings(noOfServings);
+	    dish.setFoodDescription(foodDesc);
+	    dish.setIsVeg(isVeg);
+	    dish.setAddress(address);
+	    dish.setDelivery(delivery);
+	    
+	    
+	    dish.setPublishStatus(dish.getPublishStatus());
+	    
+	  
+
+	    Dish d = dishService.update(dish);
+		
+	    return d.toString();
+	}
 	
 
 	@RequestMapping (value = "/deleteAllDishes", method = RequestMethod.DELETE)

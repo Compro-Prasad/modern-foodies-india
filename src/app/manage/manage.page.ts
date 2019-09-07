@@ -134,7 +134,7 @@ export class ManagePage implements OnInit {
   publish(id) {
     console.log("Publish id " + id);
     let data = { "publishStatus": 1 };
-    this.dishService.UpdateDishById(id, data).subscribe(response => {
+    this.dishService.PublishDishById(id, data).subscribe(response => {
       console.log(response);
       $("#p"+id).fadeOut(1);
       $("#u"+id).fadeIn(1);
@@ -148,7 +148,7 @@ export class ManagePage implements OnInit {
   unpublish(id) {
     console.log("Publish id " + id);
     let data = { "publishStatus": 0 };
-    this.dishService.UpdateDishById(id, data).subscribe(response => {
+    this.dishService.PublishDishById(id, data).subscribe(response => {
       console.log(response);
       $("#p"+id).fadeIn(1);
       $("#u"+id).fadeOut(1);

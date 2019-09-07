@@ -100,6 +100,15 @@ export class DishService {
       )
     }
 
+        // PUT
+        PublishDishById(id, data): Observable<Dish> {
+          return this.http.put<Dish>(this.baseurl + '/publishDishById?id=' + id, JSON.stringify(data), this.httpOptions)
+          .pipe(
+            retry(1), 
+            catchError(this.errorHandl)
+          )
+        }
+    
    
 
   // DELETE

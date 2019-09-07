@@ -19,39 +19,36 @@ import com.example.demo.model.User;
 import com.example.demo.service.PersonService;
 import com.example.demo.service.UserService;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin(origins = "https://phorons.com", allowedHeaders = "*")
 @RestController
 public class UserController {
 
 	@Autowired
 	private UserService userService;
 	
-	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@RequestMapping(value = "/createUser", method = RequestMethod.POST)
 	public User create(@RequestBody(required = false) User user ) {
 		User u = userService.create(user);
 		return u;
 	}
 	
-	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@RequestMapping(value = "/getAllusers", method = RequestMethod.GET)
 	public List<User> getAll(){
 		return userService.getAll();
 	}
 	
-	@CrossOrigin(origins = "*", allowedHeaders = "*")
+
 	@RequestMapping(value = "/getUserByPhone", method = RequestMethod.GET)
 	public Optional<User> findByPhoneNo(@RequestParam(required = true) String phoneNo){
 		return userService.findByPhoneNo(phoneNo);
 	}
 	
-	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@RequestMapping(value = "/getUserById", method = RequestMethod.GET)
 	public Optional<User> findById(@RequestParam(required = true) String id){
 
 		return userService.findById(id);
 	}
-	@CrossOrigin(origins = "*", allowedHeaders = "*")
+
 	@RequestMapping(value = "/updateUserChefinfoById", method = RequestMethod.PUT)
 	public String update(@RequestParam String id,@RequestBody(required = false) User user) {
 		//Reference [1]
@@ -63,7 +60,7 @@ public class UserController {
 		User u = userService.update(user);
 		return u.toString();
 	}
-	@CrossOrigin(origins = "*", allowedHeaders = "*")
+
 	@RequestMapping(value = "/updateUserVerfById", method = RequestMethod.PUT)
 	public String updateUserVerf(@RequestParam String id,@RequestBody(required = false) User user) {
 		//Reference [1]
@@ -89,7 +86,7 @@ public class UserController {
 //		return "Deleted "+id;
 //	}
 	
-	@CrossOrigin(origins = "*", allowedHeaders = "*")
+
 	@RequestMapping(value = "/getMapData", method = RequestMethod.GET)
 	public String getMapData(@RequestParam String lat, String lng) {
 		final String uri = "https://apis.mapmyindia.com/advancedmaps/v1/o5jls9cv4d81jihcipb3livmyedygsl4/rev_geocode?lat="+lat+"&lng="+lng;
@@ -98,7 +95,6 @@ public class UserController {
 		return result;
 	}
 
-	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@RequestMapping (value = "/deleteAllUsers", method = RequestMethod.DELETE)
 	public String deleteAll() {
 		userService.deleteAll();

@@ -26,7 +26,7 @@ export interface FoodCard {
   img:FormData;
 }
 
-const URL = 'https://localhost:8080/upload/';
+const URL = 'https://petuks.com:8080/upload/';
 @Component({
   selector: 'app-foodposter',
   templateUrl: './foodposter.page.html',
@@ -363,7 +363,7 @@ loginStatus: boolean;
 
 
   
-  this.http.post('https://localhost:8080/upload', uploadData, {
+  this.http.post('https://petuks.com:8080/upload', uploadData, {
     reportProgress: true,
     observe: 'events'
   }).subscribe(event => {
@@ -379,7 +379,11 @@ loginStatus: boolean;
     console.log(this.foodCard);
     var data = {"dishName":this.foodCard.dishName, "foodDescription":this.foodCard.foodDesc, "noOfServings": this.foodCard.noOfServings, "delivery":this.foodCard.delivery, "address":this.foodCard.address,"isVeg":this.foodCard.isVeg,"Image":this.foodCard.img};
     var dId =  this.getCookie(this.userid+"_dishId");
-    this.dishService.UpdateDishById(data, dId).subscribe(
+
+    console.log("data to push ~~~~ "+JSON.stringify(data))
+    console.log("dish id ~~~~"+ dId)
+
+    this.dishService.UpdateDishById(dId, data).subscribe(
       response => {
        console.log(response);
        //once the dish is updated remove the cookie of dishid

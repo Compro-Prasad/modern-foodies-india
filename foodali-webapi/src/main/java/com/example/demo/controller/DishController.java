@@ -29,19 +29,20 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.demo.model.Dish;
 import com.example.demo.service.DishService;
 
-@RestController
 
+@CrossOrigin(origins = "https://phorons.com", allowedHeaders = "*")
+@RestController
 public class DishController {
 	   //Save the uploaded file to this folder
     //private static String UPLOADED_FOLDER = "/home/rajkishor/Desktop/foodali/modern-foodies-india/src/assets/images/";
-    private static String UPLOADED_FOLDER = "/home/mrcgddmy/public_html/modern-foodies-india/src/assets/images/";
+    private static String UPLOADED_FOLDER = "/home/mrcgddmy/public_html/assets/images/";
 
     
 
 	@Autowired
 	private DishService dishService;
 	
-	@CrossOrigin(origins = {"*"})
+
 	@RequestMapping(value = "/createDish", method = RequestMethod.POST)
 	public Dish create(@RequestBody(required = false) Dish dish) {
 		Dish d = dishService.create(dish);
@@ -93,7 +94,7 @@ public class DishController {
         return "uploadStatus";
     }
 
-	@CrossOrigin(origins = {"*"})
+
 	@RequestMapping(value = "/getAlldishes", method = RequestMethod.GET)
 	public List<Dish> getAll(){
 		//List<Dish> d = dishService.getAll();
@@ -101,13 +102,13 @@ public class DishController {
 		return dishService.getAll();
 	}
 	
-	@CrossOrigin(origins = {"*"})
+
 	@RequestMapping(value = "/getDishById", method = RequestMethod.GET)
 	public Optional<Dish> findById(@RequestParam(required = true) String id){
 
 		return dishService.findById(id);
 	}
-	@CrossOrigin(origins = {"*"})
+
 	@RequestMapping(value = "/getDishesByuId", method = RequestMethod.GET)
 	public List<Dish> findByuId(@RequestParam(required = true) String uid){
 //ref 
@@ -117,36 +118,30 @@ public class DishController {
 		return dishService.findByuId(uid);
 	}
 	
-	
-	@CrossOrigin(origins = {"*"})
+
 	@RequestMapping(value = "/getDishesBySearch", method = RequestMethod.GET)
 	public List<Dish> findBySearch(@RequestParam(required = true) String q){
 
 		return dishService.findBySearch(q);
 	}
 	
-	@CrossOrigin(origins = {"*"})
+
 	@RequestMapping(value = "/updateDishById", method = RequestMethod.PUT)
 	public String update(@RequestParam String id,@RequestBody Dish dish) {
 		Optional<Dish> internaOptionallDish = dishService.findById(id);
 		Dish internalDish = internaOptionallDish.get();
-		String dishname = internalDish.getDishName();
+	
 		String userid = internalDish.getuId();
-		String servings = internalDish.getNoOfServings();
-		String desc = internalDish.getFoodDescription();
-		String isveg = internalDish.getIsVeg();
-		String address = internalDish.getAddress();
-		String delivery = internalDish.getDelivery();
 		String cuisine = internalDish.getCuisine();		
 		
 	    dish.setId(id);
-	    dish.setDishName(dishname);
+	    dish.setDishName(dish.getDishName());
 	    dish.setuId(userid);
-	    dish.setNoOfServings(servings);
-	    dish.setFoodDescription(desc);
-	    dish.setIsVeg(isveg);
-	    dish.setAddress(address);
-	    dish.setDelivery(delivery);
+	    dish.setNoOfServings(dish.getNoOfServings());
+	    dish.setFoodDescription(dish.getFoodDescription());
+	    dish.setIsVeg(dish.getIsVeg());
+	    dish.setAddress(dish.getAddress());
+	    dish.setDelivery(dish.getDelivery());
 	    dish.setCuisine(cuisine);
 
 	    Dish d = dishService.update(dish);
@@ -156,7 +151,7 @@ public class DishController {
 	
 	
 	
-	@CrossOrigin(origins = {"*"})
+
 	@RequestMapping (value = "/deleteAllDishes", method = RequestMethod.DELETE)
 		public String deleteAll() {
 		dishService.deleteAll();

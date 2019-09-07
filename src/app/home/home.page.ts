@@ -56,7 +56,7 @@ export class HomePage {
   latlon: string;
   locationData: any;
   loc: string;
-  isenabled:boolean=false;
+  isenabled: boolean = false;
   ifloggedin: string;
 
 
@@ -77,7 +77,7 @@ export class HomePage {
     //generate www folder 
     //ionic build --prod 
 
-  
+
     this.ifloggedin = "Log in"
     anime({
       targets: '.el',
@@ -159,12 +159,12 @@ export class HomePage {
       this.loc = ses_lc;
 
 
-    if(this.loc !== ''){
-      //enable the button
-      this.isenabled=true; 
-      }else{
-      //disable the button
-      this.isenabled=false;
+      if (this.loc !== '') {
+        //enable the button
+        this.isenabled = true;
+      } else {
+        //disable the button
+        this.isenabled = false;
       }
 
     } else {
@@ -180,22 +180,22 @@ export class HomePage {
       this.sessionService.GetSessionAccess(user).subscribe(
         response => {
 
-     
-          console.log("session response from server : "+response);
-          if(response != null){
-          this.ifloggedin = "Logged in";
-          document.getElementById("login-icon").style.display = "none";
-          var b = document.querySelector("ion-button");
-          b.setAttribute("color", "dark");
-          b.setAttribute("disabled", "");
-          document.getElementById("loc-prompt").innerHTML = '*Please set your location to begin<br/><ion-icon  name="arrow-dropdown"></ion-icon>';
-          $("#locateme").addClass("focal");
-          $(".searchbar-input").focus();
-          }else{
+
+          console.log("session response from server : " + response);
+          if (response != null) {
+            this.ifloggedin = "Logged in";
+            document.getElementById("login-icon").style.display = "none";
+            var b = document.querySelector("ion-button");
+            b.setAttribute("color", "dark");
+            b.setAttribute("disabled", "");
+            document.getElementById("loc-prompt").innerHTML = '*Please set your location to begin<br/><ion-icon  name="arrow-dropdown"></ion-icon>';
+            $("#locateme").addClass("focal");
+            $(".searchbar-input").focus();
+          } else {
             //delete cookies in the broweser if session is not found in server for the particular access token 
-          document.cookie = 'foodali_access_token=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-          document.cookie = 'foodali_request_token=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-          document.cookie = 'foodali_address=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            document.cookie = 'foodali_access_token=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            document.cookie = 'foodali_request_token=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            document.cookie = 'foodali_address=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
           }
 
         },
@@ -278,14 +278,14 @@ export class HomePage {
         setCookie("foodali_address", formatted_address, "1"); // expires in 1 day
         this.loc = formatted_address;
 
-        if(this.loc !== ''){
+        if (this.loc !== '') {
           //enable the button
-          this.isenabled=true; 
-          }else{
+          this.isenabled = true;
+        } else {
           //disable the button
-          this.isenabled=false;
-          }
-    
+          this.isenabled = false;
+        }
+
 
       },
         err => console.log(err)
@@ -298,7 +298,7 @@ export class HomePage {
     })
     console.log(this.loc + " temp loc")
 
-  
+
 
 
 
@@ -310,41 +310,39 @@ export class HomePage {
       var expires = "expires=" + d.toUTCString;
       document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
     }
-    
+
 
 
   }
-  forward(){
+  forward() {
     if (this.loc == "") {
       //skip 
     } else {
-    var user = getCookie("foodali_access_token");
+      var user = getCookie("foodali_access_token");
+      console.log("Foodali access token "+ user);
       this.sessionService.GetSessionAccess(user).subscribe(
         response => {
-
-          if(response == null){
+          console.log("session response from server : " + response[0].userId);
+          if (response == null) {
             //user not logged in 
             this.navCtrl.navigateForward('postmyfood');
-          }else{
-            console.log("session response from server : "+response[0].userId);
-         
-          
-          this.userService.GetUserById(response[0].userId).subscribe(
-            response => {
+          } else {
+    
+            this.userService.GetUserById(response[0].userId).subscribe(
+              response => {
 
-              console.log("user response from server : "+response.cookName);
-              //if user is cook, go to after login page, else redirect as default. 
-              if (response.cookName != null){
-                this.navCtrl.navigateForward('afterlogin');
-              }else{
+                console.log("user response from server : " + response.cookName);
+                //if user is cook, go to after login page, else redirect as default. 
+                //if (response.cookName != null) {
+                  this.navCtrl.navigateForward('afterlogin');
+                //} else {
+                //  this.navCtrl.navigateForward('postmyfood');
+               // }
 
-                this.navCtrl.navigateForward('postmyfood');
-              }
-
-            },
-            err => console.log(err)
-          );
-        }
+              },
+              err => console.log(err)
+            );
+          }
         },
         err => console.log(err)
       );

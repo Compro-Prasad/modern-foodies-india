@@ -15,7 +15,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
  
 	@Override
     protected void configure(HttpSecurity http) throws Exception{
-		//disable csrf to make post request
+		//disable csrf to make post & put requests which are disabled by 
         http.cors().and().csrf().disable();
     }
  

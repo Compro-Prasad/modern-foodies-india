@@ -321,19 +321,7 @@ otpVal:string;
 
   otpInit() {
 
-    this.SendOTP().subscribe(
-      response => {
-        console.log("Otp resp " + response)
-        var data = { "userId": this.userid, "otp": this.otp };
-        this.otpService.CreateOtp(data).subscribe(response => {
-          console.log(response);
-        },
-          err => console.log(err)
-        );
-      },
-      err => console.log(err)
-    );
-
+    this.SendOTP();
 
     this.otpService.DeleteOtp(this.userid).subscribe(response => {
       console.log("otp service delete response "+response);
@@ -365,11 +353,25 @@ otpVal:string;
       }
       return OTP;
     }
-    return this.http.get<Otp>('http://nimbusit.co.in/api/swsendSingle.asp?username=t1Foodali&password=26537993&sender=666666&sendto=91'+this.myNo+'&message=Your OTP for FoodAli is ' + this.otp)
-      .pipe(
-        // retry(1),
-        catchError(this.errorHandl)
-      )
+
+    this.otpService.sendOTPdata(this.myNo, this.otp).subscribe(
+      response => {
+        console.log("Otp resp " + response)
+        var data = { "userId": this.userid, "otp": this.otp };
+        this.otpService.CreateOtp(data).subscribe(response => {
+          console.log(response);
+        },
+          err => console.log(err)
+        );
+      },
+      err => console.log(err)
+    );
+ 
+    // return this.http.get<Otp>('http://nimbusit.co.in/api/swsendSingle.asp?username=t1Foodali&password=26537993&sender=666666&sendto=91'+this.myNo+'&message=Your OTP for FoodAli is ' + this.otp)
+    //   .pipe(
+    //     // retry(1),
+    //     catchError(this.errorHandl)
+    //   )
   }
   // Error handling
   errorHandl(error) {

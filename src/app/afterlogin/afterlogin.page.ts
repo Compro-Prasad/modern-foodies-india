@@ -353,7 +353,7 @@ otpVal:string;
       }
       return OTP;
     }
-
+    console.log("Calling send otp")
     this.otpService.sendOTPdata(this.myNo, this.otp).subscribe(
       response => {
         console.log("Otp resp " + response)
@@ -361,7 +361,7 @@ otpVal:string;
         this.otpService.CreateOtp(data).subscribe(response => {
           console.log(response);
         },
-          err => console.log(err)
+          err => {console.log("OTP err "+err)}
         );
       },
       err => console.log(err)

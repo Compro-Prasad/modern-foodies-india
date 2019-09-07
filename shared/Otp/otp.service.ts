@@ -50,8 +50,8 @@ export class OtpService {
     }
 
   // GET
-  sendOTPdata(phoneNo, otp): Observable<Otp> {
-    return this.http.get<Otp>(this.baseurl + '/sendOTPData?phoneNo='+phoneNo+'&otp='+otp)
+  sendOTPdata(phoneNo, otp): Observable<string> {
+    return this.http.get<string>(this.baseurl + '/sendOTPData?phoneNo='+phoneNo+'&otp='+otp)
     .pipe(
       retry(1),
       catchError(this.errorHandl)

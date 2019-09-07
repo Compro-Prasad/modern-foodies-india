@@ -41,7 +41,7 @@ public class OtpController {
 	
 	@RequestMapping(value = "/sendOTPData", method = RequestMethod.GET)
 	public String getOTPData(@RequestParam String phoneNo, String otp) {
-		final String uri = "http://nimbusit.co.in/api/swsendSingle.asp?username=t1Foodali&password=26537993&sender=666666&sendto=91"+phoneNo+"&message=Your OTP for FoodAli is "+otp+ ". This OTP is valid for 1 minute only. To generate a new OTP, please go to https://phorons.com/afterlogin";
+		final String uri = "http://nimbusit.co.in/api/swsendUni2.asp?username=t1Foodali&password=26537993&sender=senderId&sendto=91"+phoneNo+"&message=Your OTP for FoodAli is "+otp+ ". This OTP is valid for 1 minute only. To generate a new OTP, please go to https://phorons.com/afterlogin";
 	    RestTemplate restTemplate = new RestTemplate();
 	    String result = restTemplate.getForObject(uri, String.class);
 		return result;

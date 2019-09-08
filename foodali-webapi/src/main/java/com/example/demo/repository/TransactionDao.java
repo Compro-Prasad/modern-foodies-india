@@ -15,5 +15,6 @@ import com.example.demo.model.User;
 public interface TransactionDao extends MongoRepository<Transaction, String> {
 	public Transaction findById(int id);
 	public Transaction findByUserIdAndCookIdAndDishId(String userId, String cookId, String dishId);
-
+	
+	public List<Transaction> findByUserId(String id);
 }

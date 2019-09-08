@@ -35,6 +35,8 @@ export interface trans{
 	userId:string;
 	cookId:string;
   dishId:string;
+
+  requestTime: string;
   
   bstatus:boolean;
 }

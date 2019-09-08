@@ -58,6 +58,7 @@ public class UserController {
 		String phnoe = internalUser.getPhoneNo();
 		user.setId(id);
 		user.setPhoneNo(phnoe);
+		user.setIsVerified(internalUser.getIsVerified());
 		User u = userService.update(user);
 		return u.toString();
 	}

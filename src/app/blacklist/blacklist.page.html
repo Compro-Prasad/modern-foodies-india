@@ -149,12 +149,13 @@
                         <ion-card-header>
                           <ion-card-subtitle>Transaction ID</ion-card-subtitle>
                           <ion-card-title>{{t.id}}</ion-card-title>
+                          D{{t.requestTime}}
                         </ion-card-header>
                       
                         <ion-card-content>
                          <ion-button  (click)="goProfile(t.userId)" color="dark">User profile</ion-button>
                          
-                        <ion-button  (click)="goDish(t.dishId)" color="dark">Dish Page</ion-button>
+                        <ion-button  (click)="goDish(t.dishId)" color="dark">Requested Dish</ion-button>
                        
                         
 
@@ -174,6 +175,7 @@
 
                        
                         </ion-card-content>
+                       
                       </ion-card>
                   
 

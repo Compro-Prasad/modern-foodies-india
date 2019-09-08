@@ -3,126 +3,197 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="postmyfood"></ion-back-button>
     </ion-buttons>
-    <ion-title>Profile</ion-title>
+    <ion-title> FoodAli profile page</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <div style="height:200px; background:#333; width:100%; position: relative;">
-    <ion-icon name="contact" style="width:100px; height:100px; position: absolute; bottom: -50px; margin-left: auto;
-      margin-right: auto;
-      left: 0;
-      right: 0; border:solid thick #ccc; background: #fff; border-radius: 100%; padding: 0;"></ion-icon>
-    <p style="position: absolute; bottom: -100px; margin-left: auto;
+  <div class="flex-container">
+    <div>
+
+        <div style="height:200px; background:#333; width:100%; position: relative;">
+            <ion-icon name="contact" style="width:100px; height:100px; position: absolute; bottom: -50px; margin-left: auto;
+              margin-right: auto;
+              left: 0;
+              right: 0; border:solid thick #ccc; background: #fff; border-radius: 100%; padding: 0;"></ion-icon>
+            <p style="position: absolute; bottom: -150px; margin-left: auto;
+                margin-right: auto;
+                left: 0;
+                right: 0;  padding: 0; text-align: center;">{{userName}} &nbsp;
+              <!-- <ion-icon name="create"></ion-icon> -->
+            </p>
+        
+            <div style="position: absolute; bottom: -250px; margin-left: auto;
         margin-right: auto;
         left: 0;
-        right: 0;  padding: 0; text-align: center;">{{userName}} &nbsp;
-      <!-- <ion-icon name="create"></ion-icon> -->
-    </p>
-
-    <div style="position: absolute; bottom: -170px; margin-left: auto;
-margin-right: auto;
-left: 0;
-right: 0;  padding: 0; text-align: center;">
-
-
-      <!-- 
-  <div style="position: relative; display:inline-block; width: 20px; cursor: pointer;">
-      <ion-icon id="ro1"  style="position: absolute; top:0; left:0;" name="star-outline"></ion-icon>
-      <ion-icon id="rs1" style="position: absolute; top:0; left:0; display: none;" name="star"></ion-icon>
-  </div>
-
-  <div style="position: relative; display:inline-block; width: 20px; cursor: pointer;">
-      <ion-icon id="ro2"  style="position: absolute; top:0; left:0;" name="star-outline"></ion-icon>
-      <ion-icon id="rs2" style="position: absolute; top:0; left:0; display: none;" name="star"></ion-icon>
-  </div>
-
-  <div style="position: relative; display:inline-block; width: 20px; cursor: pointer;">
-      <ion-icon id="ro3"  style="position: absolute; top:0; left:0;" name="star-outline"></ion-icon>
-      <ion-icon id="rs3" style="position: absolute; top:0; left:0; display: none;" name="star"></ion-icon>
-  </div>
-
-  <div style="position: relative; display:inline-block; width: 20px; cursor: pointer;">
-      <ion-icon id="ro4"  style="position: absolute; top:0; left:0;" name="star-outline"></ion-icon>
-      <ion-icon id="rs4" style="position: absolute; top:0; left:0; display: none;" name="star"></ion-icon>
-  </div>
-
-  <div style="position: relative; display:inline-block; width: 20px; cursor: pointer;">
-      <ion-icon id="ro5"  style="position: absolute; top:0; left:0;" name="star-outline"></ion-icon>
-      <ion-icon id="rs5" style="position: absolute; top:0; left:0; display: none;" name="star"></ion-icon>
-  </div> -->
-      <div *ngIf="isCook == true">
-        <ion-badge color="secondary">
-          <ion-icon name="star"></ion-icon> 4.2
-        </ion-badge>
-        <br />
-        <ion-button color="dark">Rate Cook</ion-button>
-      </div>
+        right: 0;  padding: 0; text-align: center;">
+        
+        
+              <!-- 
+          <div style="position: relative; display:inline-block; width: 20px; cursor: pointer;">
+              <ion-icon id="ro1"  style="position: absolute; top:0; left:0;" name="star-outline"></ion-icon>
+              <ion-icon id="rs1" style="position: absolute; top:0; left:0; display: none;" name="star"></ion-icon>
+          </div>
+        
+          <div style="position: relative; display:inline-block; width: 20px; cursor: pointer;">
+              <ion-icon id="ro2"  style="position: absolute; top:0; left:0;" name="star-outline"></ion-icon>
+              <ion-icon id="rs2" style="position: absolute; top:0; left:0; display: none;" name="star"></ion-icon>
+          </div>
+        
+          <div style="position: relative; display:inline-block; width: 20px; cursor: pointer;">
+              <ion-icon id="ro3"  style="position: absolute; top:0; left:0;" name="star-outline"></ion-icon>
+              <ion-icon id="rs3" style="position: absolute; top:0; left:0; display: none;" name="star"></ion-icon>
+          </div>
+        
+          <div style="position: relative; display:inline-block; width: 20px; cursor: pointer;">
+              <ion-icon id="ro4"  style="position: absolute; top:0; left:0;" name="star-outline"></ion-icon>
+              <ion-icon id="rs4" style="position: absolute; top:0; left:0; display: none;" name="star"></ion-icon>
+          </div>
+        
+          <div style="position: relative; display:inline-block; width: 20px; cursor: pointer;">
+              <ion-icon id="ro5"  style="position: absolute; top:0; left:0;" name="star-outline"></ion-icon>
+              <ion-icon id="rs5" style="position: absolute; top:0; left:0; display: none;" name="star"></ion-icon>
+          </div> -->
+              <div *ngIf="isCook == true">
+                <ion-badge color="secondary">
+                  <ion-icon name="star"></ion-icon> 4.2
+                </ion-badge>
+                <br />
+                <ion-button color="dark">Rate Cook</ion-button>
+              </div>
+        
+        
+            </div>
+        
+        
+          </div>
+        
+        
+          <br /><br /><br/> <br />
+        
+        
+          <div style="width: 100%; text-align:center;" *ngIf="isCook == true">
+            <div style="width:100%;" *ngIf="loginStatus == true">
+              <ion-card>
+        
+                <!-- <ion-button style="display: inline-block" color="danger">Block this user</ion-button>
+            -->
+                <ion-item (click)="showMyCard()">
+                  <ion-icon name="menu" slot="start"></ion-icon>
+                  <ion-label>All published dishes</ion-label>
+                </ion-item>
+                <ion-item [routerLink]="['/blacklist']" routerDirection="forward">
+                  <ion-icon name="time" slot="start"></ion-icon>
+                  <ion-label>Past servings & manage blacklist</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-icon name="card" slot="start"></ion-icon>
+                  <ion-label>Payment options</ion-label>
+                </ion-item>
+                <ion-item [routerLink]="['/foodposter']" routerDirection="forward">
+                  <ion-icon name="paper-plane" slot="start"></ion-icon>
+                  <ion-label>Post a dish</ion-label>
+                </ion-item>
+                <ion-item [routerLink]="['/manage']" routerDirection="forward">
+                  <ion-icon name="alert" slot="start"></ion-icon>
+                  <ion-label>Manage dishes</ion-label>
+                </ion-item>
+                <ion-item href="#" (click)="logmeout()">
+                  <ion-icon name="log-out" slot="start"></ion-icon>
+                  <ion-label>Sign out</ion-label>
+                </ion-item>
+        
+        
+              </ion-card>
+            </div>
+            <ion-button *ngIf="loginStatus == false" style="display: inline-block" color="dark">Block</ion-button>
+          </div>
+          <div style="width: 100%; text-align:center;" *ngIf="isCook == false">
+        
+        
+            <ion-item>
+              <ion-icon name="card" slot="start"></ion-icon>
+              <ion-label>Payment options</ion-label>
+            </ion-item>
+            <ion-item [routerLink]="['/afterlogin']" routerDirection="forward">
+              <ion-icon name="paper-plane" slot="start"></ion-icon>
+              <ion-label>Become a cook</ion-label>
+            </ion-item>
+            <ion-item href="#" (click)="logmeout()">
+              <ion-icon name="log-out" slot="start"></ion-icon>
+              <ion-label>Sign out</ion-label>
+            </ion-item>
+        
+          </div>
 
 
     </div>
+    <div>History of requests
+<br/>
+
+<ion-list>
+    <ion-item-sliding *ngFor="let t of trans">
 
 
-  </div>
+        <ion-card>
+            <ion-card-header>
+              <ion-card-subtitle>Transaction ID</ion-card-subtitle>
+              <ion-card-title>{{t.id}}</ion-card-title>
+              D{{t.requestTime}}
+            </ion-card-header>
+          
+            <ion-card-content>
+             <ion-button  (click)="rateCook(t.cookId)" color="dark">Rate Cook</ion-button>
+             
+            <ion-button  (click)="goDish(t.dishId)" color="dark">View requested Dish</ion-button>
+           
+          
 
 
-  <br /><br /><br /><br /><br /><br />
-  <br /><br /><br /><br /><br /><br />
+           
+            </ion-card-content>
+           
+          </ion-card>
+      
 
+      <!-- <div style="margin: 10px 90px 10px 90px">
 
-  <div style="width: 100%; text-align:center;" *ngIf="isCook == true">
-      <div style="width:100%;" *ngIf="loginStatus == true">
-         <ion-card >
-
-          <ion-button style="display: inline-block" color="danger">Block this user</ion-button>
+        <ion-badge color="primary">{{d.cuisine}}</ion-badge> <br />
    
-             <ion-item (click)="showMyCard()">
-               <ion-icon name="menu" slot="start"></ion-icon>
-               <ion-label>All published dishes</ion-label>
-             </ion-item>
-             <ion-item [routerLink]="['/blacklist']" routerDirection="forward">
-               <ion-icon name="time" slot="start"></ion-icon>
-               <ion-label>Past servings & manage blacklist</ion-label>
-             </ion-item>
-             <ion-item >
-               <ion-icon name="card" slot="start"></ion-icon>
-               <ion-label>Payment options</ion-label>
-             </ion-item>
-             <ion-item [routerLink]="['/foodposter']" routerDirection="forward">
-               <ion-icon name="paper-plane" slot="start"></ion-icon>
-               <ion-label>Post a dish</ion-label>
-             </ion-item>
-             <ion-item [routerLink]="['/manage']" routerDirection="forward">
-                <ion-icon name="alert" slot="start"></ion-icon>
-                <ion-label>Manage dishes</ion-label>
-              </ion-item>
-             <ion-item href="#" (click)="logmeout()">
-               <ion-icon name="log-out" slot="start"></ion-icon>
-               <ion-label>Sign out</ion-label>
-             </ion-item>
-         
-         
-           </ion-card>
-      </div> 
-     <ion-button *ngIf="loginStatus == false" style="display: inline-block" color="dark">Block</ion-button>
-     </div>
-  <div style="width: 100%; text-align:center;" *ngIf="isCook == false">
 
-     
-             <ion-item >
-               <ion-icon name="card" slot="start"></ion-icon>
-               <ion-label>Payment options</ion-label>
-             </ion-item>
-             <ion-item [routerLink]="['/afterlogin']" routerDirection="forward">
-               <ion-icon name="paper-plane" slot="start"></ion-icon>
-               <ion-label>Become a cook</ion-label>
-             </ion-item>
-             <ion-item href="#" (click)="logmeout()">
-               <ion-icon name="log-out" slot="start"></ion-icon>
-               <ion-label>Sign out</ion-label>
-             </ion-item>
+      </div>
+      <ion-item side="end">
+ <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&layout=button&size=small&appId=484770218980582&width=59&height=20" width="59" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe> 
+ 
+        <ion-item slot="end">
+         
+          <div *ngIf="d.request == true">
+            <ion-button id="u{{d.id}}" color="dark" (click)="cancle(d.id)">
+              CANCEL REQUEST</ion-button>
+            <ion-button id="p{{d.id}}"  color="dark" (click)="request(d.id)" style="display: none">REQUEST
+            </ion-button>
+          </div>
+          <div *ngIf="d.request == false">
+            <ion-button  id="u{{d.id}}" color="dark" (click)="cancle(d.id)"
+              style="display: none">CANCLE REQUEST</ion-button>
 
+            <ion-button id="p{{d.id}}" color="dark" (click)="request(d.id)">REQUEST</ion-button>
+          </div> 
+
+
+        </ion-item>
+      </ion-item> -->
+   
+    </ion-item-sliding>
+
+
+
+  </ion-list>
+
+    </div>
   </div>
+
+  
 
 </ion-content>

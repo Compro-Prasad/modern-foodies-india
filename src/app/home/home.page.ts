@@ -427,7 +427,7 @@ export class HomePage {
 
           if (response == null) {
             // Create a new account / Sign up
-            var data = { "phoneNo": result.message };
+            var data = { "phoneNo": result.message,"firstTime":true };
             this.userService.CreateBug(data).subscribe(
               response => {
 

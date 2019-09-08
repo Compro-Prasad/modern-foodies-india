@@ -64,6 +64,15 @@ export class TransService {
     )
   }
 
+    // GET
+    GetAllTransById(userId): Observable<Array<Trans>> {
+      return this.http.get<Array<Trans>>(this.baseurl + '/getListTransById?userId='+userId)
+      .pipe(
+        retry(1),
+        catchError(this.errorHandl)
+      )
+    }
+
  
 
   // PUT

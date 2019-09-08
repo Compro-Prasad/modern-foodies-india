@@ -32,5 +32,9 @@ scp -r mrcgddmy@108.179.222.240:/home/mrcgddmy/ssl /home/rajkishor/Desktop/fooda
 Shovan's numnber90822 55894
 
 
+Connect to server 
+ssh mrcgddmy@108.179.222.240
+
+
 
 

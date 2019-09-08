@@ -75,6 +75,7 @@ export class FoodinfoPage implements OnInit {
   matVersion: string = '5.1.0';
   breakpoint: number;
   loginStatus: boolean;
+  cookState: boolean;
   constructor(
     private navCtrl: NavController,
     public userService: UserService,
@@ -106,12 +107,22 @@ export class FoodinfoPage implements OnInit {
           console.log("cookid fromm link " + this.activatedRoute.snapshot.paramMap.get('cookid'))
           if (this.activatedRoute.snapshot.paramMap.get('cookid') == null) {
             if (this.activatedRoute.snapshot.paramMap.get('did') != null) {
+              
+         
+
             this.dishService.GetDishId(this.activatedRoute.snapshot.paramMap.get('did')).subscribe(
               response => {
                 //this.dish = response;
                 console.log("Dishes info below");
                 console.log(response.uId);
                 this.cookid = response.uId;
+
+                if(this.cookid == this.userid){ 
+                  this.cookState = true;// cook is looking at from his login, so dont show request option
+                }else{
+                   this.cookState = false;
+                }
+
                 this.userService.GetUserById(this.cookid).subscribe(
                   response => {
                     console.log(response);
@@ -167,6 +178,11 @@ export class FoodinfoPage implements OnInit {
 
       
                 this.cookid = this.activatedRoute.snapshot.paramMap.get('cookid') ;
+                if(this.cookid == this.userid){ // cook is looking at from his login
+                  this.cookState = true;
+                }else{
+                   this.cookState = false;
+                }
                 this.userService.GetUserById(this.cookid).subscribe(
                   response => {
                     console.log(response);

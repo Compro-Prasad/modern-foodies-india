@@ -43,6 +43,11 @@ public class TransactionService {
 			return transactiondao.findById(id);
 		}
 
+		// Retrieve by list id
+		public List<Transaction> findListById(String id) {
+			return transactiondao.findByUserId(id);
+		}
+
 	public void delete(String id) {
 //		Optional<Transaction> t = transactiondao.findById(id);
 		transactiondao.deleteById(id);

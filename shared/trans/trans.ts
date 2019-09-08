@@ -5,6 +5,8 @@ export class Trans {
 	userId:string;
 	cookId:string;
 	dishId:string;
+
+	requestTime:string;
 	
 	bstatus:boolean;
 

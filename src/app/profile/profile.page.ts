@@ -8,6 +8,9 @@ import { SessionService } from '../../../shared/Session/session.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserService } from '../../../shared/user/user.service';
 import { DishService } from '../../../shared/dish/dish.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { RateDialogComponent } from "../rate-dialog/rate-dialog.component";
+
 import { TransService } from '../../../shared/trans/trans.service';
 
 
@@ -29,7 +32,17 @@ import { ModalPage } from '../modal/modal.page'
 import { ToastController } from '@ionic/angular';
 import anime from "animejs";
 import { ActionSheetController } from '@ionic/angular';
+export interface trans{
+	id:string;
+	
+	userId:string;
+	cookId:string;
+  dishId:string;
 
+  requestTime: string;
+  
+  bstatus:boolean;
+}
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
@@ -37,12 +50,14 @@ import { ActionSheetController } from '@ionic/angular';
 })
 export class ProfilePage implements OnInit {
   
+  trans: Array<trans>;
   userid: any;
   loginStatus: boolean;
   uid: string;
   userName: string;
   isCook: boolean;
   constructor(
+    public dialog2: MatDialog,
     private navCtrl: NavController, 
     public userService:UserService, 
     private http: HttpClient,
@@ -81,6 +96,17 @@ export class ProfilePage implements OnInit {
         response => {
           this.userid = response[0].userId;
           console.log(response[0].userId); 
+
+
+          this.transService.GetAllTrans().subscribe(response =>{
+          
+            console.log("trans resp"+ JSON.stringify(response));
+            this.trans = response;
+            
+
+          }, err => console.log(err));
+
+
 
           if(response != null){
             this.loginStatus = true;
@@ -161,4 +187,17 @@ export class ProfilePage implements OnInit {
  showMyCard(){
   this.router.navigate(['/foodinfo', {cookid:this.userid}]);
  }
+
+ rateCook(cookId) {
+
+  const dialogConfig = new MatDialogConfig();
+  const dialogRef = this.dialog2.open(RateDialogComponent, dialogConfig);
+
+  console.log("Cook id in dialog",cookId);
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log(`Dialog data found at home page with cookID : ${result.message}`);
+  });
+}
+
 }

@@ -73,6 +73,9 @@ export class HomePage {
   // Ionic life cycles : https://ionicframework.com/blog/navigating-lifecycle-events/
 
   ionViewWillEnter() {
+    
+
+
 
     //generate www folder 
     //ionic build --prod 
@@ -155,9 +158,16 @@ export class HomePage {
     //set user session location in the search field on the load of app 
     var ses_lc = getCookie("foodali_address");
     console.log("Session location is " + ses_lc);
-    if (ses_lc != null) {
+    
+    if (ses_lc != "") {
       this.loc = ses_lc;
 
+      var b = document.querySelector("ion-button");
+      b.setAttribute("color", "primary");
+      b.setAttribute("enabled", "");
+      document.getElementById("loc-prompt").innerHTML = '';
+      $("#locateme").removeClass("focal");
+      $(".searchbar-input").blur();
 
       if (this.loc !== '') {
         //enable the button
@@ -169,6 +179,15 @@ export class HomePage {
 
     } else {
       console.log("Session location is not found");
+
+          
+    var b = document.querySelector("ion-button");
+    b.setAttribute("color", "dark");
+    b.setAttribute("disabled", "");
+    document.getElementById("loc-prompt").innerHTML = '*Please set your location to begin<br/><ion-icon  name="arrow-dropdown"></ion-icon>';
+    $("#locateme").addClass("focal");
+    $(".searchbar-input").focus();
+
     }
 
 
@@ -278,9 +297,21 @@ export class HomePage {
         setCookie("foodali_address", formatted_address, "1"); // expires in 1 day
         this.loc = formatted_address;
 
+
+        var b = document.querySelector("ion-button");
+        b.setAttribute("color", "primary");
+        b.setAttribute("enabled", "");
+        document.getElementById("loc-prompt").innerHTML = '';
+        $("#locateme").removeClass("focal");
+        $(".searchbar-input").blur();
+
         if (this.loc !== '') {
           //enable the button
+          
           this.isenabled = true;
+
+ 
+
         } else {
           //disable the button
           this.isenabled = false;

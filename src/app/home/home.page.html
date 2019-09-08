@@ -71,8 +71,39 @@
         
           <div id="foodimg">
           
-          <div class="logo-main" style="display: inline-block;">FoodAli inc. <br/> <b>Discover food nearby</b></div>
-         
+            <div style="margin-left:10%; margin-top: 10%; margin-right: 10%; margin-bottom: 5%;">
+
+              <!-- <div id="cssSelector">
+                <div class="line">
+                    <div class="square el"></div>
+                </div>
+            </div> -->
+            
+                 <ion-text style="text-align:center;" slot="starting">
+                  <h1 class="ml6">
+                    <span class="text-wrapper">
+                      <span class="letters">HUNGRY!!!</span>
+                    </span>
+                  </h1>
+                  
+            
+                  </ion-text>
+            
+              
+                  <!-- <ion-text class="typewriter" style="text-align:left;">
+                      <h4>Order food from a nearby cook</h4>
+                    </ion-text> -->
+            
+                    <h1 class="ml11">
+                      <span class="text-wrapper">
+                        <span class="line line1"></span>
+                        <span class="letters">Order food from a cook</span>
+                      </span>
+                    </h1>
+                    
+            
+               
+                  </div>
           
             
           </div>
@@ -91,74 +122,45 @@
                
      <p style="font-size: 30px; transform: translateX(-40px); " class="logofa el"><b>FOODALI</b></p> 
               </ion-col>
-              <ion-col class="logor" style=" position: relative;">
+              <!-- <ion-col class="logor" style=" position: relative;">
         
                 <div style="width: 100%; padding:0; line-height:0;  position: absolute; top: 50%;  transform: translateY(-50%);">
-                  <!-- <ion-button color="dark" class="not-logged-in" (click)="openDialog(asd)">
+                  <ion-button color="dark" class="not-logged-in" (click)="openDialog(asd)">
                     Login as Chef
                     <ion-icon id="login-icon" slot="end" name="log-in"></ion-icon>
-                  </ion-button> -->
-                  <ion-button class="not-logged-in" (click)="openDialog()">
-                      {{ifloggedin}}
-                      <ion-icon id="login-icon" slot="end" name="log-in"></ion-icon>
-                    </ion-button>
+                  </ion-button>
 
-                    <!-- <ion-button >
+
+                    <ion-button >
                        Sign up
                         <ion-icon slot="end" name="person-add"></ion-icon>
-                      </ion-button> -->
+                      </ion-button>
                       </div>
-              </ion-col>
+              </ion-col> -->
             </ion-row>
           </ion-grid>
      <!-- <div onclick='callAnime()'  class="animate-me" #box></div> -->
 
     <hr/>
-<div style="margin-left:10%; margin-top: 10%; margin-right: 10%; margin-bottom: 5%;">
+    <br/>
+ 
 
-  <!-- <div id="cssSelector">
-    <div class="line">
-        <div class="square el"></div>
-    </div>
-</div> -->
-
-     <ion-text style="text-align:center;" slot="starting">
-      <h1 class="ml6">
-        <span class="text-wrapper">
-          <span class="letters">HUNGRY!!!</span>
-        </span>
-      </h1>
-      
-
-      </ion-text>
-
-  
-      <!-- <ion-text class="typewriter" style="text-align:left;">
-          <h4>Order food from a nearby cook</h4>
-        </ion-text> -->
-
-        <h1 class="ml11">
-          <span class="text-wrapper">
-            <span class="line line1"></span>
-            <span class="letters">Order food from a nearby cook</span>
-          </span>
-        </h1>
-        
-
-   
-      </div>
       
     <ion-card id="locateme" style="margin-left: 10%; margin-right: 10%; cursor:pointer;">
       <ion-item >
 
         <ion-label><ion-searchbar id="sloc" placeholder="Search for location" value="{{loc}}"></ion-searchbar></ion-label>
         <ion-icon name="locate" slot="end" (click)="getLoc()"></ion-icon>
-        
-        <button  [disabled]="!isenabled" (click)="forward()" slot="end" mat-button>
+      
+        <!-- <button  [disabled]="!isenabled" (click)="forward()" slot="end" mat-button>
         <ion-icon name="arrow-forward"></ion-icon>
-        </button>
+        </button> -->
       
       </ion-item>
+      <ion-button [disabled]="!isenabled" class="not-logged-in" (click)="openDialog()">
+        {{ifloggedin}}
+        <ion-icon id="login-icon" slot="end" name="log-in"></ion-icon>
+      </ion-button>
     </ion-card>
     <div style="color:indianred; margin: 10px; font-size: 15px; text-align: center;" id="loc-prompt"></div>
 

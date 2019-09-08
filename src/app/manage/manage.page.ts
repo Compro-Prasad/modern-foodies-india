@@ -114,7 +114,6 @@ export class ManagePage implements OnInit {
 
   updateCard(did){
     this.router.navigate(['/foodposter',  {did : did}]);
-
   }
 
 

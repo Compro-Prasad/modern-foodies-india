@@ -143,7 +143,7 @@ export class BlacklistPage implements OnInit {
     }
   }
 goDish(did){
-  this.router.navigate(['/manage',  {did : did}]);
+  this.router.navigate(['/foodinfo',  {did : did}]);
 }
 goProfile(uid){
   this.router.navigate(['/profile',  {uid : uid}]);

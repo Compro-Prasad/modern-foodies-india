@@ -116,7 +116,7 @@ otpVal:string;
                   //user is a cook
                   //ask for two options whether to post food or search food
 
-                  //fadeout current card
+                  //fadeout current card  
                   $("#card1").fadeOut(200);
 
 
@@ -176,6 +176,10 @@ otpVal:string;
       $('#card2').fadeIn(500);
     });
 
+    let id = this.userid;
+    let data = {"firstTime":false};
+    this.userService.UpdateUserFirstTimeById(id,data).subscribe(response => console.log(response), err => console.log(err));
+
   }
 
 
@@ -207,6 +211,11 @@ otpVal:string;
   }
   skip() {
     this.navCtrl.navigateForward('postmyfood');
+    
+    let id = this.userid;
+    let data = {"firstTime":false};
+    this.userService.UpdateUserFirstTimeById(id,data).subscribe(response => console.log(response), err => console.log(err));
+
   }
   form1() {
     console.log(this.firstFormGroup.value);
@@ -372,6 +381,41 @@ otpVal:string;
     //     // retry(1),
     //     catchError(this.errorHandl)
     //   )
+  }
+
+  SendOTP2() {
+
+    this.otp = generateOTP();
+    function generateOTP() {
+
+      // Declare a digits variable  
+      // which stores all digits 
+      var digits = '0123456789';
+      let OTP = '';
+      for (let i = 0; i < 4; i++) {
+        OTP += digits[Math.floor(Math.random() * 10)];
+      }
+      return OTP;
+    }
+    console.log("Calling send otp")
+    this.otpService.sendOTPdata(this.myNo, this.otp).subscribe(
+      response => {
+        console.log("Otp resp " + response)
+        var data = { "userId": this.userid, "otp": this.otp };
+        this.otpService.CreateOtp(data).subscribe(response => {
+          console.log(response);
+        },
+          err => {console.log("OTP err "+err)}
+        );
+      },
+      err => console.log(err)
+    );
+ 
+    return this.http.get<Otp>('http://nimbusit.co.in/api/swsendSingle.asp?username=t1Foodali&password=26537993&sender=666666&sendto=91'+this.myNo+'&message=Your OTP for FoodAli is ' + this.otp)
+      .pipe(
+        // retry(1),
+        catchError(this.errorHandl)
+      )
   }
   // Error handling
   errorHandl(error) {

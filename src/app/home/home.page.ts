@@ -319,7 +319,7 @@ export class HomePage {
       //skip 
     } else {
       var user = getCookie("foodali_access_token");
-      console.log("Foodali access token "+ user);
+      console.log("Foodali access token " + user);
       this.sessionService.GetSessionAccess(user).subscribe(
         response => {
           console.log("session response from server : " + response[0].userId);
@@ -327,17 +327,25 @@ export class HomePage {
             //user not logged in 
             this.navCtrl.navigateForward('postmyfood');
           } else {
-    
+
             this.userService.GetUserById(response[0].userId).subscribe(
               response => {
 
                 console.log("user response from server : " + response.cookName);
                 //if user is cook, go to after login page, else redirect as default. 
-                //if (response.cookName != null) {
+                if (response.cookName != null) {
                   this.navCtrl.navigateForward('afterlogin');
-                //} else {
-                //  this.navCtrl.navigateForward('postmyfood');
-               // }
+                } else {
+
+                  if (response.firstTime == true) { // if the cookname null, check if firsttime user is true then go to afterlogin else move to postmyfood.
+                    this.navCtrl.navigateForward('afterlogin');
+                  } else {
+                    this.navCtrl.navigateForward('postmyfood');
+                  }
+
+
+
+                }
 
               },
               err => console.log(err)

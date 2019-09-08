@@ -17,4 +17,6 @@ export class User {
 
 	isVerified:string;
 
+	firstTime:boolean;
+
 }

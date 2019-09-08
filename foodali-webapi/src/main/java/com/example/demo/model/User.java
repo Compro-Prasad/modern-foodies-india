@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class User {
 
 	private String id;
-	
+
 	// authentication info
 	private String phoneNo;
 
@@ -21,17 +21,19 @@ public class User {
 	private Boolean isVeg;
 	private List<String> cuisines;
 
-	//verified or not by otp 
+	// verified or not by otp
 	private String isVerified;
-	
+
+	private Boolean firstTime; // check if user is signed up for first time or logged in as a regular user
+
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public User(String id, String phoneNo, Double lat, Double lng, String cookName, Boolean isPro, Boolean isVeg,
-			List<String> cuisines, String isVerified) {
+			List<String> cuisines, String isVerified, Boolean firstTime) {
 		super();
-		
+
 		this.phoneNo = phoneNo;
 		Lat = lat;
 		Lng = lng;
@@ -40,6 +42,9 @@ public class User {
 		this.isVeg = isVeg;
 		this.cuisines = cuisines;
 		this.isVerified = isVerified;
+
+		this.firstTime = firstTime;
+
 	}
 
 	public String getId() {
@@ -114,13 +119,19 @@ public class User {
 		this.isVerified = isVerified;
 	}
 
+	public Boolean getFirstTime() {
+		return firstTime;
+	}
+
+	public void setFirstTime(Boolean firstTime) {
+		this.firstTime = firstTime;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", phoneNo=" + phoneNo + ", Lat=" + Lat + ", Lng=" + Lng + ", cookName=" + cookName
 				+ ", isPro=" + isPro + ", isVeg=" + isVeg + ", cuisines=" + cuisines + ", isVerified=" + isVerified
-				+ "]";
+				+ ", firstTime=" + firstTime + "]";
 	}
-
-	
 
 }

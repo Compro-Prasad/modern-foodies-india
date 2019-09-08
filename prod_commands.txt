@@ -29,6 +29,8 @@ keytool -genkey -alias tomcat -storetype PKCS12 -keyalg RSA -keysize 2048 -keyst
 download from server using ssl 
 scp -r mrcgddmy@108.179.222.240:/home/mrcgddmy/ssl /home/rajkishor/Desktop/foodali/modern-foodies-india/ssl
 
+Shovan's numnber90822 55894
+
 
 
 

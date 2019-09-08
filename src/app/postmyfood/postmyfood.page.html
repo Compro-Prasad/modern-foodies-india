@@ -93,7 +93,7 @@
 </ion-content> -->
 
 <div class="home-dw"
-  style="position: fixed; z-index: -111000; top:0; left:0; width:100%; height:100%; overflow-y: scroll; overflow-x: hidden; background-image: url('http://www.cleo-uk.org/wp-content/uploads/2016/03/white-curves-on-grey-background-bright-abstract-wallpaper.jpg')">
+  style="position: fixed; z-index: -111000; top:0; left:0; width:100%; height:100%; overflow-y: scroll; overflow-x: hidden; background: #fff;">
 
   <div class="search-component"
     style=" position: fixed; display: none; z-index: 1000001; top:0; left:0; width:100%; height:100%; ">
@@ -207,6 +207,8 @@
   <div class="custom-wrapper">
 
     <div class="custom-component" *ngFor="let d of dish ">
+
+        <div *ngIf="d.publishStatus == true">
     
       <ion-card style="background: #fff; " >
         <mat-progress-bar mode="indeterminate"></mat-progress-bar>
@@ -282,7 +284,7 @@
           </ion-toolbar>
         </ion-footer>
       </ion-card>
-  
+  </div>
     </div>
   </div>
 

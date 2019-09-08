@@ -84,6 +84,16 @@ export class UserService {
     )
   }
 
+
+      // PUT
+      UpdateUserFirstTimeById(id, data): Observable<User> {
+        return this.http.put<User>(this.baseurl + '/updateUserFirstTimeinfoById?id=' + id, JSON.stringify(data), this.httpOptions)
+        .pipe(
+          retry(1), 
+          catchError(this.errorHandl)
+        )
+      }
+
     // PUT
     UpdateUserById(id, data): Observable<User> {
       return this.http.put<User>(this.baseurl + '/updateUserChefinfoById?id=' + id, JSON.stringify(data), this.httpOptions)

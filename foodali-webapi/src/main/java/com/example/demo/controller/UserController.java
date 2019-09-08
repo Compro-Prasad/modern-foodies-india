@@ -49,6 +49,19 @@ public class UserController {
 		return userService.findById(id);
 	}
 
+
+	@RequestMapping(value = "/updateUserFirstTimeinfoById", method = RequestMethod.PUT)
+	public String updatefi(@RequestParam String id,@RequestBody(required = false) User user) {
+		//Reference [1]
+		Optional<User> internaOptionallUser = userService.findById(id);
+		User internalUser = internaOptionallUser.get();
+		String phnoe = internalUser.getPhoneNo();
+		user.setId(id);
+		user.setPhoneNo(phnoe);
+		User u = userService.update(user);
+		return u.toString();
+	}
+	
 	@RequestMapping(value = "/updateUserChefinfoById", method = RequestMethod.PUT)
 	public String update(@RequestParam String id,@RequestBody(required = false) User user) {
 		//Reference [1]
@@ -57,6 +70,7 @@ public class UserController {
 		String phnoe = internalUser.getPhoneNo();
 		user.setId(id);
 		user.setPhoneNo(phnoe);
+		user.setFirstTime(internalUser.getFirstTime());
 		User u = userService.update(user);
 		return u.toString();
 	}

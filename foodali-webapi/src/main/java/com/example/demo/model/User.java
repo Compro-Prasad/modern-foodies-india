@@ -43,7 +43,7 @@ public class User {
 		this.cuisines = cuisines;
 		this.isVerified = isVerified;
 
-		this.firstTime = firstTime;
+		this.firstTime = true;
 
 	}
 

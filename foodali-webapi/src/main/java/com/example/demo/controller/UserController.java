@@ -109,6 +109,14 @@ public class UserController {
 	    String result = restTemplate.getForObject(uri, String.class);
 		return result;
 	}
+	
+	@RequestMapping(value = "/getAutoMapData", method = RequestMethod.GET)
+	public String getAutoMapData(@RequestParam String autocomplete) {
+		final String uri = "https://atlas.mapmyindia.com/api/places/search/json?query="+autocomplete;
+	    RestTemplate restTemplate = new RestTemplate();
+	    String result = restTemplate.getForObject(uri, String.class);
+		return result;
+	}
 
 	@RequestMapping (value = "/deleteAllUsers", method = RequestMethod.DELETE)
 	public String deleteAll() {

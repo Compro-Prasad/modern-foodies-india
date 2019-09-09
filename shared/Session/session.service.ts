@@ -20,10 +20,12 @@ export class SessionService {
     })
   }
 
+
+
   // POST
-  CreateSession(data): Observable<Session> {
+  CreateSession(data): Observable<string> {
     
-    return this.http.post<Session>(this.baseurl + '/createSession', JSON.stringify(data), this.httpOptions)
+    return this.http.post<string>(this.baseurl + '/createSession', JSON.stringify(data), this.httpOptions)
     .pipe(
       catchError(this.errorHandl)
     );

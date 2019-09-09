@@ -66,15 +66,42 @@ export class HomePage {
 
   title = "Example Angular Material Dialog";
   otp: string;
+  isItemAvailable: boolean;
+  items: string[];
   constructor(private http: HttpClient, private navCtrl: NavController, private dialog2: MatDialog, public userService: UserService, public sessionService: SessionService, public otpService: OtpService) { }
   selected = 'option1';
   // constructor(private navCtrl: NavController, public dialog: MatDialog) {}
 
   // Ionic life cycles : https://ionicframework.com/blog/navigating-lifecycle-events/
+  initializeItems(){ 
+    this.items = ["Address1","Address2", "Address3","Address4","Address5", "Address6"]; 
+}
 
+getItems(ev: any) {
+  $('.addrList').fadeIn(200);
+  // Reset items back to all of the items
+  this.initializeItems();
+
+  // set val to the value of the searchbar
+  const val = ev.target.value;
+
+  // if the value is an empty string don't filter the items
+  if (val && val.trim() != '') {
+    this.isItemAvailable = true;
+    this.items = this.items.filter((item) => {
+      return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+    })
+  }
+}
+getItem(item){
+  $('.addrList').fadeOut(200);
+  this.loc = item;
+  this.setCookie("foodali_address", item, "1"); // expires in 1 day
+}
   ionViewWillEnter() {
     
 
+    this.isItemAvailable = false; // initialize the items with false
 
 
     //generate www folder 
@@ -202,6 +229,8 @@ export class HomePage {
 
           console.log("session response from server : " + response);
           if (response != null) {
+
+
             this.ifloggedin = "Logged in";
             document.getElementById("login-icon").style.display = "none";
             var b = document.querySelector("ion-button");
@@ -210,6 +239,10 @@ export class HomePage {
             document.getElementById("loc-prompt").innerHTML = '*Please set your location to begin<br/><ion-icon  name="arrow-dropdown"></ion-icon>';
             $("#locateme").addClass("focal");
             $(".searchbar-input").focus();
+
+            this.forward();
+
+
           } else {
             //delete cookies in the broweser if session is not found in server for the particular access token 
             document.cookie = 'foodali_access_token=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
@@ -265,7 +298,12 @@ export class HomePage {
     this.navCtrl.navigateForward('location');
   }
 
-
+  setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toUTCString;
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
 
   getLoc() {
     // var x = "";
@@ -456,6 +494,8 @@ export class HomePage {
       this.userService.GetUserId(result.message).subscribe(
         response => {
 
+          console.log("what is the response >> "+ response);
+
           if (response == null) {
             // Create a new account / Sign up
             var data = { "phoneNo": result.message,"firstTime":true };
@@ -472,21 +512,29 @@ export class HomePage {
                 this.sessionService.CreateSession(session_data).subscribe(
                   response => {
                     console.log(response)
-
+                    this.forward();
                   },
-                  err => console.log(err)
+                  err => {
+                
+                    this.forward();
+                 
+                    console.log(err)
+                  
+                  }
                 );
 
                 //redirect ot chef info page
                 // this.navCtrl.navigateForward('afterlogin');
-                this.ifloggedin = "Signed up & logged in";
-                document.getElementById("login-icon").style.display = "none";
-                var b = document.querySelector("ion-button");
-                b.setAttribute("color", "dark");
-                b.setAttribute("disabled", "");
-                document.getElementById("loc-prompt").innerHTML = '*Please set your location to begin<br/><ion-icon  name="arrow-dropdown"></ion-icon>';
-                $("#locateme").addClass("focal");
-                $(".searchbar-input").focus();
+                // this.ifloggedin = "Signed up & logged in";
+                // document.getElementById("login-icon").style.display = "none";
+                // var b = document.querySelector("ion-button");
+                // b.setAttribute("color", "dark");
+                // b.setAttribute("disabled", "");
+                // document.getElementById("loc-prompt").innerHTML = '*Please set your location to begin<br/><ion-icon  name="arrow-dropdown"></ion-icon>';
+                // $("#locateme").addClass("focal");
+                // $(".searchbar-input").focus();
+
+
 
 
 
@@ -496,7 +544,7 @@ export class HomePage {
               },
               err => console.log(err)
             );
-          }
+          }else{
 
           console.log("user id for " + result.message + " is " + response.id);
 
@@ -514,19 +562,26 @@ export class HomePage {
           this.sessionService.CreateSession(session_data).subscribe(
             response => {
               console.log(response)
+              this.forward();
 
             },
-            err => console.log(err)
+            err => {
+          
+              this.forward();
+                console.log(err)
+              
+              }
           );
+          }
+          // this.ifloggedin = "Logged in";
+          // document.getElementById("login-icon").style.display = "none";
+          // var b = document.querySelector("ion-button");
+          // b.setAttribute("color", "dark");
+          // b.setAttribute("disabled", "");
+          // document.getElementById("loc-prompt").innerHTML = '*Please set your location to begin<br/><ion-icon  name="arrow-dropdown"></ion-icon>';
+          // $("#locateme").addClass("focal");
+          // $(".searchbar-input").focus();
 
-          this.ifloggedin = "Logged in";
-          document.getElementById("login-icon").style.display = "none";
-          var b = document.querySelector("ion-button");
-          b.setAttribute("color", "dark");
-          b.setAttribute("disabled", "");
-          document.getElementById("loc-prompt").innerHTML = '*Please set your location to begin<br/><ion-icon  name="arrow-dropdown"></ion-icon>';
-          $("#locateme").addClass("focal");
-          $(".searchbar-input").focus();
 
 
 
@@ -626,6 +681,10 @@ export class HomePage {
     }
     console.log(errorMessage);
     return throwError(errorMessage);
+  }
+  removeAddress(){
+    this.loc = "";
+    document.cookie = 'foodali_address=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
   }
 }
 

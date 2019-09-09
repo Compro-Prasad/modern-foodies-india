@@ -126,7 +126,7 @@ otpVal:string;
                 }
               } else {
                 this.otpInit();
-                
+              
 
                 $("#cardotp").fadeIn(200);
                 $("#card1").fadeOut(200);
@@ -134,6 +134,7 @@ otpVal:string;
 
                 //fadein the option
                 $("#card0").fadeOut(200);
+                
               }
             }
 
@@ -430,4 +431,13 @@ otpVal:string;
     console.log(errorMessage);
     return throwError(errorMessage);
   }
+
+  home(){
+    this.navCtrl.navigateForward("home");
+    document.cookie = 'foodali_access_token=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    document.cookie = 'foodali_request_token=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    document.cookie = 'foodali_address=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+
+  }
+
 }

@@ -149,7 +149,21 @@
     <ion-card id="locateme" style="margin-left: 10%; margin-right: 10%; cursor:pointer;">
       <ion-item >
 
-        <ion-label><ion-searchbar id="sloc" placeholder="Search for location" value="{{loc}}"></ion-searchbar></ion-label>
+        <ion-label>
+          
+          <ion-searchbar type="text" debounce="500" (ionInput)="getItems($event)" id="sloc" (ionCancel)="removeAddress()" placeholder="Search for location" value="{{loc}}"></ion-searchbar>
+      
+            <ion-list class="addrList" style="max-height: 200px; overflow-y:scroll; overflow-x:hidden;" *ngIf="isItemAvailable">
+                <ion-item *ngFor="let item of items">
+                  <div (click)="getItem(item)">{{ item }}</div>
+                </ion-item>
+              </ion-list>
+
+ 
+  
+
+        
+        </ion-label>
         <ion-icon name="locate" slot="end" (click)="getLoc()"></ion-icon>
       
         <!-- <button  [disabled]="!isenabled" (click)="forward()" slot="end" mat-button>
